@@ -1,0 +1,46 @@
+﻿@model HeBianGu.Product.Base.Model.JCSJ_USEACCOUNT
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Start.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>JCSJ_USEACCOUNT</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NAME" class="control-label"></label>
+                <input asp-for="NAME" class="form-control" />
+                <span asp-validation-for="NAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PASSWORD" class="control-label"></label>
+                <input asp-for="PASSWORD" class="form-control" />
+                <span asp-validation-for="PASSWORD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="STATE" class="control-label"></label>
+                <input asp-for="STATE" class="form-control" />
+                <span asp-validation-for="STATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TYPE" class="control-label"></label>
+                <input asp-for="TYPE" class="form-control" />
+                <span asp-validation-for="TYPE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
