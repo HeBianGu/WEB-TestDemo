@@ -13,9 +13,9 @@ namespace HeBianGu.Product.General.Tool
 
         public Predicate<TResult> MatchValue { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = "未知";
 
-        public string Type { get; set; }
+        public string Type { get; set; } = "line";
 
         public List<TResult> Datas { get; set; } = new List<TResult>();
 

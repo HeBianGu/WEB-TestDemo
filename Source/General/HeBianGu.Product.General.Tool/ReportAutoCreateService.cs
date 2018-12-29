@@ -149,7 +149,7 @@ namespace HeBianGu.Product.General.Tool
             {
                 foreach (var item in groupFuncs)
                 {
-                    //  Do：获取当前天的数据
+                    //  Do：获取当前天的数据 
                     TResult find = item.GroupBy(models.Where(l => groupBy(l) == x));
 
                     if (item.MatchValue(find))

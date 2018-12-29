@@ -13,6 +13,7 @@ using HeBianGu.Prodoct.Domain.DataServce;
 using HeBianGu.Product.General.Tool;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using System.Linq.Expressions;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
@@ -285,26 +286,58 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
             var result = _context.Datas.FromSql("select * from jw_add_data where LENGTH(REGIONCODE)=6");
 
-            List<ReportGroupEngine<jw_add_data, int?>> reportGroupEngines = new List<ReportGroupEngine<jw_add_data, int?>>();
+            //List<ReportGroupEngine<jw_add_data, int?>> reportGroupEngines = new List<ReportGroupEngine<jw_add_data, int?>>();
+
+            //ReportGroupEngine<jw_add_data, int?> report = new ReportGroupEngine<jw_add_data, int?>();
+
+            //report.GroupBy = l => l.Max(k=>k.OLDTOTAL);
+            //report.MatchValue = l => l.HasValue;
+            //report.Name = "一";
+
+            //reportGroupEngines.Add(report);
+
+            //ReportGroupEngine<jw_add_data, int?> report1 = new ReportGroupEngine<jw_add_data, int?>();
+
+            //report1.GroupBy = l => l.Max(k => k.HYTENTOTAL);
+            //report1.MatchValue = l => l.HasValue;
+            //report1.Name = "二";
+
+            //reportGroupEngines.Add(report1);
+
+            List<ReportGroupEngine<jw_add_data, int?>> allMacthType = new List<ReportGroupEngine<jw_add_data, int?>>();
 
             ReportGroupEngine<jw_add_data, int?> report = new ReportGroupEngine<jw_add_data, int?>();
-
-            report.GroupBy = l => l.Max(k=>k.OLDTOTAL);
+            report.GroupBy = l => l.Max(k => k.OLDTOTAL);
             report.MatchValue = l => l.HasValue;
-            report.Name = "一";
+            report.Name = "老年人建档总数";
 
-            reportGroupEngines.Add(report);
+            //Expression<Func<jw_add_data, int?>> ex;
 
-            ReportGroupEngine<jw_add_data, int?> report1 = new ReportGroupEngine<jw_add_data, int?>();
+                //typeof(jw_add_data).GetProperties().ToList().Find(l=>l.Name==)
 
-            report1.GroupBy = l => l.Max(k => k.HYTENTOTAL);
-            report1.MatchValue = l => l.HasValue;
-            report1.Name = "二";
+            //var properties = typeof(jw_add_data).GetProperties().ToList().FindAll(l => l.PropertyType == typeof(int?));
 
-            reportGroupEngines.Add(report1);
+            //foreach (var item in properties)
+            //{
+
+            //    ReportGroupEngine<jw_add_data, int?> engine = new ReportGroupEngine<jw_add_data, int?>();
+
+            //    engine.GroupBy = l => l.Max(k => k.OLDTOTAL);
+
+            //    DisplayAttribute display = item.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
+
+            //    engine.Name = display == null ? item.Name : display.Name;
+
+            //    engine.Type = "line";
+
+            //    //  Do：如果字段取值为null不添加值
+            //    engine.MatchValue = l => l.HasValue;
+
+            //    allMacthType.Add(engine);
+            //}
 
 
-             var json = DataService.Instance.GroupBy<jw_add_data, int?>(result, l => l.ORGNAME, reportGroupEngines.ToArray());
+            var json = DataService.Instance.GroupBy<jw_add_data, int?>(result, l => l.ORGNAME, allMacthType.ToArray());
 
             return Json(json);
 
