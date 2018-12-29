@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Product.WebApp.Demo", "HeBianGu.Product.WebApp.Demo\HeBianGu.Product.WebApp.Demo.csproj", "{877D0B00-E0CC-45AA-A049-024F5AE4116A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{C85BD383-3174-41E4-B3BA-DAE55450ACB2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Base", "4 - Base", "{30381368-D918-40A5-834A-C77F9A92E53E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - General", "3 - General", "{E17ABCAC-4EBF-49CA-9A82-CF942E36483C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Product.Base.Model", "..\..\Base\HeBianGu.Product.Base.Model\HeBianGu.Product.Base.Model.csproj", "{766F22C9-4FF6-40A7-9006-7EAA2AA62021}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeBianGu.Product.Base.Model", "..\..\Source\Base\HeBianGu.Product.Base.Model\HeBianGu.Product.Base.Model.csproj", "{766F22C9-4FF6-40A7-9006-7EAA2AA62021}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{5D0F027C-14A6-499A-9B60-673ED27A3A29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Prodoct.Domain.DataServce", "..\..\Domain\HeBianGu.Prodoct.Domain.DataServce\HeBianGu.Prodoct.Domain.DataServce.csproj", "{441F9B56-57EA-434F-865A-BAC219C4F99D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeBianGu.Prodoct.Domain.DataServce", "..\..\Source\Domain\HeBianGu.Prodoct.Domain.DataServce\HeBianGu.Prodoct.Domain.DataServce.csproj", "{441F9B56-57EA-434F-865A-BAC219C4F99D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Product.General.LocalDataBase", "..\..\General\HeBianGu.Product.General.LocalDataBase\HeBianGu.Product.General.LocalDataBase.csproj", "{1909D09D-F632-4161-92A0-26BB2D216F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeBianGu.Product.General.LocalDataBase", "..\..\Source\General\HeBianGu.Product.General.LocalDataBase\HeBianGu.Product.General.LocalDataBase.csproj", "{1909D09D-F632-4161-92A0-26BB2D216F8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeBianGu.Product.WebApp.Demo", "..\..\Source\Application\HeBianGu.Product.WebApp.Demo\HeBianGu.Product.WebApp.Demo.csproj", "{6742D962-627B-4064-8A50-C986CD8120A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Product.General.Tool", "..\..\Source\General\HeBianGu.Product.General.Tool\HeBianGu.Product.General.Tool.csproj", "{FE6D8577-AC49-49F9-AE2C-C494FD798EA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{877D0B00-E0CC-45AA-A049-024F5AE4116A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{877D0B00-E0CC-45AA-A049-024F5AE4116A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{877D0B00-E0CC-45AA-A049-024F5AE4116A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{877D0B00-E0CC-45AA-A049-024F5AE4116A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{766F22C9-4FF6-40A7-9006-7EAA2AA62021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{766F22C9-4FF6-40A7-9006-7EAA2AA62021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{766F22C9-4FF6-40A7-9006-7EAA2AA62021}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,15 +39,24 @@ Global
 		{1909D09D-F632-4161-92A0-26BB2D216F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1909D09D-F632-4161-92A0-26BB2D216F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1909D09D-F632-4161-92A0-26BB2D216F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6742D962-627B-4064-8A50-C986CD8120A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6742D962-627B-4064-8A50-C986CD8120A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6742D962-627B-4064-8A50-C986CD8120A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6742D962-627B-4064-8A50-C986CD8120A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE6D8577-AC49-49F9-AE2C-C494FD798EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE6D8577-AC49-49F9-AE2C-C494FD798EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE6D8577-AC49-49F9-AE2C-C494FD798EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE6D8577-AC49-49F9-AE2C-C494FD798EA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{877D0B00-E0CC-45AA-A049-024F5AE4116A} = {C85BD383-3174-41E4-B3BA-DAE55450ACB2}
 		{766F22C9-4FF6-40A7-9006-7EAA2AA62021} = {30381368-D918-40A5-834A-C77F9A92E53E}
 		{441F9B56-57EA-434F-865A-BAC219C4F99D} = {5D0F027C-14A6-499A-9B60-673ED27A3A29}
 		{1909D09D-F632-4161-92A0-26BB2D216F8E} = {E17ABCAC-4EBF-49CA-9A82-CF942E36483C}
+		{6742D962-627B-4064-8A50-C986CD8120A2} = {C85BD383-3174-41E4-B3BA-DAE55450ACB2}
+		{FE6D8577-AC49-49F9-AE2C-C494FD798EA2} = {E17ABCAC-4EBF-49CA-9A82-CF942E36483C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEA9BB87-5547-4DDB-B64B-0A3CEA0443CE}

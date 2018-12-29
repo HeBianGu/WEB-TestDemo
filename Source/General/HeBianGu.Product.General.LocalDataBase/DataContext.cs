@@ -12,11 +12,6 @@ namespace HeBianGu.Product.General.LocalDataBase
 
         }
 
-        /// <summary>
-        /// 用户
-        /// </summary>
-        public DbSet<JCSJ_USEACCOUNT> Users { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySQL(SystemSet.MysqlConnectionString);
@@ -27,5 +22,17 @@ namespace HeBianGu.Product.General.LocalDataBase
         {
             services.AddDbContext<DataContext>(options => options.UseMySQL(SystemSet.MysqlConnectionString));
         }
+
+
+        /// <summary>
+        /// 用户
+        /// </summary>
+        public DbSet<JCSJ_USEACCOUNT> Users { get; set; }
+
+        /// <summary>
+        /// 报表数据
+        /// </summary>
+        public DbSet<jw_add_data> Datas { get; set; }
+        
     }
 }

@@ -1,0 +1,178 @@
+﻿@model IEnumerable<HeBianGu.Product.Base.Model.jw_add_data>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Start.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+		<tr>
+			@*<th>
+			@Html.DisplayNameFor(model => model.ORGID)
+		</th>*@
+
+			<th>
+				@Html.DisplayNameFor(model => model.REGIONCODE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ORGNAME)
+			</th>
+			@*<th>
+			@Html.DisplayNameFor(model => model.ORGTYPE)
+		</th>*@
+
+			<th>
+				@Html.DisplayNameFor(model => model.CDTOTAL)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CYTOTAL)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DBTOTAL)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FILETOTAL)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.HYTENTOTAL)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.OLDTOTAL)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PERFECTOLDTOTAL)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PERFECTTOTLE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SPTOTAL)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.COUNT)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.WOMANRATE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.TNBRATE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PKPRATE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.OLDMANRATE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.GXYRATE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CMPRATE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CHILDRATE)
+			</th>
+			@*<th>
+			@Html.DisplayNameFor(model => model.YEAR)
+		</th>*@
+			@*<th>
+			@Html.DisplayNameFor(model => model.TYPE)
+		</th>*@
+			<th>
+				@Html.DisplayNameFor(model => model.UDATE)
+			</th>
+			<th></th>
+		</tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+		<tr>
+			@*<td>
+			@Html.DisplayFor(modelItem => item.ORGID)
+		</td>*@
+			<td>
+				@Html.DisplayFor(modelItem => item.REGIONCODE)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => item.ORGNAME)
+			</td>
+			@*<td>
+			@Html.DisplayFor(modelItem => item.ORGTYPE)
+		</td>*@
+
+			<td>
+				@Html.DisplayFor(modelItem => item.CDTOTAL)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CYTOTAL)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.DBTOTAL)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.FILETOTAL)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.HYTENTOTAL)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.OLDTOTAL)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PERFECTOLDTOTAL)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PERFECTTOTLE)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.SPTOTAL)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.COUNT)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.WOMANRATE)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.TNBRATE)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PKPRATE)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.OLDMANRATE)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.GXYRATE)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CMPRATE)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CHILDRATE)
+			</td>
+			@*<td>
+			@Html.DisplayFor(modelItem => item.YEAR)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.TYPE)
+		</td>*@
+			<td>
+				@Html.DisplayFor(modelItem => item.UDATE)
+			</td>
+			<td>
+				<a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+				<a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+				<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+			</td>
+		</tr>
+}
+    </tbody>
+</table>

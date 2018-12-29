@@ -8,12 +8,4 @@
     <OutputPath>..\..\..\Product\Debug\</OutputPath>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.13" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Base\HeBianGu.Product.Base.Model\HeBianGu.Product.Base.Model.csproj" />
-  </ItemGroup>
-
 </Project>

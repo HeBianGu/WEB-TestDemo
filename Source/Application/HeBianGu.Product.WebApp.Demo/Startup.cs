@@ -72,8 +72,16 @@ namespace HeBianGu.Product.WebApp.Demo
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=User}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Login}/{id?}");
             });
+
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=User}/{action=Index}/{id?}");
+            //});
         }
     }
 }

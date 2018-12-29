@@ -200,9 +200,9 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Base\HeBianGu.Product.Base.Model\HeBianGu.Product.Base.Model.csproj" />
-    <ProjectReference Include="..\..\..\Domain\HeBianGu.Prodoct.Domain.DataServce\HeBianGu.Prodoct.Domain.DataServce.csproj" />
-    <ProjectReference Include="..\..\..\General\HeBianGu.Product.General.LocalDataBase\HeBianGu.Product.General.LocalDataBase.csproj" />
+    <ProjectReference Include="..\..\Base\HeBianGu.Product.Base.Model\HeBianGu.Product.Base.Model.csproj" />
+    <ProjectReference Include="..\..\Domain\HeBianGu.Prodoct.Domain.DataServce\HeBianGu.Prodoct.Domain.DataServce.csproj" />
+    <ProjectReference Include="..\..\General\HeBianGu.Product.General.LocalDataBase\HeBianGu.Product.General.LocalDataBase.csproj" />
   </ItemGroup>
 
 </Project>
