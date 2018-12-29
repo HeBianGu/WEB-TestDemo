@@ -1,0 +1,2 @@
+sc delete MySQL
+pause
