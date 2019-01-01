@@ -304,16 +304,39 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
             //reportGroupEngines.Add(report1);
 
-            List<ReportGroupEngine<jw_add_data, int?>> allMacthType = new List<ReportGroupEngine<jw_add_data, int?>>();
+            List<ReportGroupEngine<jw_add_data, double?>> allMacthType = new List<ReportGroupEngine<jw_add_data, double?>>();
 
-            ReportGroupEngine<jw_add_data, int?> report = new ReportGroupEngine<jw_add_data, int?>();
-            report.GroupBy = l => l.Max(k => k.OLDTOTAL);
-            report.MatchValue = l => l.HasValue;
-            report.Name = "老年人建档总数";
+            ReportGroupEngine<jw_add_data, double?> report = new ReportGroupEngine<jw_add_data, double?>();
+            report.GroupBy = l => l.Max(k => k.CDTOTAL);
+            //report.MatchValue = l => l.HasValue;
+            report.Name = "0-6岁儿童建档总数(Max)";
+            report.Type = "bar";
+            allMacthType.Add(report);
+
+            report = new ReportGroupEngine<jw_add_data, double?>();
+            report.GroupBy = l => l.Min(k => k.CDTOTAL);
+            //report.MatchValue = l => l.HasValue;
+            report.Name = "0-6岁儿童建档总数(Min)";
+            report.Type = "bar";
+            allMacthType.Add(report);
+
+            report = new ReportGroupEngine<jw_add_data, double?>();
+            report.GroupBy = l => l.Average(k => k.CDTOTAL);
+            //report.MatchValue = l => l.HasValue;
+            report.Name = "0-6岁儿童建档总数(Average)";
+            report.Type = "bar";
+            allMacthType.Add(report);
+
+            report = new ReportGroupEngine<jw_add_data, double?>();
+            report.GroupBy = l => l.Count();
+            //report.MatchValue = l => l.HasValue;
+            report.Name = "0-6岁儿童建档总数(Count)";
+            report.Type = "bar";
+            allMacthType.Add(report);
 
             //Expression<Func<jw_add_data, int?>> ex;
 
-                //typeof(jw_add_data).GetProperties().ToList().Find(l=>l.Name==)
+            //typeof(jw_add_data).GetProperties().ToList().Find(l=>l.Name==)
 
             //var properties = typeof(jw_add_data).GetProperties().ToList().FindAll(l => l.PropertyType == typeof(int?));
 
@@ -337,7 +360,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             //}
 
 
-            var json = DataService.Instance.GroupBy<jw_add_data, int?>(result, l => l.ORGNAME, allMacthType.ToArray());
+            var json = DataService.Instance.GroupBy(result, l => l.ORGNAME, allMacthType.ToArray());
 
             return Json(json);
 
@@ -487,6 +510,29 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             //var series = DataService.Instance.Create<jw_add_data, int?>(result.ToList(), convertxAxis, matchs.Take(8).ToList());
 
             //return Json(series);
+        }
+
+        [HttpPost]
+        public JsonResult RegionTotalPostDisplay()
+        {
+
+            var result = _context.Datas.FromSql("select * from jw_add_data where LENGTH(REGIONCODE)=6"); 
+
+            var json = DataService.Instance.GroupByExpression(result, 
+                l => l.ORGNAME,
+                l => l.Max(k => k.CDTOTAL), 
+                l => l.Min(k => k.CDTOTAL), 
+                l => l.Average(k => k.CDTOTAL), 
+                l => l.Count());
+
+            //var json = DataService.Instance.GroupByExpression(result,
+            //   l => l.ORGNAME,
+            //   l => l.Max(k => k.CDTOTAL),
+            //   l => l.Min(k => k.CDTOTAL),
+            //   l => l.Average(k => k.CDTOTAL),
+            //   l => l.Min(k => k.OLDTOTAL), l => l.Count());
+
+            return Json(json);
         }
 
         // GET: Report/Details/5
