@@ -1,0 +1,331 @@
+﻿@model IEnumerable<HeBianGu.Product.Base.Model.jw_add_data>
+
+@{
+	ViewData["Title"] = "MonitorView";
+	Layout = "~/Views/Shared/_Start.cshtml";
+}
+
+<div class="x_content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>智能养老床垫监测 <small> 一号楼 </small></h2>
+
+					<ul class="nav navbar-right panel_toolbox">
+						<li>
+							<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+						</li>
+
+						<li class="dropdown">
+							<a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown"><i class="fa fa-wrench"></i></a>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a href="#">Settings 1</a>
+								</li>
+								<li>
+									<a href="#">Settings 2</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="close-link"><i class="fa fa-close"></i></a>
+						</li>
+					</ul>
+
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content" style="display: block;">
+					<div class="row">
+						@foreach (var item in Model)
+						{
+						<div class="col-md-3">
+							@*col-md-3 col-xs-7*@
+							<div class="thumbnail">
+								<h4 class="brief"><i>@Html.DisplayFor(modelItem => item.ORGNAME)</i></h4>
+								<div class="left col-xs-7">
+									<h2>1-01 巴菲特  男 67岁 </h2>
+									<p><strong>About: </strong> @Html.DisplayFor(modelItem => item.ORGNAME) </p>
+									<ul class="list-unstyled">
+										<li><i class="fa fa-building"></i> 心率:@Html.DisplayFor(modelItem => item.CDTOTAL) 历史： </li>
+										<li><i class="fa fa-phone"></i> 呼吸: @Html.DisplayFor(modelItem => item.CYTOTAL)</li>
+										<li><i class="fa fa-phone"></i> 体动: @Html.DisplayFor(modelItem => item.DBTOTAL)</li>
+										<li><i class="fa fa-phone"></i> 睡眠: @Html.DisplayFor(modelItem => item.FILETOTAL)</li>
+										<li><i class="fa fa-phone"></i> 离床: @Html.DisplayFor(modelItem => item.HYTENTOTAL)</li>
+										<li><i class="fa fa-phone"></i> 狐狸: @Html.DisplayFor(modelItem => item.OLDTOTAL)</li>
+									</ul>
+								</div>
+								<div class="right col-xs-5 text-center">
+									<img class="img-circle img-responsive" alt="" src="~/images/user.png">
+								</div>
+
+								<div class="col-xs-12 bottom text-center">
+									<div class="col-xs-12 col-sm-6 emphasis">
+										<p class="ratings">
+											<a>4.0</a>
+											<a href="#"><span class="fa fa-star"></span></a>
+											<a href="#"><span class="fa fa-star"></span></a>
+											<a href="#"><span class="fa fa-star"></span></a>
+											<a href="#"><span class="fa fa-star"></span></a>
+											<a href="#"><span class="fa fa-star-o"></span></a>
+										</p>
+									</div>
+									<div class="col-xs-12 col-sm-6 emphasis">
+										<button class="btn btn-success btn-xs" type="button">
+											<i class="fa fa-user">
+											</i> <i class="fa fa-comments-o"></i>
+										</button>
+										<button class="btn btn-primary btn-xs" type="button">
+											<i class="fa fa-user"> </i> View Profile
+										</button>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+						}
+
+						@*<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask">
+										<p>Your Text</p>
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>Snow and Ice Incoming for the South</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask">
+										<p>Your Text</p>
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>Snow and Ice Incoming for the South</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask">
+										<p>Your Text</p>
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>Snow and Ice Incoming for the South</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask">
+										<p>Your Text</p>
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>Snow and Ice Incoming for the South</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask no-caption">
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>
+										<strong>Image Name</strong>
+									</p>
+									<p>Snow and Ice Incoming</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask no-caption">
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>
+										<strong>Image Name</strong>
+									</p>
+									<p>Snow and Ice Incoming</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask no-caption">
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>
+										<strong>Image Name</strong>
+									</p>
+									<p>Snow and Ice Incoming</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask no-caption">
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>
+										<strong>Image Name</strong>
+									</p>
+									<p>Snow and Ice Incoming</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-55">
+							<div class="thumbnail">
+								<div class="image view view-first">
+									<img style="width: 100%; display: block;" alt="image" src="~/images/media.jpg">
+									<div class="mask no-caption">
+										<div class="tools tools-bottom">
+											<a href="#"><i class="fa fa-link"></i></a>
+											<a href="#"><i class="fa fa-pencil"></i></a>
+											<a href="#"><i class="fa fa-times"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									<p>
+										<strong>Image Name</strong>
+									</p>
+									<p>Snow and Ice Incoming</p>
+								</div>
+							</div>
+						</div>*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	@*<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+				<ul class="pagination pagination-split">
+					<li><a href="#">A</a></li>
+					<li><a href="#">B</a></li>
+					<li><a href="#">C</a></li>
+					<li><a href="#">D</a></li>
+					<li><a href="#">E</a></li>
+					<li>...</li>
+					<li><a href="#">W</a></li>
+					<li><a href="#">X</a></li>
+					<li><a href="#">Y</a></li>
+					<li><a href="#">Z</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+
+			@foreach (var item in Model)
+			{
+				<div class=" col-md-55 profile_details">@*col-md-2 col-sm-2 col-xs-2
+					<div class="well profile_view">
+						<div class="col-sm-12">
+							<h4 class="brief"><i>@Html.DisplayFor(modelItem => item.ORGNAME)</i></h4>
+							<div class="left col-xs-7">
+								<h2>1-01 巴菲特  男 67岁 </h2>
+								<p><strong>About: </strong> @Html.DisplayFor(modelItem => item.ORGNAME) </p>
+								<ul class="list-unstyled">
+									<li><i class="fa fa-building"></i> 心率:@Html.DisplayFor(modelItem => item.CDTOTAL) 历史： </li>
+									<li><i class="fa fa-phone"></i> 呼吸: @Html.DisplayFor(modelItem => item.CYTOTAL)</li>
+									<li><i class="fa fa-phone"></i> 体动: @Html.DisplayFor(modelItem => item.DBTOTAL)</li>
+									<li><i class="fa fa-phone"></i> 睡眠: @Html.DisplayFor(modelItem => item.FILETOTAL)</li>
+									<li><i class="fa fa-phone"></i> 离床: @Html.DisplayFor(modelItem => item.HYTENTOTAL)</li>
+									<li><i class="fa fa-phone"></i> 狐狸: @Html.DisplayFor(modelItem => item.OLDTOTAL)</li>
+								</ul>
+							</div>
+							<div class="right col-xs-5 text-center">
+								<img class="img-circle img-responsive" alt="" src="~/images/user.png">
+							</div>
+						</div>
+						<div class="col-xs-12 bottom text-center">
+							<div class="col-xs-12 col-sm-6 emphasis">
+								<p class="ratings">
+									<a>4.0</a>
+									<a href="#"><span class="fa fa-star"></span></a>
+									<a href="#"><span class="fa fa-star"></span></a>
+									<a href="#"><span class="fa fa-star"></span></a>
+									<a href="#"><span class="fa fa-star"></span></a>
+									<a href="#"><span class="fa fa-star-o"></span></a>
+								</p>
+							</div>
+							<div class="col-xs-12 col-sm-6 emphasis">
+								<button class="btn btn-success btn-xs" type="button">
+									<i class="fa fa-user">
+									</i> <i class="fa fa-comments-o"></i>
+								</button>
+								<button class="btn btn-primary btn-xs" type="button">
+									<i class="fa fa-user"> </i> View Profile
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>*@
+</div>
+

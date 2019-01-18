@@ -66,11 +66,53 @@
 							<h3>服务管理</h3>
 							<ul class="nav side-menu">
 								<li>
+									<a><i class="fa fa-desktop"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="general_elements.html">新增用户</a></li>
+										<li><a href="media_gallery.html">用户列表</a></li>
+										<li><a href="media_gallery.html">系统日志</a></li>
+									</ul>
+								</li>
+								<li>
+									<a><i class="fa fa-table"></i> 床位管理 <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="tables.html">新增床位</a></li>
+										<li><a href="tables_dynamic.html">床位列表</a></li>
+									</ul>
+								</li>
+								<li>
+									<a><i class="fa fa-bar-chart-o"></i> 报警记录<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="chartjs.html">费用明细</a></li>
+										<li><a href="chartjs2.html">账单列表</a></li>
+										<li><a href="morisjs.html">预收款</a></li>
+									</ul>
+								</li>
+								<li>
+									<a><i class="fa fa-clone"></i>统计分析 <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="fixed_sidebar.html">会员订单列表</a></li>
+										<li><a href="fixed_footer.html">会员服务预定</a></li>
+										<li><a href="fixed_footer.html">会员商品下单</a></li>
+									</ul>
+								</li>
+								<li>
+									<a><i class="fa fa-clone"></i>系统管理 <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="fixed_sidebar.html">数据分析 - 日常分析</a></li>
+										<li><a href="fixed_footer.html">数据分析 - 睡眠质量</a></li>
+										<li><a href="fixed_footer.html">实时信息</a></li>
+										<li><a href="fixed_footer.html">历史记录</a></li>
+									</ul>
+								</li>
+
+								<li>
 									<a><i class="fa fa-home"></i> 报表预览 <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a asp-controller="Report" asp-action="Index">数据列表</a></li>
 										<li><a asp-controller="Report" asp-action="RegionDetial">区划变化报表</a></li>
 										<li><a asp-controller="Report" asp-action="RegionTotal">区划汇总报表</a></li>
+										<li><a asp-controller="Report" asp-action="MonitorView">检测中心</a></li>
 									</ul>
 								</li>
 								<li>
@@ -90,36 +132,6 @@
 										<li><a href="form_advanced.html">血压血糖一览表</a></li>
 										<li><a href="form_validation.html">设置会员服务机构</a></li>
 										<li><a href="form_wizards.html">设置会员服务套餐</a></li>
-									</ul>
-								</li>
-								<li>
-									<a><i class="fa fa-desktop"></i> 档案管理 <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="general_elements.html">档案列表</a></li>
-										<li><a href="media_gallery.html">添加档案</a></li>
-									</ul>
-								</li>
-								<li>
-									<a><i class="fa fa-table"></i> 工单管理 <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="tables.html">工单列表</a></li>
-										<li><a href="tables_dynamic.html">工单派遣</a></li>
-									</ul>
-								</li>
-								<li>
-									<a><i class="fa fa-bar-chart-o"></i> 费用管理<span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="chartjs.html">费用明细</a></li>
-										<li><a href="chartjs2.html">账单列表</a></li>
-										<li><a href="morisjs.html">预收款</a></li>
-									</ul>
-								</li>
-								<li>
-									<a><i class="fa fa-clone"></i>服务管理 <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="fixed_sidebar.html">会员订单列表</a></li>
-										<li><a href="fixed_footer.html">会员服务预定</a></li>
-										<li><a href="fixed_footer.html">会员商品下单</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -242,7 +254,7 @@
 								<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
 									<li>
 										<a>
-											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+											<span class="image"><img src="~/images/img.jpg" alt="Profile Image" /></span>
 											<span>
 												<span>John Smith</span>
 												<span class="time">3 mins ago</span>
@@ -254,7 +266,7 @@
 									</li>
 									<li>
 										<a>
-											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+											<span class="image"><img src="~/images/img.jpg" alt="Profile Image" /></span>
 											<span>
 												<span>John Smith</span>
 												<span class="time">3 mins ago</span>
@@ -266,7 +278,7 @@
 									</li>
 									<li>
 										<a>
-											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+											<span class="image"><img src="~/images/img.jpg" alt="Profile Image" /></span>
 											<span>
 												<span>John Smith</span>
 												<span class="time">3 mins ago</span>
@@ -278,7 +290,7 @@
 									</li>
 									<li>
 										<a>
-											<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+											<span class="image"><img src="~/images/img.jpg" alt="Profile Image" /></span>
 											<span>
 												<span>John Smith</span>
 												<span class="time">3 mins ago</span>

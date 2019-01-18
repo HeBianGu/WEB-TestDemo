@@ -22,7 +22,9 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         // GET: User
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            //return View(await _context.Users.ToListAsync());
+
+            return RedirectToAction("MonitorView", "Report");
         }
 
         // GET: User/Details/5

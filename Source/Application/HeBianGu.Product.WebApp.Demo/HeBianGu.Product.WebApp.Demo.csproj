@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_CookieConsentPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\vendors\parsleyjs\bower_components\bootstrap\bower.json" />
     <Content Include="wwwroot\vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="wwwroot\vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
@@ -204,5 +208,8 @@
     <ProjectReference Include="..\..\Domain\HeBianGu.Prodoct.Domain.DataServce\HeBianGu.Prodoct.Domain.DataServce.csproj" />
     <ProjectReference Include="..\..\General\HeBianGu.Product.General.LocalDataBase\HeBianGu.Product.General.LocalDataBase.csproj" />
   </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4lib_4bootstrap_4dist_4css_4bootstrap_1css_1map__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

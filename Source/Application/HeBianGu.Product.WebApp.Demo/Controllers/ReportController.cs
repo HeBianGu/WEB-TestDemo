@@ -30,9 +30,17 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         public async Task<IActionResult> Index()
         {
             var result = _context.Datas.FromSql("select * from jw_add_data limit 0, 50");
+
             return View(result);
 
             //return View(await _context.Datas.ToListAsync());
+        }
+
+        public async Task<IActionResult> MonitorView()
+        {
+            var result = _context.Datas.FromSql("select * from jw_add_data limit 0, 50");
+            return View(result);
+            
         }
 
         // GET: Report
