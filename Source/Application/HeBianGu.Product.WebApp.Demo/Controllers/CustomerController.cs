@@ -10,24 +10,22 @@ using HeBianGu.Product.General.LocalDataBase;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
-    public class UserController : Controller
+    public class CustomerController : Controller
     {
         private readonly DataContext _context;
 
-        public UserController(DataContext context)
+        public CustomerController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: User
+        // GET: Customer
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
-
-            //return RedirectToAction("MonitorView", "Report");
+            return View(await _context.Customers.ToListAsync());
         }
 
-        // GET: User/Details/5
+        // GET: Customer/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -35,39 +33,39 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users
+            var jCSJ_CUSTOMER = await _context.Customers
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (jCSJ_USEACCOUNT == null)
+            if (jCSJ_CUSTOMER == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_CUSTOMER);
         }
 
-        // GET: User/Create
+        // GET: Customer/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Customer/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NAME,PASSWORD,STATE,TYPE")] JCSJ_USEACCOUNT jCSJ_USEACCOUNT)
+        public async Task<IActionResult> Create([Bind("ID,NAME,IMAGE,SEX,CARDID,AGE,TEL,INDATE,OUTDATE")] JCSJ_CUSTOMER jCSJ_CUSTOMER)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(jCSJ_USEACCOUNT);
+                _context.Add(jCSJ_CUSTOMER);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_CUSTOMER);
         }
 
-        // GET: User/Edit/5
+        // GET: Customer/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -75,22 +73,22 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users.FindAsync(id);
-            if (jCSJ_USEACCOUNT == null)
+            var jCSJ_CUSTOMER = await _context.Customers.FindAsync(id);
+            if (jCSJ_CUSTOMER == null)
             {
                 return NotFound();
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_CUSTOMER);
         }
 
-        // POST: User/Edit/5
+        // POST: Customer/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,NAME,PASSWORD,STATE,TYPE")] JCSJ_USEACCOUNT jCSJ_USEACCOUNT)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,NAME,IMAGE,SEX,CARDID,AGE,TEL,INDATE,OUTDATE")] JCSJ_CUSTOMER jCSJ_CUSTOMER)
         {
-            if (id != jCSJ_USEACCOUNT.ID)
+            if (id != jCSJ_CUSTOMER.ID)
             {
                 return NotFound();
             }
@@ -99,12 +97,12 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             {
                 try
                 {
-                    _context.Update(jCSJ_USEACCOUNT);
+                    _context.Update(jCSJ_CUSTOMER);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_USEACCOUNTExists(jCSJ_USEACCOUNT.ID))
+                    if (!JCSJ_CUSTOMERExists(jCSJ_CUSTOMER.ID))
                     {
                         return NotFound();
                     }
@@ -115,10 +113,10 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_CUSTOMER);
         }
 
-        // GET: User/Delete/5
+        // GET: Customer/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -126,30 +124,30 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users
+            var jCSJ_CUSTOMER = await _context.Customers
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (jCSJ_USEACCOUNT == null)
+            if (jCSJ_CUSTOMER == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_CUSTOMER);
         }
 
-        // POST: User/Delete/5
+        // POST: Customer/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var jCSJ_USEACCOUNT = await _context.Users.FindAsync(id);
-            _context.Users.Remove(jCSJ_USEACCOUNT);
+            var jCSJ_CUSTOMER = await _context.Customers.FindAsync(id);
+            _context.Customers.Remove(jCSJ_CUSTOMER);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool JCSJ_USEACCOUNTExists(string id)
+        private bool JCSJ_CUSTOMERExists(string id)
         {
-            return _context.Users.Any(e => e.ID == id);
+            return _context.Customers.Any(e => e.ID == id);
         }
     }
 }

@@ -10,24 +10,22 @@ using HeBianGu.Product.General.LocalDataBase;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
-    public class UserController : Controller
+    public class MatController : Controller
     {
         private readonly DataContext _context;
 
-        public UserController(DataContext context)
+        public MatController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: User
+        // GET: Mat
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
-
-            //return RedirectToAction("MonitorView", "Report");
+            return View(await _context.Mats.ToListAsync());
         }
 
-        // GET: User/Details/5
+        // GET: Mat/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -35,39 +33,39 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users
+            var jCSJ_MAT = await _context.Mats
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (jCSJ_USEACCOUNT == null)
+            if (jCSJ_MAT == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_MAT);
         }
 
-        // GET: User/Create
+        // GET: Mat/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Mat/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NAME,PASSWORD,STATE,TYPE")] JCSJ_USEACCOUNT jCSJ_USEACCOUNT)
+        public async Task<IActionResult> Create([Bind("ID,CODE,NAME,SUPPLIER,CDATE,UDATE")] JCSJ_MAT jCSJ_MAT)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(jCSJ_USEACCOUNT);
+                _context.Add(jCSJ_MAT);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_MAT);
         }
 
-        // GET: User/Edit/5
+        // GET: Mat/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -75,22 +73,22 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users.FindAsync(id);
-            if (jCSJ_USEACCOUNT == null)
+            var jCSJ_MAT = await _context.Mats.FindAsync(id);
+            if (jCSJ_MAT == null)
             {
                 return NotFound();
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_MAT);
         }
 
-        // POST: User/Edit/5
+        // POST: Mat/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,NAME,PASSWORD,STATE,TYPE")] JCSJ_USEACCOUNT jCSJ_USEACCOUNT)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,CODE,NAME,SUPPLIER,CDATE,UDATE")] JCSJ_MAT jCSJ_MAT)
         {
-            if (id != jCSJ_USEACCOUNT.ID)
+            if (id != jCSJ_MAT.ID)
             {
                 return NotFound();
             }
@@ -99,12 +97,12 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             {
                 try
                 {
-                    _context.Update(jCSJ_USEACCOUNT);
+                    _context.Update(jCSJ_MAT);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_USEACCOUNTExists(jCSJ_USEACCOUNT.ID))
+                    if (!JCSJ_MATExists(jCSJ_MAT.ID))
                     {
                         return NotFound();
                     }
@@ -115,10 +113,10 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_MAT);
         }
 
-        // GET: User/Delete/5
+        // GET: Mat/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -126,30 +124,30 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users
+            var jCSJ_MAT = await _context.Mats
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (jCSJ_USEACCOUNT == null)
+            if (jCSJ_MAT == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_MAT);
         }
 
-        // POST: User/Delete/5
+        // POST: Mat/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var jCSJ_USEACCOUNT = await _context.Users.FindAsync(id);
-            _context.Users.Remove(jCSJ_USEACCOUNT);
+            var jCSJ_MAT = await _context.Mats.FindAsync(id);
+            _context.Mats.Remove(jCSJ_MAT);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool JCSJ_USEACCOUNTExists(string id)
+        private bool JCSJ_MATExists(string id)
         {
-            return _context.Users.Any(e => e.ID == id);
+            return _context.Mats.Any(e => e.ID == id);
         }
     }
 }

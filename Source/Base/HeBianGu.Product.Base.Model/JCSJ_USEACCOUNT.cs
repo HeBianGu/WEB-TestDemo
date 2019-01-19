@@ -16,7 +16,6 @@ namespace HeBianGu.Product.Base.Model
         public string NAME { get; set; }
 
         [Required]
-        [Phone]
         [Display(Name = "密码")]
         public string PASSWORD { get; set; }
 

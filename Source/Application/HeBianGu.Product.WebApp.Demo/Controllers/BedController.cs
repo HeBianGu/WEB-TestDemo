@@ -10,24 +10,22 @@ using HeBianGu.Product.General.LocalDataBase;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
-    public class UserController : Controller
+    public class BedController : Controller
     {
         private readonly DataContext _context;
 
-        public UserController(DataContext context)
+        public BedController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: User
+        // GET: Bed
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
-
-            //return RedirectToAction("MonitorView", "Report");
+            return View(await _context.Beds.ToListAsync());
         }
 
-        // GET: User/Details/5
+        // GET: Bed/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -35,39 +33,39 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users
+            var jCSJ_BED = await _context.Beds
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (jCSJ_USEACCOUNT == null)
+            if (jCSJ_BED == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_BED);
         }
 
-        // GET: User/Create
+        // GET: Bed/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Bed/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NAME,PASSWORD,STATE,TYPE")] JCSJ_USEACCOUNT jCSJ_USEACCOUNT)
+        public async Task<IActionResult> Create([Bind("ID,CODE,NAME,CDATE,UDATE")] JCSJ_BED jCSJ_BED)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(jCSJ_USEACCOUNT);
+                _context.Add(jCSJ_BED);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_BED);
         }
 
-        // GET: User/Edit/5
+        // GET: Bed/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -75,22 +73,22 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users.FindAsync(id);
-            if (jCSJ_USEACCOUNT == null)
+            var jCSJ_BED = await _context.Beds.FindAsync(id);
+            if (jCSJ_BED == null)
             {
                 return NotFound();
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_BED);
         }
 
-        // POST: User/Edit/5
+        // POST: Bed/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,NAME,PASSWORD,STATE,TYPE")] JCSJ_USEACCOUNT jCSJ_USEACCOUNT)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,CODE,NAME,CDATE,UDATE")] JCSJ_BED jCSJ_BED)
         {
-            if (id != jCSJ_USEACCOUNT.ID)
+            if (id != jCSJ_BED.ID)
             {
                 return NotFound();
             }
@@ -99,12 +97,12 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             {
                 try
                 {
-                    _context.Update(jCSJ_USEACCOUNT);
+                    _context.Update(jCSJ_BED);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_USEACCOUNTExists(jCSJ_USEACCOUNT.ID))
+                    if (!JCSJ_BEDExists(jCSJ_BED.ID))
                     {
                         return NotFound();
                     }
@@ -115,10 +113,10 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_BED);
         }
 
-        // GET: User/Delete/5
+        // GET: Bed/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -126,30 +124,30 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_USEACCOUNT = await _context.Users
+            var jCSJ_BED = await _context.Beds
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (jCSJ_USEACCOUNT == null)
+            if (jCSJ_BED == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_USEACCOUNT);
+            return View(jCSJ_BED);
         }
 
-        // POST: User/Delete/5
+        // POST: Bed/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var jCSJ_USEACCOUNT = await _context.Users.FindAsync(id);
-            _context.Users.Remove(jCSJ_USEACCOUNT);
+            var jCSJ_BED = await _context.Beds.FindAsync(id);
+            _context.Beds.Remove(jCSJ_BED);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool JCSJ_USEACCOUNTExists(string id)
+        private bool JCSJ_BEDExists(string id)
         {
-            return _context.Users.Any(e => e.ID == id);
+            return _context.Beds.Any(e => e.ID == id);
         }
     }
 }

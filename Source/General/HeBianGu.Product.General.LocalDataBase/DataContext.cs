@@ -33,6 +33,26 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// 报表数据
         /// </summary>
         public DbSet<jw_add_data> Datas { get; set; }
-        
+
+        /// <summary>
+        /// 报表数据
+        /// </summary>
+        public DbSet<JCSJ_CUSTOMER> Customers { get; set; }
+
+        /// <summary>
+        /// 报表数据
+        /// </summary>
+        public DbSet<JCSJ_BED> Beds { get; set; }
+
+        /// <summary>
+        /// 报表数据
+        /// </summary>
+        public DbSet<JCSJ_MAT> Mats { get; set; }
+
+        /// <summary>
+        /// 报表数据
+        /// </summary>
+        public DbSet<JCSJ_MONITOR> Moniters { get; set; }
+
     }
 }

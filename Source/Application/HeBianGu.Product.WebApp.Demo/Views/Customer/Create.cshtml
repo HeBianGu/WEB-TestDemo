@@ -1,0 +1,66 @@
+﻿@model HeBianGu.Product.Base.Model.JCSJ_CUSTOMER
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Start.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>JCSJ_CUSTOMER</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NAME" class="control-label"></label>
+                <input asp-for="NAME" class="form-control" />
+                <span asp-validation-for="NAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IMAGE" class="control-label"></label>
+                <input asp-for="IMAGE" class="form-control" />
+                <span asp-validation-for="IMAGE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SEX" class="control-label"></label>
+                <input asp-for="SEX" class="form-control" />
+                <span asp-validation-for="SEX" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CARDID" class="control-label"></label>
+                <input asp-for="CARDID" class="form-control" />
+                <span asp-validation-for="CARDID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AGE" class="control-label"></label>
+                <input asp-for="AGE" class="form-control" />
+                <span asp-validation-for="AGE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TEL" class="control-label"></label>
+                <input asp-for="TEL" class="form-control" />
+                <span asp-validation-for="TEL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="INDATE" class="control-label"></label>
+                <input asp-for="INDATE" class="form-control" />
+                <span asp-validation-for="INDATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OUTDATE" class="control-label"></label>
+                <input asp-for="OUTDATE" class="form-control" />
+                <span asp-validation-for="OUTDATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
