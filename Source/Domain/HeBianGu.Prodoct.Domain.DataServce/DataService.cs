@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
@@ -29,5 +30,12 @@ namespace HeBianGu.Prodoct.Domain.DataServce
         {
             return _reportAutoCreateService.GroupBy(models, groupBy, groupFunc);
         }
+
+        public dynamic GroupByExpression<TModel, TResult>(IQueryable<TModel> collection, Expression<Func<TModel, String>> groupby, params Expression<Func<IQueryable<TModel>, TResult>>[] expressions)
+        {
+            return _reportAutoCreateService.GroupByExpression(collection, groupby, expressions);
+        }
+
+        
     }
 }

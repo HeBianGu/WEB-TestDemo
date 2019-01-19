@@ -152,7 +152,7 @@ namespace HeBianGu.Product.General.Tool
                     //  Do：获取当前天的数据 
                     TResult find = item.GroupBy(models.Where(l => groupBy(l) == x));
 
-                    if (item.MatchValue(find))
+                    if (item.MatchValue == null || item.MatchValue(find))
                     {
                         item.Datas.Add(find);
                     }
@@ -199,6 +199,168 @@ namespace HeBianGu.Product.General.Tool
             //    legend = new { data = Legend.ToArray() },
             //    series = collection.ToArray()
             //};
+        }
+
+
+        /// <summary>
+        /// 获取汇总求和数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="groupby"></param>
+        /// <param name="expressions"></param>
+        /// <returns></returns>
+        public dynamic GroupByExpression<T, TResult>(IQueryable<T> collection, Expression<Func<T, String>> groupby, params Expression<Func<IQueryable<T>, TResult>>[] expressions)
+        {
+
+            List<string> Legend = new List<string>();
+
+            ////  Message：利用表达式设置列名称 
+            //MemberExpression memberExpression = groupby.Body as MemberExpression;
+
+            //var displayName = (memberExpression.Member.GetCustomAttributes(false)[0] as DisplayAttribute).Description;
+
+            //Legend.Add(displayName);
+
+
+            var datas = new List<ReportGroupEngine<T, TResult>>();
+
+            foreach (var expression in expressions)
+            {
+                //  Message：构造Legend  
+                Func<UnaryExpression, MethodCallExpression> getMethodCall = null;
+
+                //  Message：地柜获取MethodCallExpression表达式
+                getMethodCall = l =>
+                   {
+                       if (l.Operand is UnaryExpression)
+                       {
+                           UnaryExpression unaryExpression = l.Operand as UnaryExpression;
+
+                           return getMethodCall(unaryExpression);
+                       }
+                       else if (l.Operand is MethodCallExpression)
+                       {
+                           return l.Operand as MethodCallExpression;
+                       }
+                       else
+                       {
+                           return null;
+                       }
+                   };
+
+                MethodCallExpression methodCallExpression = null;
+
+                if (expression.Body is UnaryExpression)
+                {
+                    methodCallExpression = getMethodCall(expression.Body as UnaryExpression);
+                }
+                else if (expression.Body is MethodCallExpression)
+                {
+                    methodCallExpression = expression.Body as MethodCallExpression;
+                }
+
+                string groupName = methodCallExpression.Method.Name;
+
+                string displayName = string.Empty;
+
+                //  Message：无参数聚合函数不取DisplayName 如Count
+                if (methodCallExpression.Arguments.Count == 2)
+                {
+                    UnaryExpression unaryexpression = methodCallExpression.Arguments[1] as UnaryExpression;
+
+                    LambdaExpression LambdaExpression = unaryexpression.Operand as LambdaExpression;
+
+                    MemberExpression memberExpression = LambdaExpression.Body as MemberExpression;
+
+                    displayName = (memberExpression.Member.GetCustomAttributes(false)[0] as DisplayAttribute).Name;
+                }
+
+                Legend.Add(displayName + $"({groupName})");
+
+
+
+                //  Message：构造Serise
+                Func<IQueryable<T>, TResult> fun = expression.Compile();
+
+                ReportGroupEngine<T, TResult> data = new ReportGroupEngine<T, TResult>();
+
+                data.Name = displayName + $"({groupName})";
+
+                data.GroupBy = fun;
+
+                data.Type = "line";
+
+                datas.Add(data);
+
+                //}
+                //else if (expression.Body is UnaryExpression)
+                //{
+                //    UnaryExpression unaryExpression = expression.Body as UnaryExpression;
+
+                //    MethodCallExpression dynamicExpression = unaryExpression.Operand as MethodCallExpression;
+
+                //    string groupName = dynamicExpression.Method.Name;
+
+                //    UnaryExpression unaryexpression = dynamicExpression.Arguments[0] as UnaryExpression;
+
+                //    LambdaExpression LambdaExpression = unaryexpression.Operand as LambdaExpression;
+
+                //    MemberExpression memberExpression = LambdaExpression.Body as MemberExpression;
+
+                //    string displayName = (memberExpression.Member.GetCustomAttributes(false)[0] as DisplayAttribute).Name;
+
+                //    Legend.Add(groupName);
+
+                //    //  Message：构造Serise
+                //    Func<IQueryable<T>, TResult> fun = expression.Compile();
+
+                //    ReportGroupEngine<T, TResult> data = new ReportGroupEngine<T, TResult>();
+
+                //    data.Name = groupName;
+
+                //    data.GroupBy = fun;
+
+                //    data.Type = "line";
+
+                //    datas.Add(data);
+
+                //}
+
+
+
+
+            }
+
+            //  Message：通过表达式设置数据体 
+            var groups = collection.GroupBy(groupby);
+
+            //  Do：创建x坐标
+            List<string> pxAxis = new List<string>();
+
+            foreach (var group in groups)
+            {
+                //  Message：设置分组列头 
+                pxAxis.Add(group.Key);
+
+                //  Message：设置分组汇总数据
+                for (int i = 0; i < datas.Count; i++)
+                {
+                    var data = datas[i];
+
+                    data.Datas.Add(data.GroupBy(group.AsQueryable()));
+                }
+            }
+
+            List<dynamic> pseries = datas.Select(l => l.ToDynamic()).ToList();
+
+            return new
+            {
+                xAxis = new { data = pxAxis.ToArray() },
+                legend = new { data = Legend.ToArray() },
+                series = pseries
+            };
+
         }
 
     }
