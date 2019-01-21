@@ -13,26 +13,27 @@ namespace HeBianGu.Product.Base.Model
         public string ID { get; set; }
 
         [Required]
-        [StringLength(10)]
-        [Display(Name = "床位ID")]
+        [Display(Name = "床位设置")]
         public string BEDID { get; set; }
 
         [Required]
-        [StringLength(10)]
-        [Display(Name = "床垫ID")]
+        [Display(Name = "床垫设置")]
         public string MATID { get; set; }
 
-        [Display(Name = "客户ID")]
+        [Required]
+        [Display(Name = "客户设置")]
         public string CUSTOMID { get; set; }
 
-        [Display(Name = "监护时间ID")]
+        [Required]
+        [Display(Name = "监护时间设置")]
         public string TIMEPLANID { get; set; }
 
         [Required]
-        [Display(Name = "心率监护ID")]
+        [Display(Name = "心率监护区间设置")]
         public string HEARTID { get; set; }
 
-        [Display(Name = "呼吸监护ID")]
+        [Required]
+        [Display(Name = "呼吸监护区间设置")]
         public string BREATHID { get; set; }
 
         [Display(Name = "创建时间")]

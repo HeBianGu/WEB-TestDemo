@@ -53,6 +53,7 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// 报表数据
         /// </summary>
         public DbSet<JCSJ_MONITOR> Moniters { get; set; }
+  
 
     }
 }

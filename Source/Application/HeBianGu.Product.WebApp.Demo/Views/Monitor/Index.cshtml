@@ -1,0 +1,104 @@
+﻿@model IEnumerable<MonitorViewModel>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Start.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="Create">新增监控</a>   <a asp-action="Monitor" asp-controller="Monitor">实时监控</a>
+</p>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Customer.IMAGE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Customer.NAME)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Customer.CARDID)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Customer.SEX)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Customer.AGE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Customer.TEL)
+			</th>
+			<th>
+				入院诊断
+			</th>
+			<th>
+				病史
+			</th>
+			<th>
+				护理等级
+			</th>
+			<th>
+				翻身护理
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Customer.INDATE)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Customer.OUTDATE)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Customer.IMAGE)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Customer.NAME)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Customer.CARDID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Customer.SEX)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Customer.AGE)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Customer.TEL)
+				</td>
+				<th>
+					入院诊断
+				</th>
+				<th>
+					病史
+				</th>
+				<th>
+					护理等级
+				</th>
+				<th>
+					翻身护理
+				</th>
+				<td>
+					@Html.DisplayFor(modelItem => item.Customer.INDATE)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Customer.OUTDATE)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

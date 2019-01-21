@@ -1,0 +1,67 @@
+﻿@model HeBianGu.Product.Base.Model.JCSJ_MONITOR
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Start.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>JCSJ_MONITOR</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+			<div class="form-group">
+				<label asp-for="BEDID" class="control-label"></label>
+				@Html.DropDownListFor(o => o.BEDID, ViewBag.BedList as IEnumerable<SelectListItem>, "--请选择--", new { @class = "dropdown-toggle form-control" })
+				<span asp-validation-for="BEDID" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="MATID" class="control-label"></label>
+				@Html.DropDownListFor(o => o.MATID, ViewBag.MatList as IEnumerable<SelectListItem>, "--请选择--", new { @class = "dropdown-toggle form-control" })
+				<span asp-validation-for="MATID" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="CUSTOMID" class="control-label"></label>
+				@Html.DropDownListFor(o => o.CUSTOMID, ViewBag.CustomerList as IEnumerable<SelectListItem>, "--请选择--", new { @class = "dropdown-toggle form-control" })
+				<span asp-validation-for="CUSTOMID" class="text-danger"></span>
+			</div>
+            <div class="form-group">
+                <label asp-for="TIMEPLANID" class="control-label"></label>
+                <input asp-for="TIMEPLANID" class="form-control" />
+                <span asp-validation-for="TIMEPLANID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HEARTID" class="control-label"></label>
+                <input asp-for="HEARTID" class="form-control" />
+                <span asp-validation-for="HEARTID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BREATHID" class="control-label"></label>
+                <input asp-for="BREATHID" class="form-control" />
+                <span asp-validation-for="BREATHID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CDATE" class="control-label"></label>
+                <input asp-for="CDATE" class="form-control" />
+                <span asp-validation-for="CDATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UDATE" class="control-label"></label>
+                <input asp-for="UDATE" class="form-control" />
+                <span asp-validation-for="UDATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
