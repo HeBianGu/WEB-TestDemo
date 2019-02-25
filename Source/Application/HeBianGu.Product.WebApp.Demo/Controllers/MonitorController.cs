@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HeBianGu.Product.Base.Model;
 using HeBianGu.Product.General.LocalDataBase;
 using HeBianGu.Product.WebApp.Demo.Models;
+using System.Timers;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
@@ -27,7 +28,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
             if (collection == null)
             {
-                return View(null);
+                return PartialView(null);
             }
             else
             {
@@ -39,13 +40,24 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
                     result.Add(model);
                 }
-                return View(result);
+                return PartialView(result);
             }
+
         }
 
+        Timer timer = new Timer() { Interval = 2000 };
         // GET: Monitor
         public async Task<IActionResult> Monitor()
         {
+
+            //timer.Elapsed += (l, k) =>
+            //  {
+            //      this.MonitorCenter();
+            //  };
+
+
+            //timer.Start();
+
             var collection = await _context.Moniters.ToListAsync();
 
             if (collection == null)
@@ -64,7 +76,54 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 return View(result);
             }
+
         }
+
+        public PartialViewResult MonitorCenter()
+        {
+            var collection = _context.Moniters.ToList();
+
+            List<MonitorViewModel> result = new List<MonitorViewModel>();
+
+            foreach (var item in collection)
+            {
+                MonitorViewModel model = this.GetModel(item);
+
+                result.Add(model);
+            }
+
+            return PartialView("_MonitorCenter", result);
+        }
+
+        Random r = new Random();
+        [HttpPost]
+        public PartialViewResult RefreshMonitor()
+        {
+            var collection = _context.Moniters.ToList();
+
+            List<MonitorViewModel> result = new List<MonitorViewModel>();
+
+            foreach (var item in collection)
+            {
+                MonitorViewModel model = this.GetModel(item);
+
+                model.Heart = "心率：" + r.Next(50, 120).ToString() + "次/分";
+                model.Breath = "呼吸：" + r.Next(80, 200).ToString() + "次/分";
+                model.FanShen = "体动：" + r.Next(6).ToString() + "分 累计：" + r.Next(12).ToString() + "时/天";
+                model.Shuimian = r.Next(3) == 1 ? "睡眠中/睡眠：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分" : "未睡眠";
+                model.ZaiChuang = r.Next(3) == 1 ? "离床：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分" : "在床：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分";
+                model.Huli = r.Next(3) == 1 ? "中度护理 计划翻身" : "中度护理 间隔翻身";
+                result.Add(model);
+            }
+
+            //  Message：随机打乱数组
+            Item<MonitorViewModel> models = new Item<MonitorViewModel>(result.ToArray());
+
+            return PartialView("_MonitorCenter", models.GetDisruptedItems());
+
+        }
+
+
 
         MonitorViewModel GetModel(JCSJ_MONITOR monitor)
         {
@@ -251,6 +310,46 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         private bool JCSJ_MONITORExists(string id)
         {
             return _context.Moniters.Any(e => e.ID == id);
+        }
+    }
+
+    //泛型类
+    class Item<T>
+    {
+        T[] item;
+        //构造函数
+        public Item(T[] obj)
+        {
+            item = new T[obj.Length];
+            for (int i = 0; i < obj.Length; i++)
+            {
+                item[i] = obj[i];
+            }
+        }
+        public Type ShowType() { return typeof(T); } //返回类型
+        public T[] GetItems() { return item; } //返回原数组
+                                               //返回打乱顺序后的数组
+        public T[] GetDisruptedItems()
+        {
+            //生成一个新数组：用于在之上计算和返回
+            T[] temp;
+            temp = new T[item.Length];
+            for (int i = 0; i < temp.Length; i++) { temp[i] = item[i]; }
+            //打乱数组中元素顺序
+            Random rand = new Random(DateTime.Now.Millisecond);
+            for (int i = 0; i < temp.Length; i++)
+            {
+                int x, y; T t;
+                x = rand.Next(0, temp.Length);
+                do
+                {
+                    y = rand.Next(0, temp.Length);
+                } while (y == x);
+                t = temp[x];
+                temp[x] = temp[y];
+                temp[y] = t;
+            }
+            return temp;
         }
     }
 }

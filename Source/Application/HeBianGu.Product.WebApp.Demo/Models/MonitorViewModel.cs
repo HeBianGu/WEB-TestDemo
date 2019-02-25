@@ -16,5 +16,18 @@ namespace HeBianGu.Product.WebApp.Demo.Models
 
         public JCSJ_MAT Mat { get; set; } = new JCSJ_MAT();
 
+
+        public string Heart { get; set; }
+
+        public string Breath { get; set; }
+
+        public string Shuimian { get; set; }
+
+        public string FanShen { get; set; }
+
+        public string ZaiChuang { get; set; }
+
+        public string Huli { get; set; }
+
     }
 }
