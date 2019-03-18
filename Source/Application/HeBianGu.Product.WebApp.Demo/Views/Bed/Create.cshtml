@@ -5,42 +5,82 @@
     Layout = "~/Views/Shared/_Start.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>JCSJ_BED</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CODE" class="control-label"></label>
-                <input asp-for="CODE" class="form-control" />
-                <span asp-validation-for="CODE" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NAME" class="control-label"></label>
-                <input asp-for="NAME" class="form-control" />
-                <span asp-validation-for="NAME" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CDATE" class="control-label"></label>
-                <input asp-for="CDATE" class="form-control" />
-                <span asp-validation-for="CDATE" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UDATE" class="control-label"></label>
-                <input asp-for="UDATE" class="form-control" />
-                <span asp-validation-for="UDATE" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					新增床位
+				</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li>
+						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="#">Settings 1</a>
+							</li>
+							<li>
+								<a href="#">Settings 2</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="close-link"><i class="fa fa-close"></i></a>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<p>
+					<a asp-action="Index" class="btn btn-link">返回列表</a>
+				</p>
+				<form asp-action="Create" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
-<div>
-    <a asp-action="Index">Back to List</a>
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<div class="form-group">
+						<label asp-for="CODE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<input asp-for="CODE" class="form-control col-md-7 col-xs-12" />
+						</div>
+
+						<span asp-validation-for="CODE" class="text-danger"></span>
+
+					</div>
+					<div class="form-group">
+						<label asp-for="NAME" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<input asp-for="NAME" class="form-control col-md-7 col-xs-12" />
+						</div>
+						<span asp-validation-for="NAME" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="CDATE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<input asp-for="CDATE" class="form-control col-md-7 col-xs-12" />
+						</div>
+						<span asp-validation-for="CDATE" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="UDATE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<input asp-for="UDATE" class="form-control col-md-7 col-xs-12" />
+						</div>
+						<span asp-validation-for="UDATE" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<input type="submit" value="  新增  " class="btn btn-primary" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 

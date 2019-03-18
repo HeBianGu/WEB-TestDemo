@@ -1,4 +1,5 @@
 ﻿using HeBianGu.Product.General.Tool;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,16 @@ namespace HeBianGu.Prodoct.Domain.DataServce
             return _reportAutoCreateService.GroupByExpression(collection, groupby, expressions);
         }
 
-        
+
+        /// <summary>
+        /// 序列化实体
+        /// </summary>
+        /// <param name="obj">string</param>
+        /// <returns>实体</returns>
+        public string SerializeObject<T>(T obj)
+        {
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+        }
+
     }
 }

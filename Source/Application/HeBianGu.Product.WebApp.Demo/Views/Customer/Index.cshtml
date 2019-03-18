@@ -47,7 +47,7 @@
 					<a asp-action="Create" class="btn btn-primary">新增客户</a>
 				</p>
 
-				<table id="datatable" class="table table-striped table-bordered">
+				<table id="datatable" class="table table-striped jambo_table bulk_action">
 					@*class="table"*@
 					<thead>
 						<tr>
@@ -107,7 +107,7 @@
 									@Html.DisplayFor(modelItem => item.OUTDATE)
 								</td>
 								<td>
-									<a asp-action="Edit" asp-route-id="@item.ID"  class="btn btn-info  btn-xs">编辑</a> |
+									<a asp-action="Edit" asp-route-id="@item.ID"  class="btn btn-success btn-xs">编辑</a> |
 									<a asp-action="Details" asp-route-id="@item.ID"  class="btn btn-warning  btn-xs">详情</a> |
 									<a asp-action="Delete" asp-route-id="@item.ID"  class="btn btn-danger  btn-xs">删除</a>
 								</td>

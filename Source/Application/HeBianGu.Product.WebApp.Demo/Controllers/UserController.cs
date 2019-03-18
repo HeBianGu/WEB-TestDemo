@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HeBianGu.Product.Base.Model;
 using HeBianGu.Product.General.LocalDataBase;
+using HeBianGu.Prodoct.Domain.DataServce;
+using System.Diagnostics;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
@@ -22,6 +24,12 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         // GET: User
         public async Task<IActionResult> Index()
         {
+           var result=await _context.TyeEncodeDeviceEntitys.ToListAsync();
+
+            string str= DataService.Instance.SerializeObject(result); 
+
+            Debug.WriteLine(str);
+
             return View(await _context.Users.ToListAsync());
 
             //return RedirectToAction("MonitorView", "Report");

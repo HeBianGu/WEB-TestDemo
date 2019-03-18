@@ -1,4 +1,5 @@
-﻿using HeBianGu.Product.Base.Model;
+﻿using CDTY.DataAnalysis.Entity;
+using HeBianGu.Product.Base.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -53,7 +54,13 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// 报表数据
         /// </summary>
         public DbSet<JCSJ_MONITOR> Moniters { get; set; }
-  
+
+
+        /// <summary>
+        /// 缺陷数据
+        /// </summary>
+        public DbSet<TyeEncodeDeviceEntity> TyeEncodeDeviceEntitys { get; set; }
+
 
     }
 }

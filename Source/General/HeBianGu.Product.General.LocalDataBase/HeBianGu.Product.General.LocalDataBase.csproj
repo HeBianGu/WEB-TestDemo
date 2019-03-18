@@ -16,4 +16,10 @@
     <ProjectReference Include="..\..\Base\HeBianGu.Product.Base.Model\HeBianGu.Product.Base.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="CDTY.DataAnalysis.Entity">
+      <HintPath>..\..\..\Product\Dll\CDTY.DataAnalysis.Entity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

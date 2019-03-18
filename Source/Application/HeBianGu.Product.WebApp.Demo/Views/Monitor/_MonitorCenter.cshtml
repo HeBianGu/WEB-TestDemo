@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<MonitorViewModel>
-
-<div class="x_content">
+@*<div class="x_content">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="x_panel">
@@ -29,57 +28,58 @@
 					</ul>
 
 					<div class="clearfix"></div>
-				</div>
-				<div class="x_content" style="display: block;">
-					<div d="main" class="row">
-						@foreach (var item in Model)
-						{
-							<div class="col-md-3">
-								@*col-md-3 col-xs-7*@
-								<div class="thumbnail">
-									<h4 class="brief"><i>@Html.DisplayFor(modelItem => item.Bed.NAME) <small>- @Html.DisplayFor(modelItem => item.Mat.CODE)</small> </i></h4>
-									<div class="left col-xs-7">
-										<h2> @Html.DisplayFor(modelItem => item.Bed.CODE) @Html.DisplayFor(modelItem => item.Customer.NAME)      @Html.DisplayFor(modelItem => item.Customer.SEX)      @Html.DisplayFor(modelItem => item.Customer.AGE)岁</h2>
-										<ul class="list-unstyled">
-											<li><i class="fa fa-heart"></i> @Html.DisplayFor(modelItem => item.Heart)</li>
-											<li><i class="fa fa-comment"></i> @Html.DisplayFor(modelItem => item.Breath)</li>
-											<li><i class="fa fa-heart"></i> @Html.DisplayFor(modelItem => item.FanShen)</li>
-											<li><i class="fa fa-heart"></i> @Html.DisplayFor(modelItem => item.Shuimian)</li>
-											<li><i class="fa fa-clock-o"></i> @Html.DisplayFor(modelItem => item.ZaiChuang)</li>
-											<li><i class="fa fa-heart"></i> @Html.DisplayFor(modelItem => item.Huli)</li>
-										</ul>
-									</div>
-									<div class="right col-xs-5 text-center">
-										<img class="img-circle img-responsive" alt="" src="~/images/oldman.jpg">
-									</div>
+				</div>*@
+<div class="x_content" style="display: block;">
+	<div d="main" class="row">
+		@foreach (var item in Model)
+		{
+			<div class="col-md-3">
+				@*col-md-3 col-xs-7*@
+				<div class="thumbnail" style="background:@Html.DisplayFor(modelItem => item.BackColor)">
+					<h4 class="brief"><i  style="color:@Html.DisplayFor(modelItem => item.ForeColor)">@Html.DisplayFor(modelItem => item.Bed.NAME) <small>- @Html.DisplayFor(modelItem => item.Mat.CODE)</small> </i></h4>
+					
+					<div class="left col-xs-7">
+						<h2  style="color:@Html.DisplayFor(modelItem => item.ForeColor)"> @Html.DisplayFor(modelItem => item.Bed.CODE) @Html.DisplayFor(modelItem => item.Customer.NAME)      @Html.DisplayFor(modelItem => item.Customer.SEX)      @Html.DisplayFor(modelItem => item.Customer.AGE)岁</h2>
+						<ul class="list-unstyled">
+							<li  style="color:@Html.DisplayFor(modelItem => item.ForeColor)"><i class="fa fa-heart"></i> @Html.DisplayFor(modelItem => item.Heart)</li>
+							<li><i class="fa fa-comment"></i> @Html.DisplayFor(modelItem => item.Breath)</li>
+							<li><i class="fa fa-heart"></i> @Html.DisplayFor(modelItem => item.FanShen)</li>
+							<li><i class="fa fa-heart"></i> @Html.DisplayFor(modelItem => item.Shuimian)</li>
+							<li><i class="fa fa-clock-o"></i> @Html.DisplayFor(modelItem => item.ZaiChuang)</li>
+							<li><i class="fa fa-heart"></i> @Html.DisplayFor(modelItem => item.Huli)</li>
+						</ul>
+					</div>
+					<div class="right col-xs-5 text-center">
+						<img class="img-circle img-responsive" alt="" src="~/images/oldman.jpg">
+					</div>
 
-									<div class="col-xs-12 bottom text-center">
-										<div class="col-xs-12 col-sm-6 emphasis">
-											<p class="ratings">
-												<a>4.0</a>
-												<a href="#"><span class="fa fa-star"></span></a>
-												<a href="#"><span class="fa fa-star"></span></a>
-												<a href="#"><span class="fa fa-star"></span></a>
-												<a href="#"><span class="fa fa-star"></span></a>
-												<a href="#"><span class="fa fa-star-o"></span></a>
-											</p>
-										</div>
-										<div class="col-xs-12 col-sm-6 emphasis">
-											<button class="btn btn-success btn-xs" type="button">
-												<i class="fa fa-user">
-												</i> <i class="fa fa-comments-o"></i>
-											</button>
-											<button class="btn btn-primary btn-xs" type="button">
-												<i class="fa fa-user"> </i> View Profile
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						}
+					<div class="col-xs-12 bottom text-center">
+						<div class="col-xs-12 col-sm-6 emphasis">
+							<p class="ratings">
+								<a>4.0</a>
+								<a href="#"><span class="fa fa-star"></span></a>
+								<a href="#"><span class="fa fa-star"></span></a>
+								<a href="#"><span class="fa fa-star"></span></a>
+								<a href="#"><span class="fa fa-star"></span></a>
+								<a href="#"><span class="fa fa-star-o"></span></a>
+							</p>
+						</div>
+						<div class="col-xs-12 col-sm-6 emphasis">
+							<button class="btn btn-success btn-xs" type="button">
+								<i class="fa fa-user">
+								</i> <i class="fa fa-comments-o"></i>
+							</button>
+							<button class="btn btn-primary btn-xs" type="button">
+								<i class="fa fa-user"> </i> View Profile
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		}
 	</div>
 </div>
+@*</div>
+			</div>
+		</div>
+	</div>*@

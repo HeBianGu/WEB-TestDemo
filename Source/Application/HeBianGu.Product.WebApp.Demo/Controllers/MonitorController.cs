@@ -9,6 +9,7 @@ using HeBianGu.Product.Base.Model;
 using HeBianGu.Product.General.LocalDataBase;
 using HeBianGu.Product.WebApp.Demo.Models;
 using System.Timers;
+using System.Drawing;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
@@ -105,6 +106,8 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
             foreach (var item in collection)
             {
+                int v = r.Next(50, 120);
+
                 MonitorViewModel model = this.GetModel(item);
 
                 model.Heart = "心率：" + r.Next(50, 120).ToString() + "次/分";
@@ -113,22 +116,47 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 model.Shuimian = r.Next(3) == 1 ? "睡眠中/睡眠：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分" : "未睡眠";
                 model.ZaiChuang = r.Next(3) == 1 ? "离床：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分" : "在床：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分";
                 model.Huli = r.Next(3) == 1 ? "中度护理 计划翻身" : "中度护理 间隔翻身";
+
+                if (v > 60 && v < 110)
+                {
+                    //model.ForeColor = "#252525";
+                }
+                else if (v < 60)
+                {
+                    model.ForeColor = "#FFFF00";
+                    model.BackColor = "#3300FF";
+
+                    model.Flag = -1;
+                }
+                else
+                {
+                    model.ForeColor = "#FFFF00";
+                    model.BackColor = "#CC0000";
+
+                    model.Flag = 1;
+                }
+
                 result.Add(model);
             }
 
             //  Message：随机打乱数组
-            Item<MonitorViewModel> models = new Item<MonitorViewModel>(result.ToArray());
+            //Item<MonitorViewModel> models = new Item<MonitorViewModel>(result.ToArray());
 
-            return PartialView("_MonitorCenter", models.GetDisruptedItems());
+            //return PartialView("_MonitorCenter", models.GetDisruptedItems());
+
+            result = result.OrderByDescending(l => l.Flag).ToList(); ;
+
+            return PartialView("_MonitorCenter", result);
 
         }
-
 
 
         MonitorViewModel GetModel(JCSJ_MONITOR monitor)
         {
             MonitorViewModel model = new MonitorViewModel();
+
             model.ID = monitor.ID;
+
             var r = _context.Customers.Where(l => l.ID == monitor.CUSTOMID);
 
             if (r != null && r.Count() > 0)

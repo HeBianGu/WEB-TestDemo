@@ -1,6 +1,7 @@
 ﻿using HeBianGu.Product.Base.Model;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,6 +29,13 @@ namespace HeBianGu.Product.WebApp.Demo.Models
         public string ZaiChuang { get; set; }
 
         public string Huli { get; set; }
+
+        public string ForeColor{ get; set; }
+
+        public string BackColor { get; set; }
+
+
+        public int Flag { get; set; } = 0;
 
     }
 }
