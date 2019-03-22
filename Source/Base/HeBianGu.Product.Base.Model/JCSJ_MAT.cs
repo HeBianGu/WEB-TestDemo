@@ -7,10 +7,8 @@ using System.Text;
 namespace HeBianGu.Product.Base.Model
 {
     [Table("JCSJ_MAT")]
-    public class JCSJ_MAT
+    public class JCSJ_MAT : StringEntityBase
     {
-        [Display(Name = "唯一标识")]
-        public string ID { get; set; }
 
         [Required]
         [StringLength(10)]

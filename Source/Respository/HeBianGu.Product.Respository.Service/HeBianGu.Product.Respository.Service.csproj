@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\..\Product\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\General\HeBianGu.Product.General.LocalDataBase\HeBianGu.Product.General.LocalDataBase.csproj" />
+    <ProjectReference Include="..\HeBianGu.Product.Respository.IService\HeBianGu.Product.Respository.IService.csproj" />
+  </ItemGroup>
+
+</Project>

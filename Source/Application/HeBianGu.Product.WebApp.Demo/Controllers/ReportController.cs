@@ -120,7 +120,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
 
 
-            var series = DataService.Instance.Create(result.ToList(), convertxAxis, matchs.Take(8).ToList());
+            var series = ToolService.Instance.Create(result.ToList(), convertxAxis, matchs.Take(8).ToList());
 
             return Json(series);
 
@@ -368,7 +368,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             //}
 
 
-            var json = DataService.Instance.GroupBy(result, l => l.ORGNAME, allMacthType.ToArray());
+            var json = ToolService.Instance.GroupBy(result, l => l.ORGNAME, allMacthType.ToArray());
 
             return Json(json);
 
@@ -526,7 +526,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
             var result = _context.Datas.FromSql("select * from jw_add_data where LENGTH(REGIONCODE)=6"); 
 
-            var json = DataService.Instance.GroupByExpression(result, 
+            var json = ToolService.Instance.GroupByExpression(result, 
                 l => l.ORGNAME,
                 l => l.Max(k => k.CDTOTAL), 
                 l => l.Min(k => k.CDTOTAL), 
@@ -552,7 +552,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jw_add_data = await _context.Datas
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jw_add_data == null)
             {
                 return NotFound();
@@ -606,7 +606,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("ID,ORGID,ORGNAME,ORGTYPE,REGIONCODE,CDTOTAL,CYTOTAL,DBTOTAL,FILETOTAL,HYTENTOTAL,OLDTOTAL,PERFECTOLDTOTAL,PERFECTTOTLE,SPTOTAL,COUNT,WOMANRATE,TNBRATE,PKPRATE,OLDMANRATE,GXYRATE,CMPRATE,CHILDRATE,YEAR,TYPE,UDATE")] jw_add_data jw_add_data)
         {
-            if (id != jw_add_data.ID)
+            if (id != jw_add_data.ID.ToString())
             {
                 return NotFound();
             }
@@ -620,7 +620,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!jw_add_dataExists(jw_add_data.ID))
+                    if (!jw_add_dataExists(jw_add_data.ID.ToString()))
                     {
                         return NotFound();
                     }
@@ -643,7 +643,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jw_add_data = await _context.Datas
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jw_add_data == null)
             {
                 return NotFound();
@@ -665,7 +665,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
         private bool jw_add_dataExists(string id)
         {
-            return _context.Datas.Any(e => e.ID == id);
+            return _context.Datas.Any(e => e.ID== id);
         }
     }
 }

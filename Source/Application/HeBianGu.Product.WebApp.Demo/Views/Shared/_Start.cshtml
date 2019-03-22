@@ -68,29 +68,29 @@
 								<li>
 									<a><i class="fa fa-home"></i> 实时监测 <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a asp-controller="Monitor" asp-action="Monitor">监测中心</a></li>
-										<li><a asp-controller="Report" asp-action="Index">报警记录</a></li>
-										<li><a asp-controller="Report" asp-action="RegionDetial">实时信息</a></li>
-										<li><a asp-controller="Report" asp-action="RegionTotal">历史记录</a></li>
+										<li><a asp-controller="Monitor" asp-action="Monitor"> 实时信息</a></li>
+										<li><a asp-controller="Report" asp-action="RegionDetial"> 历史信息</a></li>
+										@*<li><a asp-controller="Report" asp-action="RegionDetial">实时信息</a></li>
+										<li><a asp-controller="Report" asp-action="RegionTotal">历史记录</a></li>*@
 									</ul>
 								</li>
 
 								<li>
-									<a><i class="fa fa-clone"></i>数据分析 <span class="fa fa-chevron-down"></span></a>
+									<a><i class="fa fa-clone"></i> 数据分析 <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="fixed_sidebar.html">数据分析 - 日常分析</a></li>
-										<li><a href="fixed_footer.html">数据分析 - 睡眠质量</a></li>
-										<li><a href="fixed_footer.html">实时信息</a></li>
-										<li><a href="fixed_footer.html">历史记录</a></li>
+										<li><a href="fixed_sidebar.html"> 日常分析</a></li>
+										<li><a href="fixed_footer.html"> 睡眠质量</a></li>
+										@*<li><a href="fixed_footer.html">实时信息</a></li>
+										<li><a href="fixed_footer.html">历史记录</a></li>*@
 									</ul>
 								</li>
 
 								<li>
 									<a><i class="fa fa-bar-chart-o"></i> 报警记录<span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="chartjs.html">费用明细</a></li>
-										<li><a href="chartjs2.html">账单列表</a></li>
-										<li><a href="morisjs.html">预收款</a></li>
+										<li><a href="chartjs.html">报警记录</a></li>
+										@*<li><a href="chartjs2.html">账单列表</a></li>
+										<li><a href="morisjs.html">预收款</a></li>*@
 									</ul>
 								</li>
 							</ul>
@@ -99,44 +99,45 @@
 							<h3>基础管理</h3>
 							<ul class="nav side-menu">
 								<li>
-									<a><i class="fa fa-desktop"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+									<a><i class="fa fa-table"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a asp-action="Create" asp-controller="User">新增用户</a></li>
-										<li><a asp-action="Index" asp-controller="User">用户列表</a></li>
-										<li><a href="media_gallery.html">系统日志</a></li>
+										<li><a asp-action="Create" asp-controller="Customer">新增用户</a></li>
+										<li><a asp-action="Index" asp-controller="Customer">用户列表</a></li>
 									</ul>
 								</li>
 								<li>
-									<a><i class="fa fa-table"></i> 客户管理 <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a asp-action="Create" asp-controller="Customer">新增客户</a></li>
-										<li><a asp-action="Index" asp-controller="Customer">客户列表</a></li>
-									</ul>
-								</li>
-								<li>
-									<a><i class="fa fa-table"></i>床位管理 <span class="fa fa-chevron-down"></span></a>
+									<a><i class="fa fa-table"></i> 床位管理 <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a asp-action="Create" asp-controller="Bed">新增床位</a></li>
 										<li><a asp-action="Index" asp-controller="Bed">床位列表</a></li>
 									</ul>
 								</li>
 								<li>
-									<a><i class="fa fa-table"></i>床垫管理 <span class="fa fa-chevron-down"></span></a>
+									<a><i class="fa fa-table"></i> 床垫管理 <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a asp-action="Create" asp-controller="Mat">新增床垫</a></li>
 										<li><a asp-action="Index" asp-controller="Mat">床垫列表</a></li>
 									</ul>
 								</li>
 								<li>
-									<a><i class="fa fa-table"></i>监控管理 <span class="fa fa-chevron-down"></span></a>
+									<a><i class="fa fa-table"></i> 监控设置 <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a asp-action="Create" asp-controller="Monitor">新增监控</a></li>
 										<li><a asp-action="Index" asp-controller="Monitor">监控列表</a></li>
 									</ul>
 								</li>
+
+								<li>
+									<a><i class="fa fa-desktop"></i> 系统管理 <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										@*<li><a asp-action="Create" asp-controller="User">新增用户</a></li>*@
+										<li><a asp-action="Index" asp-controller="User">用户管理</a></li>
+										<li><a href="media_gallery.html">日志管理</a></li>
+									</ul>
+								</li>
 							</ul>
 						</div>
-						<div class="menu_section">
+						@*<div class="menu_section">
 							<h3>其他管理</h3>
 							<ul class="nav side-menu">
 								<li>
@@ -196,7 +197,7 @@
 								</li>
 								<li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
 							</ul>
-						</div>
+						</div>*@
 
 					</div>
 					<!-- /sidebar menu -->

@@ -5,11 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace HeBianGu.Product.Base.Model
 {
     [Table("JCSJ_USEACCOUNT")]
-    public class JCSJ_USEACCOUNT
+    public class JCSJ_USEACCOUNT : StringEntityBase
     {
-        [Display(Name = "唯一标识")]
-        public string ID{ get; set; }
-        
         [Required]
         [StringLength(10)]
         [Display(Name = "用户名")]

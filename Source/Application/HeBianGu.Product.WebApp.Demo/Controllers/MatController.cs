@@ -34,7 +34,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_MAT = await _context.Mats
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_MAT == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("ID,CODE,NAME,SUPPLIER,CDATE,UDATE")] JCSJ_MAT jCSJ_MAT)
         {
-            if (id != jCSJ_MAT.ID)
+            if (id != jCSJ_MAT.ID.ToString())
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_MATExists(jCSJ_MAT.ID))
+                    if (!JCSJ_MATExists(jCSJ_MAT.ID.ToString()))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_MAT = await _context.Mats
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_MAT == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
         private bool JCSJ_MATExists(string id)
         {
-            return _context.Mats.Any(e => e.ID == id);
+            return _context.Mats.Any(e => e.ID== id);
         }
     }
 }

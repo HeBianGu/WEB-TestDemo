@@ -7,10 +7,8 @@ using System.Text;
 namespace HeBianGu.Product.Base.Model
 {
     [Table("jw_add_data")]
-    public class jw_add_data
+    public class jw_add_data : StringEntityBase
     {
-        [Display(Name = "唯一标识")]
-        public string ID { get; set; }
 
         [Display(Name = "区划ID")]
         public string ORGID { get; set; }

@@ -26,7 +26,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         {
            var result=await _context.TyeEncodeDeviceEntitys.ToListAsync();
 
-            string str= DataService.Instance.SerializeObject(result); 
+            string str= ToolService.Instance.SerializeObject(result); 
 
             Debug.WriteLine(str);
 
@@ -44,7 +44,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_USEACCOUNT = await _context.Users
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_USEACCOUNT == null)
             {
                 return NotFound();
@@ -98,7 +98,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("ID,NAME,PASSWORD,STATE,TYPE")] JCSJ_USEACCOUNT jCSJ_USEACCOUNT)
         {
-            if (id != jCSJ_USEACCOUNT.ID)
+            if (id != jCSJ_USEACCOUNT.ID.ToString())
             {
                 return NotFound();
             }
@@ -112,7 +112,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_USEACCOUNTExists(jCSJ_USEACCOUNT.ID))
+                    if (!JCSJ_USEACCOUNTExists(jCSJ_USEACCOUNT.ID.ToString()))
                     {
                         return NotFound();
                     }
@@ -135,7 +135,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_USEACCOUNT = await _context.Users
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_USEACCOUNT == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
         private bool JCSJ_USEACCOUNTExists(string id)
         {
-            return _context.Users.Any(e => e.ID == id);
+            return _context.Users.Any(e => e.ID== id);
         }
     }
 }

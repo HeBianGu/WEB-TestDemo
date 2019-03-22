@@ -7,11 +7,8 @@ using System.Text;
 namespace HeBianGu.Product.Base.Model
 {
     [Table("JCSJ_MONITOR")]
-    public class JCSJ_MONITOR
+    public class JCSJ_MONITOR : StringEntityBase
     {
-        [Display(Name = "唯一标识")]
-        public string ID { get; set; }
-
         [Required]
         [Display(Name = "床位设置")]
         public string BEDID { get; set; }

@@ -13,16 +13,18 @@ namespace HeBianGu.Product.General.LocalDataBase
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySQL(SystemSet.MysqlConnectionString);
-            base.OnConfiguring(optionsBuilder);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseMySQL(SystemSet.MysqlConnectionString);
 
-        public static void Init(IServiceCollection services)
-        {
-            services.AddDbContext<DataContext>(options => options.UseMySQL(SystemSet.MysqlConnectionString));
-        }
+        //    base.OnConfiguring(optionsBuilder);
+
+        //}
+
+        //public static void Init(IServiceCollection services)
+        //{
+        //    services.AddDbContext<DataContext>(options => options.UseMySQL(SystemSet.MysqlConnectionString));
+        //}
 
 
         /// <summary>

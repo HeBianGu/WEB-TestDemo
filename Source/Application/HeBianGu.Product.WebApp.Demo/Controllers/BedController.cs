@@ -34,7 +34,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_BED = await _context.Beds
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_BED == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("ID,CODE,NAME,CDATE,UDATE")] JCSJ_BED jCSJ_BED)
         {
-            if (id != jCSJ_BED.ID)
+            if (id != jCSJ_BED.ID.ToString())
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_BEDExists(jCSJ_BED.ID))
+                    if (!JCSJ_BEDExists(jCSJ_BED.ID.ToString()))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_BED = await _context.Beds
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_BED == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
         private bool JCSJ_BEDExists(string id)
         {
-            return _context.Beds.Any(e => e.ID == id);
+            return _context.Beds.Any(e => e.ID== id);
         }
     }
 }

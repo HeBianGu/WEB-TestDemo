@@ -155,23 +155,23 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         {
             MonitorViewModel model = new MonitorViewModel();
 
-            model.ID = monitor.ID;
+            model.ID = monitor.ID.ToString();
 
-            var r = _context.Customers.Where(l => l.ID == monitor.CUSTOMID);
+            var r = _context.Customers.Where(l => l.ID== monitor.CUSTOMID);
 
             if (r != null && r.Count() > 0)
             {
                 model.Customer = r.First();
             }
 
-            var b = _context.Beds.Where(l => l.ID == monitor.BEDID);
+            var b = _context.Beds.Where(l => l.ID== monitor.BEDID);
 
             if (b != null && b.Count() > 0)
             {
                 model.Bed = b.First();
             }
 
-            var m = _context.Mats.Where(l => l.ID == monitor.MATID);
+            var m = _context.Mats.Where(l => l.ID== monitor.MATID);
 
             if (m != null && m.Count() > 0)
             {
@@ -190,7 +190,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_MONITOR = await _context.Moniters
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_MONITOR == null)
             {
                 return NotFound();
@@ -278,7 +278,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("ID,BEDID,MATID,CUSTOMID,TIMEPLANID,HEARTID,BREATHID,CDATE,UDATE")] JCSJ_MONITOR jCSJ_MONITOR)
         {
-            if (id != jCSJ_MONITOR.ID)
+            if (id != jCSJ_MONITOR.ID.ToString())
             {
                 return NotFound();
             }
@@ -292,7 +292,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_MONITORExists(jCSJ_MONITOR.ID))
+                    if (!JCSJ_MONITORExists(jCSJ_MONITOR.ID.ToString()))
                     {
                         return NotFound();
                     }
@@ -315,7 +315,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_MONITOR = await _context.Moniters
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_MONITOR == null)
             {
                 return NotFound();
@@ -337,7 +337,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
         private bool JCSJ_MONITORExists(string id)
         {
-            return _context.Moniters.Any(e => e.ID == id);
+            return _context.Moniters.Any(e => e.ID== id);
         }
     }
 

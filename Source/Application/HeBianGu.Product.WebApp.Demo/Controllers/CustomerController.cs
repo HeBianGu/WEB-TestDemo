@@ -34,7 +34,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_CUSTOMER = await _context.Customers
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_CUSTOMER == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("ID,NAME,IMAGE,SEX,CARDID,AGE,TEL,INDATE,OUTDATE")] JCSJ_CUSTOMER jCSJ_CUSTOMER)
         {
-            if (id != jCSJ_CUSTOMER.ID)
+            if (id != jCSJ_CUSTOMER.ID.ToString())
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_CUSTOMERExists(jCSJ_CUSTOMER.ID))
+                    if (!JCSJ_CUSTOMERExists(jCSJ_CUSTOMER.ID.ToString()))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             var jCSJ_CUSTOMER = await _context.Customers
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID== id);
             if (jCSJ_CUSTOMER == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
         private bool JCSJ_CUSTOMERExists(string id)
         {
-            return _context.Customers.Any(e => e.ID == id);
+            return _context.Customers.Any(e => e.ID== id);
         }
     }
 }

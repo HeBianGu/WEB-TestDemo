@@ -4,25 +4,36 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h1>Login</h1>*@
+@model LoginViewModel
 
 <div>
 	<a class="hiddenanchor" id="signup"></a>
 	<a class="hiddenanchor" id="signin"></a>
 
 	<div class="login_wrapper">
-		<div class="animate form login_form">
+		<div class="animate form login_form"> 
+
 			<section class="login_content">
-				<form>
+				<form asp-controller="Home" asp-action="Login" data-parsley-validate method="post">
 					<h1>         健康养老平台        </h1>
+
+					<span class="text-danger">@ViewBag.ErrorInfo</span>
+
 					<div>
-						<input type="text" class="form-control" placeholder="Username" required="" />
+						<input asp-for="UserName" type="text" class="form-control" placeholder="Username" />
+						@*<span asp-validation-for="UserName" class="text-danger"></span>*@
 					</div>
+
 					<div>
-						<input type="password" class="form-control" placeholder="Password" required="" />
+						<input type="password" asp-for="Password" class="form-control" placeholder="Password" />
+						@*<span asp-validation-for="Password" class="text-danger"></span>*@
 					</div>
+
 					<div>
-						<a class="btn btn-default submit"  asp-controller="Monitor" asp-action="Monitor">Log in</a>
+						@*<a class="btn btn-default submit" asp-controller="Monitor" asp-action="Monitor">Log in</a>*@
+
+						<button type="submit" class="btn btn-default submit">Log in</button>
+
 						<a class="reset_pass" href="#">忘记密码?</a>
 					</div>
 
