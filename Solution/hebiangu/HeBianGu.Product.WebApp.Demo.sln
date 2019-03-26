@@ -29,7 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Respository", "2 - Resp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeBianGu.Product.Respository.IService", "..\..\Source\Respository\HeBianGu.Product.Respository.IService\HeBianGu.Product.Respository.IService.csproj", "{ABA62B5D-2917-4FE9-9259-C724D26B75B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Product.Respository.Service", "..\..\Source\Respository\HeBianGu.Product.Respository.Service\HeBianGu.Product.Respository.Service.csproj", "{7EFFE04E-0A6F-4239-9546-9CE30002C772}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeBianGu.Product.Respository.Service", "..\..\Source\Respository\HeBianGu.Product.Respository.Service\HeBianGu.Product.Respository.Service.csproj", "{7EFFE04E-0A6F-4239-9546-9CE30002C772}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeBianGu.Product.Respository.Model", "..\..\Source\Respository\HeBianGu.Product.Respository.Model\HeBianGu.Product.Respository.Model.csproj", "{BCB67430-FEC9-4ACC-96F0-11D5E8CD5398}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Product.General.ThridTool", "..\..\Source\General\HeBianGu.Product.General.ThridTool\HeBianGu.Product.General.ThridTool.csproj", "{F0B23CC9-5D2E-484F-88F9-A5A45617C61F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{7EFFE04E-0A6F-4239-9546-9CE30002C772}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EFFE04E-0A6F-4239-9546-9CE30002C772}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EFFE04E-0A6F-4239-9546-9CE30002C772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB67430-FEC9-4ACC-96F0-11D5E8CD5398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB67430-FEC9-4ACC-96F0-11D5E8CD5398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB67430-FEC9-4ACC-96F0-11D5E8CD5398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB67430-FEC9-4ACC-96F0-11D5E8CD5398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0B23CC9-5D2E-484F-88F9-A5A45617C61F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0B23CC9-5D2E-484F-88F9-A5A45617C61F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0B23CC9-5D2E-484F-88F9-A5A45617C61F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0B23CC9-5D2E-484F-88F9-A5A45617C61F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +94,8 @@ Global
 		{45D1B4A4-8476-42FD-B1E6-D1DBEA2D94D9} = {B1BD267A-9EC7-425A-A228-67EACC1374D3}
 		{ABA62B5D-2917-4FE9-9259-C724D26B75B7} = {F66A2EF9-A18B-486D-820F-A7F3FD3A7EA1}
 		{7EFFE04E-0A6F-4239-9546-9CE30002C772} = {F66A2EF9-A18B-486D-820F-A7F3FD3A7EA1}
+		{BCB67430-FEC9-4ACC-96F0-11D5E8CD5398} = {F66A2EF9-A18B-486D-820F-A7F3FD3A7EA1}
+		{F0B23CC9-5D2E-484F-88F9-A5A45617C61F} = {E17ABCAC-4EBF-49CA-9A82-CF942E36483C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEA9BB87-5547-4DDB-B64B-0A3CEA0443CE}

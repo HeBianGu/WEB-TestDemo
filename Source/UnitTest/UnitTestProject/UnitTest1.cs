@@ -40,13 +40,17 @@ namespace UnitTestProject
 
             MemberExpression memberExpression = LambdaExpression.Body as MemberExpression;
 
-            string ss = memberExpression.Member.Name;
+            string ss = memberExpression.Member.Name; 
 
 
         }
         [TestMethod]
         public void TestMethod1()
         {
+
+
+         string v=    Guid.NewGuid().ToString();
+
             //  Message：根据表达式获取对应属性的值  
             PersonModel model = new PersonModel();
             model.ID = "1";

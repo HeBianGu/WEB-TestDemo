@@ -8,6 +8,7 @@ using HeBianGu.Product.WebApp.Demo.Models;
 using Microsoft.AspNetCore.Mvc.Filters;
 using HeBianGu.Product.Respository.IService;
 using Microsoft.Extensions.Logging;
+using HeBianGu.Product.Respository.Model;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
@@ -37,6 +38,10 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+
+            //跳转到系统首页
+            return RedirectToAction("Monitor", "Monitor");
+
 
             if (ModelState.IsValid)
             {

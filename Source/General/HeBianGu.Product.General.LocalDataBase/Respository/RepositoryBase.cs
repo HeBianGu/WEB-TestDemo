@@ -202,6 +202,7 @@ namespace HeBianGu.Product.General.LocalDataBase
         {
             _logger = logger;
         }
+
     }
 
 }

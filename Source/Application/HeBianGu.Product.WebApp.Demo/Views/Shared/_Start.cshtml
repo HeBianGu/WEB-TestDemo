@@ -33,6 +33,7 @@
 
 	<!-- Custom Theme Style -->
 	<link href="~/build/css/custom.min.css" rel="stylesheet">
+
 </head>
 
 <body class="nav-md">
@@ -71,7 +72,7 @@
 										<li><a asp-controller="Monitor" asp-action="Monitor"> 实时信息</a></li>
 										<li><a asp-controller="Report" asp-action="RegionDetial"> 历史信息</a></li>
 										@*<li><a asp-controller="Report" asp-action="RegionDetial">实时信息</a></li>
-										<li><a asp-controller="Report" asp-action="RegionTotal">历史记录</a></li>*@
+											<li><a asp-controller="Report" asp-action="RegionTotal">历史记录</a></li>*@
 									</ul>
 								</li>
 
@@ -81,7 +82,7 @@
 										<li><a href="fixed_sidebar.html"> 日常分析</a></li>
 										<li><a href="fixed_footer.html"> 睡眠质量</a></li>
 										@*<li><a href="fixed_footer.html">实时信息</a></li>
-										<li><a href="fixed_footer.html">历史记录</a></li>*@
+											<li><a href="fixed_footer.html">历史记录</a></li>*@
 									</ul>
 								</li>
 
@@ -90,7 +91,7 @@
 									<ul class="nav child_menu">
 										<li><a href="chartjs.html">报警记录</a></li>
 										@*<li><a href="chartjs2.html">账单列表</a></li>
-										<li><a href="morisjs.html">预收款</a></li>*@
+											<li><a href="morisjs.html">预收款</a></li>*@
 									</ul>
 								</li>
 							</ul>
@@ -138,66 +139,66 @@
 							</ul>
 						</div>
 						@*<div class="menu_section">
-							<h3>其他管理</h3>
-							<ul class="nav side-menu">
-								<li>
-									<a><i class="fa fa-bug"></i> 活动管理 <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="e_commerce.html">活动分类管理</a></li>
-										<li><a href="projects.html">活动列表</a></li>
-										<li><a href="project_detail.html">时间银行汇总</a></li>
-									</ul>
-								</li>
-								<li>
-									<a><i class="fa fa-windows"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a asp-action="Index" asp-controller="User">用户列表</a></li>
-										<li><a asp-action="Create" asp-controller="User">添加用户</a></li>
-										<li><a href="page_500.html">角色列表</a></li>
-										<li><a href="plain_page.html">添加角色</a></li>
-										<li><a href="login.html">权限管理</a></li>
-										<li><a href="pricing_tables.html">添加权限</a></li>
-									</ul>
-								</li>
+								<h3>其他管理</h3>
+								<ul class="nav side-menu">
+									<li>
+										<a><i class="fa fa-bug"></i> 活动管理 <span class="fa fa-chevron-down"></span></a>
+										<ul class="nav child_menu">
+											<li><a href="e_commerce.html">活动分类管理</a></li>
+											<li><a href="projects.html">活动列表</a></li>
+											<li><a href="project_detail.html">时间银行汇总</a></li>
+										</ul>
+									</li>
+									<li>
+										<a><i class="fa fa-windows"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+										<ul class="nav child_menu">
+											<li><a asp-action="Index" asp-controller="User">用户列表</a></li>
+											<li><a asp-action="Create" asp-controller="User">添加用户</a></li>
+											<li><a href="page_500.html">角色列表</a></li>
+											<li><a href="plain_page.html">添加角色</a></li>
+											<li><a href="login.html">权限管理</a></li>
+											<li><a href="pricing_tables.html">添加权限</a></li>
+										</ul>
+									</li>
 
-								<li>
-									<a><i class="fa fa-windows"></i> 设备管理 <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="page_403.html">设备列表</a></li>
-										<li><a href="page_404.html">添加设备</a></li>
-										<li><a href="page_500.html">设备类型类表</a></li>
-										<li><a href="plain_page.html">添加设备类型</a></li>
-									</ul>
-								</li>
-								<li>
-									<a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="#level1_1">Level One</a>
-										<li>
-											<a>Multilevel<span class="fa fa-chevron-down"></span></a>
-											<ul class="nav child_menu">
-												<li class="sub_menu">
-													<a href="level2.html">Multilevel</a>
-												</li>
-												<li>
-													<a href="#level2_1">Multilevel</a>
-												</li>
-												<li>
-													<a href="#level2_2">Multilevel</a>
-												</li>
-												<li>
-													<a href="#level2_2">Multilevel</a>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<a href="#level1_2">Level One</a>
-										</li>
-									</ul>
-								</li>
-								<li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
-							</ul>
-						</div>*@
+									<li>
+										<a><i class="fa fa-windows"></i> 设备管理 <span class="fa fa-chevron-down"></span></a>
+										<ul class="nav child_menu">
+											<li><a href="page_403.html">设备列表</a></li>
+											<li><a href="page_404.html">添加设备</a></li>
+											<li><a href="page_500.html">设备类型类表</a></li>
+											<li><a href="plain_page.html">添加设备类型</a></li>
+										</ul>
+									</li>
+									<li>
+										<a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+										<ul class="nav child_menu">
+											<li><a href="#level1_1">Level One</a>
+											<li>
+												<a>Multilevel<span class="fa fa-chevron-down"></span></a>
+												<ul class="nav child_menu">
+													<li class="sub_menu">
+														<a href="level2.html">Multilevel</a>
+													</li>
+													<li>
+														<a href="#level2_1">Multilevel</a>
+													</li>
+													<li>
+														<a href="#level2_2">Multilevel</a>
+													</li>
+													<li>
+														<a href="#level2_2">Multilevel</a>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<a href="#level1_2">Level One</a>
+											</li>
+										</ul>
+									</li>
+									<li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+								</ul>
+							</div>*@
 
 					</div>
 					<!-- /sidebar menu -->
@@ -376,6 +377,13 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="~/build/js/custom.min.js"></script>
+
+
+
+
+	<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="e343e486c24c1b1450ca70f8-|49" defer=""></script>
+
+
 
 </body>
 

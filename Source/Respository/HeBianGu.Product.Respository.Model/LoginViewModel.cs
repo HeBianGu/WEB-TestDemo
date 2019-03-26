@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HeBianGu.Product.WebApp.Demo.Models
+namespace HeBianGu.Product.Respository.Model
 {
     public class LoginViewModel
     {

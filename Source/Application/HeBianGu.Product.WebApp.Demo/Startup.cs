@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HeBianGu.Prodoct.Domain.DataServce;
 using HeBianGu.Product.General.LocalDataBase;
 using HeBianGu.Product.Respository.IService;
+using HeBianGu.Product.Respository.Model;
 using HeBianGu.Product.Respository.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,6 +47,8 @@ namespace HeBianGu.Product.WebApp.Demo
             //  Do：依赖注入
             services.AddScoped<IUserAccountRespositroy, UserAccountRespositroy>();
 
+            services.AddScoped<IMonitorSetRespository, MonitorSetRespository>();
+
             //  Message：注册内服务领域模型
             //services.AddScoped<TestService>();
 
@@ -57,15 +60,7 @@ namespace HeBianGu.Product.WebApp.Demo
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
+       
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -112,17 +107,9 @@ namespace HeBianGu.Product.WebApp.Demo
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Login}/{id?}"); 
+                    template: "{controller=Home}/{action=Login}/{id?}");
             });
 
-        
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=User}/{action=Index}/{id?}");
-            //});
         }
     }
 }

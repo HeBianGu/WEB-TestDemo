@@ -57,11 +57,20 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         public DbSet<JCSJ_MONITOR> Moniters { get; set; }
 
-
         /// <summary>
         /// 缺陷数据
         /// </summary>
         public DbSet<TyeEncodeDeviceEntity> TyeEncodeDeviceEntitys { get; set; }
+
+        /// <summary>
+        /// 监控项扩展
+        /// </summary>
+        public DbSet<ehc_dv_monitorextention> ehc_dv_monitorextentions { get; set; }
+
+        /// <summary>
+        /// 监控项类型表
+        /// </summary>
+        public DbSet<ehc_dv_monitortype> ehc_dv_monitortypes { get; set; }
 
 
     }

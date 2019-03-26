@@ -29,6 +29,9 @@ namespace HeBianGu.Product.Base.Model
     /// </summary>
     public abstract class StringEntityBase : EntityBase<string>
     {
-
+        public StringEntityBase()
+        {
+            this.ID = Guid.NewGuid().ToString();
+        }
     }
 }

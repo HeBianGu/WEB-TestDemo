@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MonitorViewModel>
+﻿@model IEnumerable<HeBianGu.Product.Respository.Model.MonitorViewModel>
 
 @{
 	ViewData["Title"] = "Index";
@@ -40,7 +40,13 @@
 					<thead>
 						<tr>
 							<th>
-								@Html.DisplayNameFor(model => model.Customer.IMAGE)
+								序号
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Bed.CODE)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Mat.CODE)
 							</th>
 							<th>
 								@Html.DisplayNameFor(model => model.Customer.NAME)
@@ -49,93 +55,103 @@
 								@Html.DisplayNameFor(model => model.Customer.CARDID)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.Customer.SEX)
+								@Html.DisplayNameFor(model => model.MonitorDetial.Monitor.CDATE)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.Customer.AGE)
+								@Html.DisplayNameFor(model => model.MonitorDetial.HeartRange)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.Customer.TEL)
+								@Html.DisplayNameFor(model => model.MonitorDetial.BreathRange)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.Bed.NAME)
+								@Html.DisplayNameFor(model => model.MonitorDetial.TimeRange1)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.Mat.NAME)
+								@Html.DisplayNameFor(model => model.MonitorDetial.TimeRange2)
 							</th>
 							<th>
-								入院诊断
+								@Html.DisplayNameFor(model => model.MonitorDetial.TimeRange3)
 							</th>
 							<th>
-								病史
+								@Html.DisplayNameFor(model => model.MonitorDetial.TimeRange4)
 							</th>
 							<th>
-								护理等级
+								@Html.DisplayNameFor(model => model.MonitorDetial.TimeRange5)
 							</th>
 							<th>
-								翻身护理
+								护理等级/翻身
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.Customer.INDATE)
-							</th>
-							<th>
-								@Html.DisplayNameFor(model => model.Customer.OUTDATE)
+								操作
 							</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach (var item in Model)
+						@for (int i = 1; i < Model.Count(); i++)
 						{
-							<tr>
-								<td>
-									@Html.DisplayFor(modelItem => item.Customer.IMAGE)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Customer.NAME)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Customer.CARDID)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Customer.SEX)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Customer.AGE)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Customer.TEL)
-								</td>
-								<th>
-									<a class="btn btn-link  btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">@Html.DisplayFor(modelItem => item.Bed.NAME)</a>
-								</th>
-								<th>
-									<a class="btn btn-link  btn-xs">@Html.DisplayFor(modelItem => item.Mat.NAME) </a>
-								</th>
-								<th>
-									入院诊断
-								</th>
-								<th>
-									病史
-								</th>
-								<th>
-									护理等级
-								</th>
-								<th>
-									翻身护理
-								</th>
-								<td>
-									@Html.DisplayFor(modelItem => item.Customer.INDATE)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Customer.OUTDATE)
-								</td>
-								<td>
-									<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success btn-xs">编辑</a> |
-									<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-warning  btn-xs">详情</a> |
-									<a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger  btn-xs">删除</a>
-								</td>
-							</tr>
+							var item = Model.ToArray()[i];
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => i)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Bed.CODE)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Mat.CODE)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Customer.NAME)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Customer.CARDID)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.MonitorDetial.Monitor.CDATE)
+							</td>
+							@*<th>
+			<a class="btn btn-link  btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">@Html.DisplayFor(modelItem => item.Bed.NAME)</a>
+		</th>
+		<th>
+			<a class="btn btn-link  btn-xs">@Html.DisplayFor(modelItem => item.Mat.NAME) </a>
+		</th>*@
+							<td>
+								@Html.DisplayFor(modelItem => item.MonitorDetial.HeartRange.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.HeartRange.MaxVlalue)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.MonitorDetial.BreathRange.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.BreathRange.MaxVlalue)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+								@*离床30分钟/体动30秒*@
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+								@*离床30分钟/体动30秒*@
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+								@*离床30分钟/体动30秒*@
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+								@*离床30分钟/体动30秒*@
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+								@*离床30分钟/体动30秒*@
+							</td>
+							<td>
+								中度护理
+								@*间隔翻身 30分钟/次*@
+							</td>
+							<td>
+								<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success btn-xs">设置</a> |
+								@*<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-warning  btn-xs">详情</a> |*@
+								<a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger  btn-xs">出院</a>
+							</td>
+						</tr>
 						}
 					</tbody>
 				</table>

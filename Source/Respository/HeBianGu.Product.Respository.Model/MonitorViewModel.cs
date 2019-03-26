@@ -5,18 +5,19 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HeBianGu.Product.WebApp.Demo.Models
+namespace HeBianGu.Product.Respository.Model
 {
     public class MonitorViewModel
     {
         public string  ID { get; set; }
+
+        public MonitorItemViewModel MonitorDetial { get; set; } = new MonitorItemViewModel();
 
         public JCSJ_CUSTOMER Customer { get; set; } = new JCSJ_CUSTOMER();
 
         public JCSJ_BED Bed { get; set; } = new JCSJ_BED();
 
         public JCSJ_MAT Mat { get; set; } = new JCSJ_MAT();
-
 
         public string Heart { get; set; }
 
@@ -33,7 +34,6 @@ namespace HeBianGu.Product.WebApp.Demo.Models
         public string ForeColor{ get; set; }
 
         public string BackColor { get; set; }
-
 
         public int Flag { get; set; } = 0;
 

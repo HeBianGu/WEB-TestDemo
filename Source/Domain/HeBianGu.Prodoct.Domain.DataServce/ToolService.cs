@@ -1,4 +1,5 @@
-﻿using HeBianGu.Product.General.Tool;
+﻿using HeBianGu.Product.General.ThridTool;
+using HeBianGu.Product.General.Tool;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace HeBianGu.Prodoct.Domain.DataServce
 
         public dynamic Create<TModel, RType>(List<TModel> models, Func<TModel, string> toxAxis, List<ReportConvertEngine<TModel, RType>> matchs)
         {
-            return _reportAutoCreateService.Create(models, toxAxis,matchs);
+            return _reportAutoCreateService.Create(models, toxAxis, matchs);
         }
 
         public dynamic CreateWithAllProperty<TModel, RType>(List<TModel> models, Func<TModel, string> toxAxis, Predicate<PropertyInfo> except = null)
@@ -38,14 +39,30 @@ namespace HeBianGu.Prodoct.Domain.DataServce
         }
 
 
+        JsonService _jsonService = new JsonService();
+
         /// <summary>
         /// 序列化实体
         /// </summary>
         /// <param name="obj">string</param>
         /// <returns>实体</returns>
-        public string SerializeObject<T>(T obj)
+        public string SerializeObject<T>(T obj) where T : class
         {
-            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            return _jsonService.Serialize<T>(obj);
+
+            // return JsonConvert.SerializeObject(obj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+        }
+
+        /// <summary>
+        /// 序列化实体
+        /// </summary>
+        /// <param name="obj">string</param>
+        /// <returns>实体</returns>
+        public T DeSerializeObject<T>(string obj) where T : class
+        {
+            return _jsonService.DeSerialize<T>(obj);
+
+            // return JsonConvert.SerializeObject(obj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
         }
 
     }

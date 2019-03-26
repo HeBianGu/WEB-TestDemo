@@ -21,15 +21,15 @@ namespace HeBianGu.Product.Base.Model
         [Display(Name = "客户设置")]
         public string CUSTOMID { get; set; }
 
-        [Required]
+
         [Display(Name = "监护时间设置")]
         public string TIMEPLANID { get; set; }
 
-        [Required]
+ 
         [Display(Name = "心率监护区间设置")]
         public string HEARTID { get; set; }
 
-        [Required]
+
         [Display(Name = "呼吸监护区间设置")]
         public string BREATHID { get; set; }
 
