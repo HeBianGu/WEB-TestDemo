@@ -6,8 +6,8 @@ using System.Text;
 
 namespace HeBianGu.Product.Base.Model
 {
-    [Table("JCSJ_BED")]
-    public class JCSJ_BED: StringEntityBase
+    [Table("ehc_dv_bed")]
+    public class ehc_dv_bed: StringEntityBase
     { 
 
         [Required]

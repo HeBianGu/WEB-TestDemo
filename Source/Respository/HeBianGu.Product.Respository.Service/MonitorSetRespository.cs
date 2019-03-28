@@ -17,7 +17,7 @@ namespace HeBianGu.Product.Respository.Service
 {
 
     /// <summary> 监控配置模型 </summary>
-    public class MonitorSetRespository : RepositoryBase<JCSJ_MONITOR>, IMonitorSetRespository
+    public class MonitorSetRespository : UserLoggerRepositoryBase<ehc_dv_monitor>, IMonitorSetRespository
     {
         public MonitorSetRespository(DataContext dbcontext, ILogger<MonitorSetRespository> logger) : base(dbcontext, logger)
         {
@@ -76,7 +76,7 @@ namespace HeBianGu.Product.Respository.Service
         public async Task<List<MonitorViewModel>> GetMonitorList()
         {
 
-            var collection = await _dbContext.Moniters.ToListAsync();
+            var collection = await this.GetListAsync();
 
             List<MonitorViewModel> result = new List<MonitorViewModel>();
 
@@ -90,7 +90,7 @@ namespace HeBianGu.Product.Respository.Service
             return result;
         }
 
-        MonitorViewModel GetModel(JCSJ_MONITOR monitor)
+        MonitorViewModel GetModel(ehc_dv_monitor monitor)
         {
             MonitorViewModel model = new MonitorViewModel();
 
@@ -123,7 +123,7 @@ namespace HeBianGu.Product.Respository.Service
             return model;
         }
 
-        MonitorItemViewModel GetMonitorDeital(JCSJ_MONITOR monitor)
+        MonitorItemViewModel GetMonitorDeital(ehc_dv_monitor monitor)
         {
             var extentions = _dbContext.ehc_dv_monitorextentions.Where(l => l.MonitorID == monitor.ID);
 
@@ -172,7 +172,7 @@ namespace HeBianGu.Product.Respository.Service
 
         public async Task<int> Create(MonitorItemViewModel viewModel)
         {
-            JCSJ_MONITOR monitor = viewModel.Monitor;
+            ehc_dv_monitor monitor = viewModel.Monitor;
 
             monitor.CDATE = DateTime.Now.ToDateTimeString();
             monitor.UDATE = DateTime.Now.ToDateTimeString();
@@ -245,15 +245,15 @@ namespace HeBianGu.Product.Respository.Service
 
             _dbContext.Moniters.Remove(models);
 
-            var collection = _dbContext.ehc_dv_monitorextentions.Where(l=>l.MonitorID==id);
+            var collection = _dbContext.ehc_dv_monitorextentions.Where(l => l.MonitorID == id);
 
-            _dbContext.ehc_dv_monitorextentions.RemoveRange(collection); 
+            _dbContext.ehc_dv_monitorextentions.RemoveRange(collection);
 
-            return  await _dbContext.SaveChangesAsync();
+            return await _dbContext.SaveChangesAsync();
         }
 
         public async Task<dynamic> GetSelectList(dynamic dynamic)
-        { 
+        {
             dynamic.CustomerList = new SelectList(_dbContext.Customers, "ID", "NAME");
             dynamic.MatList = new SelectList(_dbContext.Mats, "ID", "NAME");
             dynamic.BedList = new SelectList(_dbContext.Beds, "ID", "NAME");
@@ -261,9 +261,9 @@ namespace HeBianGu.Product.Respository.Service
             return dynamic;
         }
 
-        public IEnumerable<JCSJ_CUSTOMER> GetCurstoms()
+        public IEnumerable<ehc_dv_customer> GetCurstoms()
         {
-            return  _dbContext.Customers;
+            return _dbContext.Customers;
         }
 
         public IEnumerable<JCSJ_MAT> GetMats()
@@ -271,7 +271,7 @@ namespace HeBianGu.Product.Respository.Service
             return _dbContext.Mats;
         }
 
-        public IEnumerable<JCSJ_BED> GetBeds()
+        public IEnumerable<ehc_dv_bed> GetBeds()
         {
             return _dbContext.Beds;
         }

@@ -7,22 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HeBianGu.Product.Base.Model;
 using HeBianGu.Product.General.LocalDataBase;
+using HeBianGu.Product.Respository.IService;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomerController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly ICustomerRespository _respository;
 
-        public CustomerController(DataContext context)
+        public CustomerController(ICustomerRespository respository)
         {
-            _context = context;
+            _respository = respository;
         }
 
         // GET: Customer
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Customers.ToListAsync());
+            return View(await _respository.GetListAsync());
         }
 
         // GET: Customer/Details/5
@@ -33,14 +34,14 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_CUSTOMER = await _context.Customers
-                .FirstOrDefaultAsync(m => m.ID== id);
-            if (jCSJ_CUSTOMER == null)
+            var model = await _respository.GetByIDAsync(id);
+
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_CUSTOMER);
+            return View(model);
         }
 
         // GET: Customer/Create
@@ -54,15 +55,17 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NAME,IMAGE,SEX,CARDID,AGE,TEL,INDATE,OUTDATE")] JCSJ_CUSTOMER jCSJ_CUSTOMER)
+        public async Task<IActionResult> Create(ehc_dv_customer model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(jCSJ_CUSTOMER);
-                await _context.SaveChangesAsync();
+                await _respository.InsertAsync(model);
+
+                await _respository.WriteUserLogger(this.GetUserID(), "添加用户", model.NAME);
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_CUSTOMER);
+            return View(model);
         }
 
         // GET: Customer/Edit/5
@@ -73,12 +76,13 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_CUSTOMER = await _context.Customers.FindAsync(id);
-            if (jCSJ_CUSTOMER == null)
+            var model = await _respository.GetByIDAsync(id);
+
+            if (model == null)
             {
                 return NotFound();
             }
-            return View(jCSJ_CUSTOMER);
+            return View(model);
         }
 
         // POST: Customer/Edit/5
@@ -86,9 +90,9 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,NAME,IMAGE,SEX,CARDID,AGE,TEL,INDATE,OUTDATE")] JCSJ_CUSTOMER jCSJ_CUSTOMER)
+        public async Task<IActionResult> Edit(string id, ehc_dv_customer model)
         {
-            if (id != jCSJ_CUSTOMER.ID.ToString())
+            if (id != model.ID.ToString())
             {
                 return NotFound();
             }
@@ -97,12 +101,15 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             {
                 try
                 {
-                    _context.Update(jCSJ_CUSTOMER);
-                    await _context.SaveChangesAsync();
+                    await _respository.UpdateAsync(model);
+
+                    await _respository.WriteUserLogger(this.GetUserID(), "编辑用户", model.NAME);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_CUSTOMERExists(jCSJ_CUSTOMER.ID.ToString()))
+                    var result = await _respository.GetByIDAsync(id);
+
+                    if (result == null)
                     {
                         return NotFound();
                     }
@@ -113,7 +120,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_CUSTOMER);
+            return View(model);
         }
 
         // GET: Customer/Delete/5
@@ -124,14 +131,28 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_CUSTOMER = await _context.Customers
-                .FirstOrDefaultAsync(m => m.ID== id);
-            if (jCSJ_CUSTOMER == null)
+            var model = await _respository.GetByIDAsync(id);
+
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_CUSTOMER);
+            return View(model);
+        }
+
+        // GET: Customer/Delete/5
+        public async Task<IActionResult> Enbled(string id)
+        {
+            var model = await _respository.GetByIDAsync(id);
+
+            model.ISENBLED = 0;
+
+            model.OUTDATE = DateTime.Now.ToDateTimeString();
+
+            await _respository.UpdateAsync(model);
+
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Customer/Delete/5
@@ -139,15 +160,11 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var jCSJ_CUSTOMER = await _context.Customers.FindAsync(id);
-            _context.Customers.Remove(jCSJ_CUSTOMER);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            await _respository.DeleteAsync(id);
 
-        private bool JCSJ_CUSTOMERExists(string id)
-        {
-            return _context.Customers.Any(e => e.ID== id);
+            await _respository.WriteUserLogger(this.GetUserID(), "删除用户", id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

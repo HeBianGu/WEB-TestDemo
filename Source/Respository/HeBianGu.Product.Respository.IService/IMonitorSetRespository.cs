@@ -1,4 +1,5 @@
 ﻿using HeBianGu.Product.Base.Model;
+using HeBianGu.Product.General.LocalDataBase;
 using HeBianGu.Product.Respository.Model;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace HeBianGu.Product.Respository.IService
 {
     /// <summary> 监控配置模型接口 </summary>
-    public interface IMonitorSetRespository
+    public interface IMonitorSetRespository: IUserLoggerRepositoryBase<ehc_dv_monitor>
     {
 
         /// <summary> 获取监控列表 </summary>
@@ -33,12 +34,12 @@ namespace HeBianGu.Product.Respository.IService
         Task<int> Delete(string id);
 
         /// <summary> 获取所有客户列表 </summary>
-        IEnumerable<JCSJ_CUSTOMER> GetCurstoms();
+        IEnumerable<ehc_dv_customer> GetCurstoms();
 
         /// <summary> 获取所有床垫列表 </summary>
         IEnumerable<JCSJ_MAT> GetMats();
 
         /// <summary> 获取所有床列表 </summary>
-        IEnumerable<JCSJ_BED> GetBeds();
+        IEnumerable<ehc_dv_bed> GetBeds();
     }
 }

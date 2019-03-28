@@ -6,8 +6,8 @@ using System.Text;
 
 namespace HeBianGu.Product.Base.Model
 {
-    [Table("JCSJ_MONITOR")]
-    public class JCSJ_MONITOR : StringEntityBase
+    [Table("ehc_dv_monitor")]
+    public class ehc_dv_monitor : StringEntityBase
     {
         [Required]
         [Display(Name = "床位设置")]
@@ -19,24 +19,15 @@ namespace HeBianGu.Product.Base.Model
 
         [Required]
         [Display(Name = "客户设置")]
-        public string CUSTOMID { get; set; }
-
-
-        [Display(Name = "监护时间设置")]
-        public string TIMEPLANID { get; set; }
-
+        public string CUSTOMID { get; set; } 
  
-        [Display(Name = "心率监护区间设置")]
-        public string HEARTID { get; set; }
-
-
-        [Display(Name = "呼吸监护区间设置")]
-        public string BREATHID { get; set; }
-
         [Display(Name = "创建时间")]
         public string CDATE { get; set; }
 
         [Display(Name = "修改时间")]
         public string UDATE { get; set; }
+
+        [Display(Name = "是否可用")]
+        public int IsEnbled { get; set; } = 1;
     }
 }

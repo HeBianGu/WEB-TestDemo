@@ -1,67 +1,440 @@
-﻿@model HeBianGu.Product.Base.Model.JCSJ_MONITOR
+﻿@model HeBianGu.Product.Respository.Model.MonitorItemViewModel
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Start.cshtml";
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Start.cshtml";
 }
 
-<h1>Details</h1>
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					监控详情
+				</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li>
+						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="#">Settings 1</a>
+							</li>
+							<li>
+								<a href="#">Settings 2</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="close-link"><i class="fa fa-close"></i></a>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<p>
+					<a asp-action="Index" class="btn btn-link">返回列表</a>
+				</p>
+				@*<form asp-action="Create" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">*@
 
-<div>
-    <h4>JCSJ_MONITOR</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BEDID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BEDID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MATID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MATID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CUSTOMID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CUSTOMID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TIMEPLANID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TIMEPLANID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HEARTID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HEARTID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BREATHID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BREATHID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CDATE)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CDATE)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UDATE)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UDATE)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+				<form asp-action="Index" class="form-horizontal form-label-left">
+
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<div class="form-group">
+						<label asp-for="Monitor.CUSTOMID" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							@Html.DropDownListFor(o => o.Monitor.CUSTOMID, ViewBag.CustomerList as IEnumerable<SelectListItem>, "--请选择--", new { @class = "dropdown-toggle form-control col-md-7 col-xs-12" })
+							<span asp-validation-for="Monitor.CUSTOMID" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label asp-for="Monitor.BEDID" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							@Html.DropDownListFor(o => o.Monitor.BEDID, ViewBag.BedList as IEnumerable<SelectListItem>, "--请选择--", new { @class = "dropdown-toggle form-control col-md-7 col-xs-12" })
+						</div>
+						<span asp-validation-for="Monitor.BEDID" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Monitor.MATID" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							@Html.DropDownListFor(o => o.Monitor.MATID, ViewBag.MatList as IEnumerable<SelectListItem>, "--请选择--", new { @class = "dropdown-toggle form-control col-md-7 col-xs-12" })
+							<span asp-validation-for="Monitor.MATID" class="text-danger"></span>
+						</div>
+					</div>
+
+					@*心率*@
+					<div class="form-group">
+						<label asp-for="HeartRange" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="HeartRange.MinValue" placeholder="@Html.DisplayNameFor(modelItem => Model.HeartRange.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="HeartRange.MinValue" class="text-danger"></span>
+
+						</div>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="HeartRange.MaxVlalue" placeholder="@Html.DisplayNameFor(modelItem => Model.HeartRange.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="HeartRange.MaxVlalue" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*呼吸*@
+					<div class="form-group">
+
+						<label asp-for="BreathRange" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="BreathRange.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.BreathRange.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="BreathRange.MinValue" class="text-danger"></span>
+
+						</div>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="BreathRange.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.BreathRange.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="BreathRange.MaxVlalue" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*监护区间一*@
+					<div class="form-group">
+						<label asp-for="TimeRange1" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+					</div>
+
+					@*监护时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange1.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange1.MinValue" class="text-danger"></span>
+
+						</div>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange1.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange1.MaxVlalue" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*离床时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange1.LeaveBedTime" class="text-danger"></span>
+
+							@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+						</div>
+					</div>
+
+					@*体动时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange1.MoveTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange1.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.MoveTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange1.MoveTime" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*启用*@
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="">
+								<label>
+									<input type="checkbox" class="js-switch"  readonly="readonly"/>
+								</label>
+							</div>
+						</div>
+					</div>
+
+
+					@*监护区间一*@
+					<div class="form-group">
+						<label asp-for="TimeRange2" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+					</div>
+
+					@*监护时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange2.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange2.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange2.MinValue" class="text-danger"></span>
+
+						</div>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange2.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange2.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange2.MaxVlalue" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*离床时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange2.LeaveBedTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange2.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange2.LeaveBedTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange2.LeaveBedTime" class="text-danger"></span>
+
+							@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+						</div>
+					</div>
+
+					@*体动时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange2.MoveTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange2.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange2.MoveTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange2.MoveTime" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*启用*@
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="">
+								<label>
+									<input type="checkbox" class="js-switch"  readonly="readonly"/>
+								</label>
+							</div>
+						</div>
+					</div>
+
+
+					@*监护区间一*@
+					<div class="form-group">
+						<label asp-for="TimeRange3" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+					</div>
+
+					@*监护时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange3.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange3.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange1.MinValue" class="text-danger"></span>
+
+						</div>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange3.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange3.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange3.MaxVlalue" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*离床时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange3.LeaveBedTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange3.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange3.LeaveBedTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange3.LeaveBedTime" class="text-danger"></span>
+
+							@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+						</div>
+					</div>
+
+					@*体动时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange3.MoveTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange3.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange3.MoveTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange3.MoveTime" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*启用*@
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="">
+								<label>
+									<input type="checkbox" class="js-switch"  readonly="readonly"/>
+								</label>
+							</div>
+						</div>
+					</div>
+
+
+					@*监护区间一*@
+					<div class="form-group">
+						<label asp-for="TimeRange4" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+					</div>
+
+					@*监护时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange4.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange4.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange4.MinValue" class="text-danger"></span>
+
+						</div>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange4.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange4.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange4.MaxVlalue" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*离床时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange4.LeaveBedTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange4.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange4.LeaveBedTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange4.LeaveBedTime" class="text-danger"></span>
+
+							@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+						</div>
+					</div>
+
+					@*体动时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange4.MoveTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange4.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange4.MoveTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange4.MoveTime" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*启用*@
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="">
+								<label>
+									<input type="checkbox" class="js-switch"  readonly="readonly"/>
+								</label>
+							</div>
+						</div>
+					</div>
+
+
+					@*监护区间一*@
+					<div class="form-group">
+						<label asp-for="TimeRange5" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+						</div>
+					</div>
+
+					@*监护时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange5.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange5.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange1.MinValue" class="text-danger"></span>
+
+						</div>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange5.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange5.MinValue)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange5.MaxVlalue" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*离床时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange5.LeaveBedTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange5.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange5.LeaveBedTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange5.LeaveBedTime" class="text-danger"></span>
+
+							@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+						</div>
+					</div>
+
+					@*体动时间*@
+					<div class="form-group">
+
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.TimeRange5.MoveTime)</label>
+
+						<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+							<input asp-for="TimeRange5.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange5.MoveTime)" class="form-control" readonly="readonly">
+							<span asp-validation-for="TimeRange5.MoveTime" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					@*启用*@
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="">
+								<label>
+									<input type="checkbox" class="js-switch"  readonly="readonly"/>
+								</label>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<input type="submit" value="  关闭  " class="btn btn-primary" />
+
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>

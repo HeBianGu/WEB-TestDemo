@@ -1,4 +1,4 @@
-﻿@model HeBianGu.Product.Base.Model.JCSJ_USEACCOUNT
+﻿@model HeBianGu.Product.Base.Model.ehc_dv_user
 
 @{
 	ViewData["Title"] = "Create";
@@ -59,25 +59,49 @@
 						</div>
 						<span asp-validation-for="PASSWORD" class="text-danger"></span>
 					</div>
-					<div class="form-group">
-						<label asp-for="STATE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-						<div class="col-md-5 col-sm-5 col-xs-12">
-							<input asp-for="STATE" class="form-control col-md-7 col-xs-12" />
-						</div>
-						<span asp-validation-for="STATE" class="text-danger"></span>
-					</div>
-					<div class="form-group">
-						<label asp-for="TYPE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-						<div class="col-md-5 col-sm-5 col-xs-12">
-							<input asp-for="TYPE" class="form-control col-md-7 col-xs-12" />
-						</div>
-						<span asp-validation-for="TYPE" class="text-danger"></span>
-					</div> 
+
 
 					<div class="form-group">
-						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-							<input type="submit" value="  新增  " class="btn btn-primary" />
+						<label asp-for="USERNAME" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<input asp-for="USERNAME" class="form-control col-md-7 col-xs-12" />
 						</div>
+						<span asp-validation-for="USERNAME" class="text-danger"></span>
+					</div>
+
+
+					<div class="form-group">
+						<label asp-for="TEL" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<input asp-for="TEL" class="form-control col-md-7 col-xs-12" />
+						</div>
+						<span asp-validation-for="TEL" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label asp-for="ROLEID" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<input asp-for="ROLEID" class="form-control col-md-7 col-xs-12" />
+						</div>
+						<span asp-validation-for="ROLEID" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+
+						<label   class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+
+						<div class="col-md-5 col-sm-5 col-xs-12">
+
+							<input type="submit" value="  新增  " class="btn btn-primary" />
+
+							@*<input asp-action="Index" value="  取消  " class="btn btn-primary" />*@
+
+							<button asp-action="Index" class="btn btn-default submit">取消</button>
+						</div>
+
+						<span  class="text-danger"></span> 
+
 					</div>
 				</form>
 			</div>

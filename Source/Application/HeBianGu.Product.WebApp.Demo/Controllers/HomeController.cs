@@ -9,6 +9,11 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using HeBianGu.Product.Respository.IService;
 using Microsoft.Extensions.Logging;
 using HeBianGu.Product.Respository.Model;
+using HeBianGu.Product.Base.Model;
+using Microsoft.AspNetCore.Http;
+using HeBianGu.Product.General.ThridTool;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
@@ -36,23 +41,27 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         }
 
         [HttpPost]
+        [DescriptionAttribute("用户登录操作")]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
 
-            //跳转到系统首页
-            return RedirectToAction("Monitor", "Monitor");
-
+            ////跳转到系统首页
+            //return RedirectToAction("Monitor", "Monitor");
 
             if (ModelState.IsValid)
             {
-                //检查用户信息
-                var user = await _respository.CheckUserLogin(model.UserName, model.Password);
+                //检查用户信息 
+                var user = await _respository.FirstOrDefaultAsync(l => l.NAME == model.UserName && l.PASSWORD == model.Password);
 
                 if (user != null)
                 {
                     //记录Session
-                    //HttpContext.Session.SetString("CurrentUserId", user.Id.ToString());
-                    //HttpContext.Session.Set("CurrentUser", ByteConvertHelper.Object2Bytes(user));
+                    HttpContext.Session.SetString("CurrentUserId", user.ID.ToString());
+                    HttpContext.Session.Set("CurrentUser", ByteConvertHelper.Object2Bytes(user));
+
+                    //var type = MethodBase.GetCurrentMethod().GetCustomAttributes<DescriptionAttribute>();  
+
+                    await this._respository.WriteUserLogger(user.ID, "用户登录", user.NAME);
 
                     //跳转到系统首页
                     return RedirectToAction("Monitor", "Monitor");

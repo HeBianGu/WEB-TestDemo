@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HeBianGu.Product.Base.Model.JCSJ_CUSTOMER>
+﻿@model IEnumerable<HeBianGu.Product.Base.Model.ehc_dv_customer>
 
 @{
 	ViewData["Title"] = "Index";
@@ -44,7 +44,7 @@
 			</div>
 			<div class="x_content">
 				<p>
-					<a asp-action="Create" class="btn btn-primary">新增客户</a>
+					<a asp-action="Create" class="btn btn-primary">新增用户</a>
 				</p>
 
 				<table id="datatable" class="table table-striped jambo_table bulk_action">
@@ -52,22 +52,37 @@
 					<thead>
 						<tr>
 							<th>
-								@Html.DisplayNameFor(model => model.NAME)
+								序号
 							</th>
 							<th>
 								@Html.DisplayNameFor(model => model.IMAGE)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.SEX)
+								@Html.DisplayNameFor(model => model.NAME)
 							</th>
 							<th>
 								@Html.DisplayNameFor(model => model.CARDID)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.AGE)
+								@Html.DisplayNameFor(model => model.SEX)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.CONTACT)
 							</th>
 							<th>
 								@Html.DisplayNameFor(model => model.TEL)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.DIAGNOSIS)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.HISTORY)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.NURSE)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.TURN)
 							</th>
 							<th>
 								@Html.DisplayNameFor(model => model.INDATE)
@@ -79,37 +94,61 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach (var item in Model)
+						@for (int i = 1; i <= Model.Count(); i++)
 						{
+							var item = Model.ToArray()[i - 1];
 							<tr>
 								<td>
-									@Html.DisplayFor(modelItem => item.NAME)
+									@Html.DisplayFor(modelItem => i)
 								</td>
+								<th>
+									@Html.DisplayFor(model => item.IMAGE)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.NAME)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.CARDID)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.SEX)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.CONTACT)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.TEL)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.DIAGNOSIS)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.HISTORY)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.NURSE)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.TURN)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.INDATE)
+								</th>
+								<th>
+									@Html.DisplayFor(model => item.OUTDATE)
+								</th>
 								<td>
-									@Html.DisplayFor(modelItem => item.IMAGE)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.SEX)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.CARDID)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.AGE)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.TEL)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.INDATE)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.OUTDATE)
-								</td>
-								<td>
-									<a asp-action="Edit" asp-route-id="@item.ID"  class="btn btn-success btn-xs">编辑</a> |
-									<a asp-action="Details" asp-route-id="@item.ID"  class="btn btn-warning  btn-xs">详情</a> |
-									<a asp-action="Delete" asp-route-id="@item.ID"  class="btn btn-danger  btn-xs">删除</a>
+									<form asp-action="Delete">
+										@*<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success btn-xs">编辑</a> |
+		<a asp-action="Enbled" asp-route-id="@item.ID" class="btn btn-warning  btn-xs">出院</a> |
+		<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-warning  btn-xs">详情</a> |
+		<input type="submit" asp-action="Delete" asp-route-id="@item.ID" value="删除" class="btn btn-danger  btn-xs" />*@
+
+										<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 编辑 </a>
+										<a asp-action="Enbled" asp-route-id="@item.ID" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 出院 </a>
+										<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 详情 </a>
+										<button type="submit" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </button>
+									</form>
 								</td>
 							</tr>
 						}

@@ -18,7 +18,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
 
     /// <summary> 监控配置控制器 </summary>
-    public class MonitorController : Controller
+    public class MonitorController : ControllerBase
     {
 
         IMonitorSetRespository _respository;
@@ -67,7 +67,21 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
 
         }
 
-        
+        /// <summary>
+        /// 局部刷新监控人员信息分布视图
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public  PartialViewResult ShowCustomer(string id)
+        {
+            var result = _respository.GetCurstoms();
+
+            var find = result.Where(l => l.ID == id).FirstOrDefault();
+
+            return PartialView("_CustomerView", find);
+        }
+
+
         public async Task<IActionResult> Details(string id)
         {
             //if (id == null)
@@ -108,6 +122,8 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             {
                 await _respository.Create(viewModel);
 
+                await _respository.WriteUserLogger(this.GetUserID(), "添加监控", viewModel.Monitor.CUSTOMID);
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -119,7 +135,6 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         // GET: Monitor/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-
             if (id == null)
             {
                 return NotFound();
@@ -159,6 +174,8 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 try
                 {
                     await _respository.Edit(viewModel);
+
+                    await _respository.WriteUserLogger(this.GetUserID(), "编辑监控", viewModel.Monitor.CUSTOMID);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -176,7 +193,9 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             return View(viewModel);
         }
 
-        // GET: Monitor/Delete/5
+        // POST: Monitor/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -185,6 +204,8 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             }
 
             await _respository.Delete(id);
+
+            await _respository.WriteUserLogger(this.GetUserID(), "删除监控", id);
 
             return RedirectToAction(nameof(Index));
             

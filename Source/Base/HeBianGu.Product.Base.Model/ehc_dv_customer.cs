@@ -6,10 +6,9 @@ using System.Text;
 
 namespace HeBianGu.Product.Base.Model
 {
-    [Table("JCSJ_CUSTOMER")]
-    public class JCSJ_CUSTOMER : StringEntityBase
+    [Table("ehc_dv_customer")]
+    public class ehc_dv_customer : StringEntityBase
     {
-
         [Required]
         [StringLength(10)]
         [Display(Name = "客户姓名")]
@@ -35,6 +34,29 @@ namespace HeBianGu.Product.Base.Model
         [Phone]
         [Display(Name = "电话")]
         public string TEL { get; set; }
+
+        [Required] 
+        [Display(Name = "紧急联系人")]
+        public string CONTACT { get; set; }
+
+        [Required]
+        [Display(Name = "入院诊断")]
+        public string DIAGNOSIS { get; set; }
+
+        [Required]
+        [Display(Name = "病史")]
+        public string HISTORY { get; set; }
+
+        [Required]
+        [Display(Name = "护理等级")]
+        public string NURSE { get; set; }
+
+        [Required]
+        [Display(Name = "翻身护理")]
+        public string TURN { get; set; }
+
+        [Display(Name = "是否可用")]
+        public int ISENBLED { get; set; } 
 
         [Display(Name = "入院时间")]
         public string INDATE { get; set; }

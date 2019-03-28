@@ -10,7 +10,7 @@ using HeBianGu.Product.General.LocalDataBase;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
-    public class MatController : Controller
+    public class MatController : ControllerBase
     {
         private readonly DataContext _context;
 
@@ -60,6 +60,8 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             {
                 _context.Add(jCSJ_MAT);
                 await _context.SaveChangesAsync();
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(jCSJ_MAT);

@@ -1,15 +1,15 @@
-﻿@model IEnumerable<HeBianGu.Product.Base.Model.JCSJ_USEACCOUNT>
+﻿@model IEnumerable<HeBianGu.Product.Base.Model.ehc_dv_user>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Start.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Start.cshtml";
 }
 
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2> 用户列表 <small>Monitor</small></h2>
+				<h2> 用户列表 </h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li>
 						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -40,40 +40,58 @@
 					<thead>
 						<tr>
 							<th>
+								序号
+							</th>
+							<th>
 								@Html.DisplayNameFor(model => model.NAME)
 							</th>
 							<th>
 								@Html.DisplayNameFor(model => model.PASSWORD)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.STATE)
+								@Html.DisplayNameFor(model => model.USERNAME)
 							</th>
 							<th>
-								@Html.DisplayNameFor(model => model.TYPE)
+								@Html.DisplayNameFor(model => model.ROLEID)
 							</th>
-							<th></th>
+							<th>
+								@Html.DisplayNameFor(model => model.CDATE)
+							</th>
+							<th>
+								操作
+							</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach (var item in Model)
+						@for (int i = 1; i <= Model.Count(); i++)
 						{
+							var item = Model.ToArray()[i - 1];
+
 							<tr>
 								<td>
-									@Html.DisplayFor(modelItem => item.NAME)
+									@Html.DisplayFor(modelItem => i)
+								</td>
+								<td>
+									<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-link  btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">@Html.DisplayFor(modelItem => item.NAME)</a>
 								</td>
 								<td>
 									@Html.DisplayFor(modelItem => item.PASSWORD)
 								</td>
 								<td>
-									@Html.DisplayFor(modelItem => item.STATE)
+									@Html.DisplayFor(modelItem => item.USERNAME)
 								</td>
 								<td>
-									@Html.DisplayFor(modelItem => item.TYPE)
+									@Html.DisplayFor(modelItem => item.ROLEID)
 								</td>
 								<td>
-									<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success btn-xs">编辑</a> |
-									<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-warning  btn-xs">详情</a> |
-									<a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger  btn-xs">删除</a>
+									@Html.DisplayFor(modelItem => item.CDATE)
+								</td>
+								<td>
+									<form asp-action="Delete">
+										<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 编辑 </a>
+										<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 详情 </a>
+										<button type="submit" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </button>
+									</form>
 								</td>
 							</tr>
 						}

@@ -17,6 +17,7 @@
 
 	<!-- Bootstrap -->
 	<link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
 	<!-- Font Awesome -->
 	<link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<!-- NProgress -->
@@ -133,7 +134,7 @@
 									<ul class="nav child_menu">
 										@*<li><a asp-action="Create" asp-controller="User">新增用户</a></li>*@
 										<li><a asp-action="Index" asp-controller="User">用户管理</a></li>
-										<li><a href="media_gallery.html">日志管理</a></li>
+										<li><a asp-action="Index" asp-controller="Userlogger">日志管理</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -377,9 +378,6 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="~/build/js/custom.min.js"></script>
-
-
-
 
 	<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="e343e486c24c1b1450ca70f8-|49" defer=""></script>
 

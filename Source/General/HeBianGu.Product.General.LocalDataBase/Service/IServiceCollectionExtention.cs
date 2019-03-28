@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HeBianGu.Product.Base.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace HeBianGu.Product.General.LocalDataBase
         {
             services.AddDbContext<T>(options => options.UseMySQL(conStr));
         }
+        
     }
 }

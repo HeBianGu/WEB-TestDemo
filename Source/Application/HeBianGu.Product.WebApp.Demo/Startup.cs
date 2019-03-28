@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using HeBianGu.Prodoct.Domain.DataServce;
+using HeBianGu.Product.Base.Model;
 using HeBianGu.Product.General.LocalDataBase;
 using HeBianGu.Product.Respository.IService;
 using HeBianGu.Product.Respository.Model;
@@ -42,12 +43,12 @@ namespace HeBianGu.Product.WebApp.Demo
             string cs = this.Configuration.GetConnectionString("MySqlConnection");
 
             //  Do：注册数据上下文
-            services.AddDbContextWithConnectString<DataContext>(cs); 
+            services.AddDbContextWithConnectString<DataContext>(cs);
+            //services.AddDefaultDbContextWithConnectString(cs);
+
 
             //  Do：依赖注入
-            services.AddScoped<IUserAccountRespositroy, UserAccountRespositroy>();
-
-            services.AddScoped<IMonitorSetRespository, MonitorSetRespository>();
+            services.AddRespositorys();
 
             //  Message：注册内服务领域模型
             //services.AddScoped<TestService>();
@@ -80,7 +81,10 @@ namespace HeBianGu.Product.WebApp.Demo
                     .AddFilter("Microsoft", LogLevel.Warning)
                     .AddFilter("HeBianGu.Product.WebApp.Demo", LogLevel.Debug)
                     .AddConsole();
-            }); 
+            });
+
+            //Session服务
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,6 +106,9 @@ namespace HeBianGu.Product.WebApp.Demo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             //app.UseCookiePolicy();
+
+            //  Message：Session has not been configured for this application or request.
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

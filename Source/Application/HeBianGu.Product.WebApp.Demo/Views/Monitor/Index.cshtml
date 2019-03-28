@@ -4,7 +4,6 @@
 	ViewData["Title"] = "Index";
 	Layout = "~/Views/Shared/_Start.cshtml";
 }
-
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
@@ -32,9 +31,25 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<p>
-					<a asp-action="Create" class="btn btn-primary">新增监控</a> 	<a asp-action="Monitor" asp-controller="Monitor" class="btn btn-primary">实时监控</a>
-				</p>
+
+				<div class="page-title">
+					<div class="title_left">
+						<p>
+							<a asp-action="Create" class="btn btn-primary">新增监控</a> 	<a asp-action="Monitor" asp-controller="Monitor" class="btn btn-primary">实时监控</a><a class="btn btn-primary">导出Excel</a>
+						</p>
+					</div>
+
+					<div class="title_right" style="border-bottom-color:red">
+						<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="请输入要筛选的内容...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">查询</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<table class="table table-striped jambo_table bulk_action">
 					<thead>
@@ -88,74 +103,85 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for (int i = 1; i < Model.Count(); i++)
+						@for (int i = 1; i <= Model.Count(); i++)
 						{
-							var item = Model.ToArray()[i];
-						<tr>
-							<td>
-								@Html.DisplayFor(modelItem => i)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Bed.CODE)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Mat.CODE)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Customer.NAME)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Customer.CARDID)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.MonitorDetial.Monitor.CDATE)
-							</td>
-							@*<th>
-			<a class="btn btn-link  btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">@Html.DisplayFor(modelItem => item.Bed.NAME)</a>
-		</th>
-		<th>
-			<a class="btn btn-link  btn-xs">@Html.DisplayFor(modelItem => item.Mat.NAME) </a>
-		</th>*@
-							<td>
-								@Html.DisplayFor(modelItem => item.MonitorDetial.HeartRange.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.HeartRange.MaxVlalue)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.MonitorDetial.BreathRange.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.BreathRange.MaxVlalue)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
-								@*离床30分钟/体动30秒*@
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
-								@*离床30分钟/体动30秒*@
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
-								@*离床30分钟/体动30秒*@
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
-								@*离床30分钟/体动30秒*@
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
-								@*离床30分钟/体动30秒*@
-							</td>
-							<td>
-								中度护理
-								@*间隔翻身 30分钟/次*@
-							</td>
-							<td>
-								<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success btn-xs">设置</a> |
-								@*<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-warning  btn-xs">详情</a> |*@
-								<a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger  btn-xs">出院</a>
-							</td>
-						</tr>
+							var item = Model.ToArray()[i - 1];
+
+							string cid = item.Customer.ID;
+
+							<tr>
+								<td>
+									@Html.DisplayFor(modelItem => i)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Bed.CODE)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Mat.CODE)
+								</td>
+								<td>
+									@*@Html.DisplayFor(modelItem => item.Customer.NAME)*@
+									<a href="javascript:void(0);"  onclick='getUserInfo("@cid")'  class="btn btn-link  btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">@Html.DisplayFor(modelItem => item.Customer.NAME)</a>
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Customer.CARDID)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.MonitorDetial.Monitor.CDATE)
+								</td>
+								@*<th>
+										<a class="btn btn-link  btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">@Html.DisplayFor(modelItem => item.Bed.NAME)</a>
+									</th>
+									<th>
+										<a class="btn btn-link  btn-xs">@Html.DisplayFor(modelItem => item.Mat.NAME) </a>
+									</th>*@
+								<td>
+									@Html.DisplayFor(modelItem => item.MonitorDetial.HeartRange.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.HeartRange.MaxVlalue)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.MonitorDetial.BreathRange.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.BreathRange.MaxVlalue)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+									@*离床30分钟/体动30秒*@
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+									@*离床30分钟/体动30秒*@
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+									@*离床30分钟/体动30秒*@
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+									@*离床30分钟/体动30秒*@
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MinValue) - @Html.DisplayFor(modelItem => item.MonitorDetial.TimeRange1.MaxVlalue)
+									@*离床30分钟/体动30秒*@
+								</td>
+								<td>
+									中度护理
+									@*间隔翻身 30分钟/次*@
+								</td>
+								<td>
+									<form asp-action="Delete">
+										@*<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success btn-xs">设置</a> |
+											<a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger  btn-xs">出院</a>*@
+										<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 设置 </a>
+										<button type="submit" asp-action="Delete" asp-route-id="@item.ID" onclick="return confirm('是否确定用户出院，出院后监控数据将被清空？')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 出院 </button>
+
+
+										@*<a class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</a>*@
+
+									</form>
+
+								</td>
+							</tr>
 						}
 					</tbody>
 				</table>
-
 
 				<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
@@ -164,24 +190,95 @@
 								<button type="button" class="close" data-dismiss="modal">
 									<span aria-hidden="true">×</span>
 								</button>
-								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+								<h4 class="modal-title" id="myModalLabel">用户详情</h4>
 							</div>
 							<div class="modal-body">
-								<h4>Text in a modal</h4>
-								<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-								<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+								@*<h4>Text in a modal</h4>*@
+
+								<div id="div-part">
+
+								</div>
+								@*<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+								<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>*@
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save changes</button>
+								@*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+								<button type="button"  data-dismiss="modal" class="btn btn-primary">关闭</button>
 							</div>
 						</div>
 					</div>
 				</div>
 
+				@*<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel2">Modal title</h4>
+								</div>
+								<div class="modal-body">
+									<h4>Text in a modal</h4>
+									<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+									<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save changes</button>
+								</div>
+							</div>
+						</div>
+					</div>*@
+
+
+
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	function getUserInfo(obj) {
+
+		//var thisObj = ${ obj };
+		//var userId = thsiObj.attr("userId");
+		//alert(userId);
+		
+		//alert(obj);
+		 
+		$.ajax({
+
+			url: 'ShowCustomer',
+
+			data: { id: obj},
+
+			type: "POST",
+
+			//dataType: "json",
+
+			async: false,
+
+			success: function (data) {
+
+				$("#div-part").html(data);
+
+				console.log("刷新..");
+
+				var echartBar = document.getElementById('main');
+
+				console.log(echartBar);
+
+
+			},
+
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+				alert("异常");
+			}
+		});
+	}
+
+</script>
 
 

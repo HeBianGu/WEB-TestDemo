@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HeBianGu.Product.Base.Model.JCSJ_BED>
+﻿@model IEnumerable<HeBianGu.Product.Base.Model.ehc_dv_bed>
 
 @{
     ViewData["Title"] = "Index";
@@ -51,7 +51,9 @@
 							<th>
 								@Html.DisplayNameFor(model => model.UDATE)
 							</th>
-							<th></th>
+							<th>
+								操作
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -71,9 +73,15 @@
 									@Html.DisplayFor(modelItem => item.UDATE)
 								</td>
 								<td>
-									<a asp-action="Edit" asp-route-id="@item.ID"  class="btn btn-success  btn-xs">编辑</a> |
-									<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-warning  btn-xs">详情</a> |
-									<a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger  btn-xs">删除</a>
+									<form asp-action="Delete">
+										@*<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success btn-xs">编辑</a> |
+		<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-warning  btn-xs">详情</a> |
+		<input type="submit" asp-action="Delete" asp-route-id="@item.ID" value="删除" class="btn btn-danger  btn-xs" />*@
+										<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 编辑 </a>
+										<a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 详情 </a>
+										<button type="submit" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </button>
+									</form>
+
 								</td>
 							</tr>
 						}

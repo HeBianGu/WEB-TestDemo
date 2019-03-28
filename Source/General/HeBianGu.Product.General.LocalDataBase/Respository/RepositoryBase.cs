@@ -1,10 +1,12 @@
 ﻿using HeBianGu.Product.Base.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HeBianGu.Product.General.LocalDataBase
 {
@@ -26,9 +28,9 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// 获取实体集合
         /// </summary>
         /// <returns></returns>
-        public List<TEntity> GetAllList()
+        public async Task<List<TEntity>> GetListAsync()
         {
-            return _dbContext.Set<TEntity>().ToList();
+            return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
         /// <summary>
@@ -36,9 +38,9 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         /// <param name="predicate">lambda表达式条件</param>
         /// <returns></returns>
-        public List<TEntity> GetAllList(Expression<Func<TEntity, bool>> predicate)
+        public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return _dbContext.Set<TEntity>().Where(predicate).ToList();
+            return await _dbContext.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
         /// <summary>
@@ -46,9 +48,9 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         /// <param name="id">实体主键</param>
         /// <returns></returns>
-        public TEntity Get(TPrimaryKey id)
+        public async Task<TEntity> GetByIDAsync(TPrimaryKey id)
         {
-            return _dbContext.Set<TEntity>().FirstOrDefault(CreateEqualityExpressionForId(id));
+            return await _dbContext.Set<TEntity>().FirstOrDefaultAsync(CreateEqualityExpressionForId(id));
         }
 
         /// <summary>
@@ -56,7 +58,7 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         /// <param name="predicate">lambda表达式条件</param>
         /// <returns></returns>
-        public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return _dbContext.Set<TEntity>().FirstOrDefault(predicate);
         }
@@ -67,12 +69,14 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// <param name="entity">实体</param>
         /// <param name="autoSave">是否立即执行保存</param>
         /// <returns></returns>
-        public TEntity Insert(TEntity entity, bool autoSave = true)
+        public async Task<int> InsertAsync(TEntity entity, bool autoSave = true)
         {
             _dbContext.Set<TEntity>().Add(entity);
+
             if (autoSave)
-                Save();
-            return entity;
+               return await SaveAsync();
+
+            return -1;
         }
 
         /// <summary>
@@ -80,13 +84,16 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         /// <param name="entity">实体</param>
         /// <param name="autoSave">是否立即执行保存</param>
-        public TEntity Update(TEntity entity, bool autoSave = true)
+        public async Task<int> UpdateAsync(TEntity entity, bool autoSave = true)
         {
-            var obj = Get(entity.ID);
+            var obj = GetByIDAsync(entity.ID).Result;
+
             EntityToEntity(entity, obj);
+
             if (autoSave)
-                Save();
-            return entity;
+              return  await SaveAsync();
+
+            return -1;
         }
         private void EntityToEntity<T>(T pTargetObjSrc, T pTargetObjDest)
         {
@@ -100,11 +107,12 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         /// <param name="entity">实体</param>
         /// <param name="autoSave">是否立即执行保存</param>
-        public TEntity InsertOrUpdate(TEntity entity, bool autoSave = true)
+        public async Task<int> InsertOrUpdateAsync(TEntity entity, bool autoSave = true)
         {
-            if (Get(entity.ID) != null)
-                return Update(entity, autoSave);
-            return Insert(entity, autoSave);
+            if (GetByIDAsync(entity.ID) != null)
+                await UpdateAsync(entity, autoSave);
+
+            return await InsertAsync(entity, autoSave);
         }
 
         /// <summary>
@@ -112,11 +120,13 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         /// <param name="entity">要删除的实体</param>
         /// <param name="autoSave">是否立即执行保存</param>
-        public void Delete(TEntity entity, bool autoSave = true)
+        public async Task<int> DeleteAsync(TEntity entity, bool autoSave = true)
         {
             _dbContext.Set<TEntity>().Remove(entity);
             if (autoSave)
-                Save();
+                return await SaveAsync();
+
+            return -1;
         }
 
         /// <summary>
@@ -124,11 +134,13 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         /// <param name="id">实体主键</param>
         /// <param name="autoSave">是否立即执行保存</param>
-        public void Delete(TPrimaryKey id, bool autoSave = true)
+        public async Task<int> DeleteAsync(TPrimaryKey id, bool autoSave = true)
         {
-            _dbContext.Set<TEntity>().Remove(Get(id));
+            _dbContext.Set<TEntity>().Remove(GetByIDAsync(id).Result);
             if (autoSave)
-                Save();
+                return await SaveAsync();
+
+            return -1;
         }
 
         /// <summary>
@@ -136,11 +148,13 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// </summary>
         /// <param name="where">lambda表达式</param>
         /// <param name="autoSave">是否自动保存</param>
-        public void Delete(Expression<Func<TEntity, bool>> where, bool autoSave = true)
+        public async Task<int> DeleteAsync(Expression<Func<TEntity, bool>> where, bool autoSave = true)
         {
             _dbContext.Set<TEntity>().Where(where).ToList().ForEach(it => _dbContext.Set<TEntity>().Remove(it));
             if (autoSave)
-                Save();
+                return await SaveAsync();
+
+            return -1;
         }
         /// <summary>
         /// 分页查询
@@ -168,9 +182,9 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// <summary>
         /// 事务性保存
         /// </summary>
-        public void Save()
+        public async Task<int> SaveAsync()
         {
-            _dbContext.SaveChanges();
+            return await _dbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -202,7 +216,6 @@ namespace HeBianGu.Product.General.LocalDataBase
         {
             _logger = logger;
         }
-
     }
-
+    
 }

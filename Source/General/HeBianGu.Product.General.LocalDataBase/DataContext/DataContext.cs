@@ -1,5 +1,4 @@
-﻿using CDTY.DataAnalysis.Entity;
-using HeBianGu.Product.Base.Model;
+﻿using HeBianGu.Product.Base.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -11,26 +10,12 @@ namespace HeBianGu.Product.General.LocalDataBase
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
-        }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseMySQL(SystemSet.MysqlConnectionString);
-
-        //    base.OnConfiguring(optionsBuilder);
-
-        //}
-
-        //public static void Init(IServiceCollection services)
-        //{
-        //    services.AddDbContext<DataContext>(options => options.UseMySQL(SystemSet.MysqlConnectionString));
-        //}
-
+        } 
 
         /// <summary>
         /// 用户
         /// </summary>
-        public DbSet<JCSJ_USEACCOUNT> Users { get; set; }
+        public DbSet<ehc_dv_user> Users { get; set; }
 
         /// <summary>
         /// 报表数据
@@ -40,12 +25,12 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// <summary>
         /// 报表数据
         /// </summary>
-        public DbSet<JCSJ_CUSTOMER> Customers { get; set; }
+        public DbSet<ehc_dv_customer> Customers { get; set; }
 
         /// <summary>
         /// 报表数据
         /// </summary>
-        public DbSet<JCSJ_BED> Beds { get; set; }
+        public DbSet<ehc_dv_bed> Beds { get; set; }
 
         /// <summary>
         /// 报表数据
@@ -55,12 +40,7 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// <summary>
         /// 报表数据
         /// </summary>
-        public DbSet<JCSJ_MONITOR> Moniters { get; set; }
-
-        /// <summary>
-        /// 缺陷数据
-        /// </summary>
-        public DbSet<TyeEncodeDeviceEntity> TyeEncodeDeviceEntitys { get; set; }
+        public DbSet<ehc_dv_monitor> Moniters { get; set; }
 
         /// <summary>
         /// 监控项扩展
@@ -71,6 +51,17 @@ namespace HeBianGu.Product.General.LocalDataBase
         /// 监控项类型表
         /// </summary>
         public DbSet<ehc_dv_monitortype> ehc_dv_monitortypes { get; set; }
+
+        /// <summary>
+        /// 用户操作日志
+        /// </summary>
+        public DbSet<ehc_dv_userlogger> ehc_dv_userloggers { get; set; }
+
+
+        /// <summary>
+        /// 报警记录
+        /// </summary>
+        public DbSet<ehc_dv_warn> ehc_dv_warns { get; set; }
 
 
     }

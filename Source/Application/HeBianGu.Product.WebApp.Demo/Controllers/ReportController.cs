@@ -17,7 +17,7 @@ using System.Linq.Expressions;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
-    public class ReportController : Controller
+    public class ReportController : ControllerBase
     {
         private readonly DataContext _context;
 

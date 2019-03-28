@@ -7,22 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HeBianGu.Product.Base.Model;
 using HeBianGu.Product.General.LocalDataBase;
+using HeBianGu.Product.Respository.IService;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
-    public class BedController : Controller
+    public class BedController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IBedRespository _respository;
 
-        public BedController(DataContext context)
+        public BedController(IBedRespository respository)
         {
-            _context = context;
+            _respository = respository;
         }
 
         // GET: Bed
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Beds.ToListAsync());
+            return View(await _respository.GetListAsync());
         }
 
         // GET: Bed/Details/5
@@ -33,14 +34,14 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_BED = await _context.Beds
-                .FirstOrDefaultAsync(m => m.ID== id);
-            if (jCSJ_BED == null)
+            var model = await _respository.GetByIDAsync(id);
+
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_BED);
+            return View(model);
         }
 
         // GET: Bed/Create
@@ -54,15 +55,17 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CODE,NAME,CDATE,UDATE")] JCSJ_BED jCSJ_BED)
+        public async Task<IActionResult> Create([Bind("ID,CODE,NAME,CDATE,UDATE")] ehc_dv_bed model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(jCSJ_BED);
-                await _context.SaveChangesAsync();
+                await _respository.InsertAsync(model);
+
+                await this._respository.WriteUserLogger(this.GetUserID(), "添加床位", model.CODE);
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_BED);
+            return View(model);
         }
 
         // GET: Bed/Edit/5
@@ -73,12 +76,14 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_BED = await _context.Beds.FindAsync(id);
-            if (jCSJ_BED == null)
+            var model = await _respository.GetByIDAsync(id);
+
+
+            if (model == null)
             {
                 return NotFound();
             }
-            return View(jCSJ_BED);
+            return View(model);
         }
 
         // POST: Bed/Edit/5
@@ -86,9 +91,9 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,CODE,NAME,CDATE,UDATE")] JCSJ_BED jCSJ_BED)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,CODE,NAME,CDATE,UDATE")] ehc_dv_bed model)
         {
-            if (id != jCSJ_BED.ID.ToString())
+            if (id != model.ID.ToString())
             {
                 return NotFound();
             }
@@ -97,12 +102,17 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             {
                 try
                 {
-                    _context.Update(jCSJ_BED);
-                    await _context.SaveChangesAsync();
+
+                    await _respository.UpdateAsync(model);
+
+
+                    await this._respository.WriteUserLogger(this.GetUserID(), "编辑床位", model.CODE);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JCSJ_BEDExists(jCSJ_BED.ID.ToString()))
+                    var result = await _respository.GetByIDAsync(id);
+
+                    if (result == null)
                     {
                         return NotFound();
                     }
@@ -113,7 +123,7 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(jCSJ_BED);
+            return View(model);
         }
 
         // GET: Bed/Delete/5
@@ -124,14 +134,14 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 return NotFound();
             }
 
-            var jCSJ_BED = await _context.Beds
-                .FirstOrDefaultAsync(m => m.ID== id);
-            if (jCSJ_BED == null)
+            var model = await _respository.GetByIDAsync(id);
+
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(jCSJ_BED);
+            return View(model);
         }
 
         // POST: Bed/Delete/5
@@ -139,15 +149,12 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var jCSJ_BED = await _context.Beds.FindAsync(id);
-            _context.Beds.Remove(jCSJ_BED);
-            await _context.SaveChangesAsync();
+            await _respository.DeleteAsync(id);
+
+            await this._respository.WriteUserLogger(this.GetUserID(), "删除床位", id);
+
             return RedirectToAction(nameof(Index));
         }
 
-        private bool JCSJ_BEDExists(string id)
-        {
-            return _context.Beds.Any(e => e.ID== id);
-        }
     }
 }

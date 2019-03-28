@@ -13,9 +13,9 @@ namespace HeBianGu.Product.Respository.Model
 
         public MonitorItemViewModel MonitorDetial { get; set; } = new MonitorItemViewModel();
 
-        public JCSJ_CUSTOMER Customer { get; set; } = new JCSJ_CUSTOMER();
+        public ehc_dv_customer Customer { get; set; } = new ehc_dv_customer();
 
-        public JCSJ_BED Bed { get; set; } = new JCSJ_BED();
+        public ehc_dv_bed Bed { get; set; } = new ehc_dv_bed();
 
         public JCSJ_MAT Mat { get; set; } = new JCSJ_MAT();
 
