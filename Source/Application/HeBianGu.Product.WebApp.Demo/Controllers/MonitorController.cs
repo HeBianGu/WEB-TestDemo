@@ -13,6 +13,9 @@ using System.Drawing;
 using HeBianGu.Product.Respository.Model;
 using HeBianGu.Prodoct.Domain.DataServce;
 using HeBianGu.Product.Respository.IService;
+using HeBianGu.Product.General.Tool;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace HeBianGu.Product.WebApp.Demo.Controllers
 {
@@ -74,6 +77,12 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         [HttpPost]
         public  PartialViewResult ShowCustomer(string id)
         {
+            if (!this.CHeckSession())
+            {
+                _respository.LogInfo("CHeckSession登录超时");
+                return null;
+            }
+
             var result = _respository.GetCurstoms();
 
             var find = result.Where(l => l.ID == id).FirstOrDefault();
@@ -81,6 +90,86 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             return PartialView("_CustomerView", find);
         }
 
+        /// <summary>
+        /// 局部刷新监控人员信息分布视图
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public PartialViewResult ShowRealLine(string id)
+        {
+            if (!this.CHeckSession())
+            {
+                _respository.LogInfo("CHeckSession登录超时");
+                return null;
+            }
+
+           var reult=   this._respository.GetMonitorByID(id);
+
+            return PartialView("_RealLineView", reult.Result);
+        }
+
+        [HttpPost]
+        public JsonResult RefreshRealLine(string Test1, string Test2)
+        {
+
+            var result = _respository.GetRealLineTest().Result;
+            //_context.Datas.FromSql("select * from jw_add_data where REGIONCODE='510703101'");
+
+            //limit 50,300
+
+            Func<jw_add_data, string> convertxAxis = l =>
+            {
+                return l.UDATE.Value.ToString("yyyy-MM-dd");
+            };
+
+            Predicate<PropertyInfo> except = l =>
+            {
+                return l.Name.ToUpper() == "FILETOTAL"
+                || l.Name.ToUpper() == "OLDTOTAL"
+                || l.Name.ToUpper() == "PERFECTTOTLE"
+                || l.Name.ToUpper() == "COUNT"
+                || l.Name.ToUpper() == "WOMANRATE"
+                || l.Name.ToUpper() == "YEAR"
+                || l.Name.ToUpper() == "TYPE";
+            };
+
+
+            List<ReportConvertEngine<jw_add_data, int?>> matchs = new List<ReportConvertEngine<jw_add_data, int?>>();
+
+            var vaildIntCollection = typeof(jw_add_data).GetProperties().ToList().FindAll(l => l.PropertyType == typeof(int?));
+
+            foreach (var item in vaildIntCollection)
+            {
+                if (except(item)) continue;
+
+                ReportConvertEngine<jw_add_data, int?> engine = new ReportConvertEngine<jw_add_data, int?>();
+
+                engine.Convert = l =>
+                {
+                    return (int?)item.GetValue(l);
+                };
+
+                engine.MatchValue = l => l.HasValue;
+
+                DisplayAttribute display = item.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
+
+                engine.Name = display == null ? item.Name : display.Name;
+
+                engine.Type = "line";
+
+                matchs.Add(engine);
+            }
+
+            //convertToValueList.Add(l => l.CDTOTAL);
+            //convertToValueList.Add(l => l.CHILDRATE);
+            //convertToValueList.Add(l => l.COUNT);
+            //convertToValueList.Add(l => l.CYTOTAL);
+            //convertToValueList.Add(l => l.DBTOTAL);
+
+            var series = ToolService.Instance.Create(result.ToList(), convertxAxis, matchs.Take(8).ToList());
+
+            return Json(series);
+        }
 
         public async Task<IActionResult> Details(string id)
         {

@@ -21,7 +21,7 @@ namespace HeBianGu.Product.General.LocalDataBase
     /// <typeparam name="TEntity">实体类型</typeparam>
     /// <typeparam name="TPrimaryKey">主键类型</typeparam>
     public interface IRepository<TEntity, TPrimaryKey> : IRepository where TEntity : EntityBase<TPrimaryKey>
-    {
+    { 
         /// <summary>
         /// 获取实体集合
         /// </summary>
@@ -107,11 +107,37 @@ namespace HeBianGu.Product.General.LocalDataBase
 
     }
 
+
+    /// <summary>
+    /// 带有日志的泛型仓储接口
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    public interface ILogRepository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey> where TEntity : EntityBase<TPrimaryKey>
+    {
+        /// <summary>
+        /// 运行日志
+        /// </summary>
+        /// <param name="message"></param>
+        void LogInfo(params string[] message);
+
+        /// <summary>
+        /// Degbug日志
+        /// </summary>
+        /// <param name="message"></param>
+        void LogDebug(params string[] message);
+
+        /// <summary>
+        /// 错误日志
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <param name="message"></param>
+        void LogError(Exception exception, string message);
+    }
     /// <summary>
     /// 默认Guid主键类型仓储
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public interface IRepository<TEntity> : IRepository<TEntity, Guid> where TEntity : GuidEntityBase
+    public interface IRepository<TEntity> : ILogRepository<TEntity, Guid> where TEntity : GuidEntityBase
     {
 
     }
@@ -120,7 +146,7 @@ namespace HeBianGu.Product.General.LocalDataBase
     /// 默认string主键类型仓储
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public interface IStringRepository<TEntity> : IRepository<TEntity, string> where TEntity : StringEntityBase
+    public interface IStringRepository<TEntity> : ILogRepository<TEntity, string> where TEntity : StringEntityBase
     {
 
     }

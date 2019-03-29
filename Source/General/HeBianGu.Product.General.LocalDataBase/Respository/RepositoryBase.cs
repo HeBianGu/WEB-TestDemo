@@ -74,7 +74,7 @@ namespace HeBianGu.Product.General.LocalDataBase
             _dbContext.Set<TEntity>().Add(entity);
 
             if (autoSave)
-               return await SaveAsync();
+                return await SaveAsync();
 
             return -1;
         }
@@ -91,7 +91,7 @@ namespace HeBianGu.Product.General.LocalDataBase
             EntityToEntity(entity, obj);
 
             if (autoSave)
-              return  await SaveAsync();
+                return await SaveAsync();
 
             return -1;
         }
@@ -216,6 +216,27 @@ namespace HeBianGu.Product.General.LocalDataBase
         {
             _logger = logger;
         }
+
+        public void LogInfo(params string[] message)
+        {
+            foreach (var item in message)
+            {
+                _logger.LogInformation(item);
+            }
+        }
+
+        public void LogDebug(params string[] message)
+        {
+            foreach (var item in message)
+            {
+                _logger.LogDebug(item);
+            }
+        }
+
+        public void LogError(Exception exception, string message)
+        {
+            _logger.LogError(exception, message);
+        }
     }
-    
+
 }

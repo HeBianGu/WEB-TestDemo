@@ -1,0 +1,1563 @@
+﻿@model HeBianGu.Product.Respository.Model.MonitorViewModel
+
+
+
+<form asp-action="Index" class="form-horizontal form-label-left">
+
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="form-group">
+		<label asp-for="Customer.NAME" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Customer.NAME" placeholder="@Html.DisplayNameFor(modelItem => Model.Customer.NAME)" class="form-control" readonly="readonly">
+			<span asp-validation-for="Customer.NAME" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="Customer.SEX" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Customer.SEX" placeholder="@Html.DisplayNameFor(modelItem => Model.Customer.SEX)" class="form-control" readonly="readonly">
+		</div>
+		<span asp-validation-for="Customer.SEX" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Customer.AGE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Customer.AGE" placeholder="@Html.DisplayNameFor(modelItem => Model.Customer.AGE)" class="form-control" readonly="readonly">
+			<span asp-validation-for="Customer.AGE" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Customer.CARDID" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Customer.CARDID" placeholder="@Html.DisplayNameFor(modelItem => Model.Customer.CARDID)" class="form-control" readonly="readonly">			<span asp-validation-for="Customer.CARDID" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Customer.DIAGNOSIS" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Customer.DIAGNOSIS" placeholder="@Html.DisplayNameFor(modelItem => Model.Customer.DIAGNOSIS)" class="form-control" readonly="readonly">			<span asp-validation-for="Customer.DIAGNOSIS" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Customer.HISTORY" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Customer.HISTORY" placeholder="@Html.DisplayNameFor(modelItem => Model.Customer.HISTORY)" class="form-control" readonly="readonly">			<span asp-validation-for="Customer.HISTORY" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Bed.CODE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Bed.CODE" placeholder="@Html.DisplayNameFor(modelItem => Model.Bed.CODE)" class="form-control" readonly="readonly">			<span asp-validation-for="Bed.CODE" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Mat.CODE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Mat.CODE" placeholder="@Html.DisplayNameFor(modelItem => Model.Mat.CODE)" class="form-control" readonly="readonly">			<span asp-validation-for="Mat.CODE" class="text-danger"></span>
+		</div>
+	</div>
+
+	@*心率*@
+	<div class="form-group">
+		<label asp-for="MonitorDetial.HeartRange" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.HeartRange.MinValue" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.HeartRange.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.HeartRange.MinValue" class="text-danger"></span>
+
+		</div>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.HeartRange.MaxVlalue" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.HeartRange.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.HeartRange.MaxVlalue" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*呼吸*@
+	<div class="form-group">
+
+		<label asp-for="MonitorDetial.BreathRange" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.BreathRange.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.BreathRange.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.BreathRange.MinValue" class="text-danger"></span>
+
+		</div>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.BreathRange.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.BreathRange.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.BreathRange.MaxVlalue" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="MonitorDetial.Monitor.CDATE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="MonitorDetial.Monitor.CDATE" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.Monitor.CDATE)" class="form-control" readonly="readonly">			<span asp-validation-for="MonitorDetial.Monitor.CDATE" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Customer.NURSE" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-5 col-sm-5 col-xs-12">
+			<input asp-for="Customer.NURSE" placeholder="@Html.DisplayNameFor(modelItem => Model.Customer.NURSE)" class="form-control" readonly="readonly">			<span asp-validation-for="Customer.NURSE" class="text-danger"></span>
+		</div>
+	</div>
+
+	@*监护区间一*@
+	<div class="form-group">
+		<label asp-for="MonitorDetial.TimeRange1" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+	</div>
+
+	@*监护时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange1.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange1.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange1.MinValue" class="text-danger"></span>
+
+		</div>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange1.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange1.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange1.MaxVlalue" class="text-danger"></span>
+		</div>
+	</div>
+
+	@*离床时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange1.LeaveBedTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange1.LeaveBedTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange1.LeaveBedTime" class="text-danger"></span>
+
+			@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+		</div>
+	</div>
+
+	@*体动时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange1.MoveTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange1.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange1.MoveTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange1.MoveTime" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*启用*@
+	<div class="form-group">
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="">
+				<label>
+					<input type="checkbox" class="js-switch" readonly="readonly" />
+				</label>
+			</div>
+		</div>
+	</div>
+
+
+	@*监护区间一*@
+	<div class="form-group">
+		<label asp-for="MonitorDetial.TimeRange2" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+	</div>
+
+	@*监护时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange2.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange2.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange2.MinValue" class="text-danger"></span>
+
+		</div>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange2.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange2.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange2.MaxVlalue" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*离床时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange2.LeaveBedTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange2.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange2.LeaveBedTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange2.LeaveBedTime" class="text-danger"></span>
+
+			@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+		</div>
+	</div>
+
+	@*体动时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange2.MoveTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange2.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange2.MoveTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange2.MoveTime" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*启用*@
+	<div class="form-group">
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="">
+				<label>
+					<input type="checkbox" class="js-switch" readonly="readonly" />
+				</label>
+			</div>
+		</div>
+	</div>
+
+
+	@*监护区间一*@
+	<div class="form-group">
+		<label asp-for="MonitorDetial.TimeRange3" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+	</div>
+
+	@*监护时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange3.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange3.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange1.MinValue" class="text-danger"></span>
+
+		</div>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange3.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange3.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange3.MaxVlalue" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*离床时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange3.LeaveBedTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange3.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange3.LeaveBedTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange3.LeaveBedTime" class="text-danger"></span>
+
+			@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+		</div>
+	</div>
+
+	@*体动时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange3.MoveTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange3.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange3.MoveTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange3.MoveTime" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*启用*@
+	<div class="form-group">
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="">
+				<label>
+					<input type="checkbox" class="js-switch" readonly="readonly" />
+				</label>
+			</div>
+		</div>
+	</div>
+
+
+	@*监护区间一*@
+	<div class="form-group">
+		<label asp-for="MonitorDetial.TimeRange4" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+	</div>
+
+	@*监护时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange4.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange4.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange4.MinValue" class="text-danger"></span>
+
+		</div>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange4.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange4.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange4.MaxVlalue" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*离床时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange4.LeaveBedTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange4.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange4.LeaveBedTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange4.LeaveBedTime" class="text-danger"></span>
+
+			@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+		</div>
+	</div>
+
+	@*体动时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange4.MoveTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange4.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange4.MoveTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange4.MoveTime" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*启用*@
+	<div class="form-group">
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="">
+				<label>
+					<input type="checkbox" class="js-switch" readonly="readonly" />
+				</label>
+			</div>
+		</div>
+	</div>
+
+
+	@*监护区间一*@
+	<div class="form-group">
+		<label asp-for="MonitorDetial.TimeRange5" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+		</div>
+	</div>
+
+	@*监护时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">监护时间</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange5.MinValue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange5.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange1.MinValue" class="text-danger"></span>
+
+		</div>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange5.MaxVlalue" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange5.MinValue)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange5.MaxVlalue" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*离床时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange5.LeaveBedTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange5.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange5.LeaveBedTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange5.LeaveBedTime" class="text-danger"></span>
+
+			@*<input value="Model.TimeRange1.LeaveBedTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.TimeRange1.LeaveBedTime)" class="form-control">*@
+		</div>
+	</div>
+
+	@*体动时间*@
+	<div class="form-group">
+
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange5.MoveTime)</label>
+
+		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
+			<input asp-for="MonitorDetial.TimeRange5.MoveTime" type="text" placeholder="@Html.DisplayNameFor(modelItem => Model.MonitorDetial.TimeRange5.MoveTime)" class="form-control" readonly="readonly">
+			<span asp-validation-for="MonitorDetial.TimeRange5.MoveTime" class="text-danger"></span>
+
+		</div>
+	</div>
+
+	@*启用*@
+	<div class="form-group">
+		<label class="control-label col-md-3 col-sm-3 col-xs-12">是否启用</label>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="">
+				<label>
+					<input type="checkbox" class="js-switch" readonly="readonly" />
+				</label>
+			</div>
+		</div>
+	</div>
+
+
+</form>
+
+<div style="padding: 30px; margin: 25px;border-radius:5px; border: 1px solid rgb(204, 204, 204); box-shadow: rgb(189, 189, 189) 0px 0px 10px; background: #fff;">
+
+	<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+
+	<div id="div_chart" style="width: 100%;height:650px;text-align:center"><span style="margin:0 auto;line-height:50">I'm Ready.</span></div>
+
+</div>
+
+@*<!-- jQuery -->
+	<script src="../vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script src="../vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="../vendors/nprogress/nprogress.js"></script>*@
+<!-- ECharts -->
+<script src="../vendors/echarts/dist/echarts.min.js"></script>
+<script src="../vendors/echarts/map/js/world.js"></script>
+
+<!-- Custom Theme Scripts -->
+@*<script src="../build/js/custom.min.js"></script>*@
+
+
+<script type="text/javascript">
+
+	var echartBar;
+
+
+
+	//function refreshData(data) {
+	//	if (!echartBar) {
+	//		return;
+	//	}
+
+	//	//更新数据
+	//	var option = myChart.getOption();
+	//	option.series[0].data = data;
+	//	myChart.setOption(option);
+	//}
+
+	function InitChart() {
+		var theme = {
+			color: [
+				'#26B99A', '#34495E', '#BDC3C7', '#3498DB',
+				'#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+			],
+
+			title: {
+				itemGap: 8,
+				textStyle: {
+					fontWeight: 'normal',
+					color: '#408829'
+				}
+			},
+
+			dataRange: {
+				color: ['#1f610a', '#97b58d']
+			},
+
+			toolbox: {
+				color: ['#408829', '#408829', '#408829', '#408829']
+			},
+
+			tooltip: {
+				backgroundColor: 'rgba(0,0,0,0.5)',
+				axisPointer: {
+					type: 'line',
+					lineStyle: {
+						color: '#408829',
+						type: 'dashed'
+					},
+					crossStyle: {
+						color: '#408829'
+					},
+					shadowStyle: {
+						color: 'rgba(200,200,200,0.3)'
+					}
+				}
+			},
+
+			dataZoom: {
+				dataBackgroundColor: '#eee',
+				fillerColor: 'rgba(64,136,41,0.2)',
+				handleColor: '#408829'
+			},
+			grid: {
+				borderWidth: 0
+			},
+
+			categoryAxis: {
+				axisLine: {
+					lineStyle: {
+						color: '#408829'
+					}
+				},
+				splitLine: {
+					lineStyle: {
+						color: ['#eee']
+					}
+				}
+			},
+
+			valueAxis: {
+				axisLine: {
+					lineStyle: {
+						color: '#408829'
+					}
+				},
+				splitArea: {
+					show: true,
+					areaStyle: {
+						color: ['rgba(250,250,250,0.1)', 'rgba(200,200,200,0.1)']
+					}
+				},
+				splitLine: {
+					lineStyle: {
+						color: ['#eee']
+					}
+				}
+			},
+			timeline: {
+				lineStyle: {
+					color: '#408829'
+				},
+				controlStyle: {
+					normal: { color: '#408829' },
+					emphasis: { color: '#408829' }
+				}
+			},
+
+			k: {
+				itemStyle: {
+					normal: {
+						color: '#68a54a',
+						color0: '#a9cba2',
+						lineStyle: {
+							width: 1,
+							color: '#408829',
+							color0: '#86b379'
+						}
+					}
+				}
+			},
+			map: {
+				itemStyle: {
+					normal: {
+						areaStyle: {
+							color: '#ddd'
+						},
+						label: {
+							textStyle: {
+								color: '#c12e34'
+							}
+						}
+					},
+					emphasis: {
+						areaStyle: {
+							color: '#99d2dd'
+						},
+						label: {
+							textStyle: {
+								color: '#c12e34'
+							}
+						}
+					}
+				}
+			},
+			force: {
+				itemStyle: {
+					normal: {
+						linkStyle: {
+							strokeColor: '#408829'
+						}
+					}
+				}
+			},
+			chord: {
+				padding: 4,
+				itemStyle: {
+					normal: {
+						lineStyle: {
+							width: 1,
+							color: 'rgba(128, 128, 128, 0.5)'
+						},
+						chordStyle: {
+							lineStyle: {
+								width: 1,
+								color: 'rgba(128, 128, 128, 0.5)'
+							}
+						}
+					},
+					emphasis: {
+						lineStyle: {
+							width: 1,
+							color: 'rgba(128, 128, 128, 0.5)'
+						},
+						chordStyle: {
+							lineStyle: {
+								width: 1,
+								color: 'rgba(128, 128, 128, 0.5)'
+							}
+						}
+					}
+				}
+			},
+			gauge: {
+				startAngle: 225,
+				endAngle: -45,
+				axisLine: {
+					show: true,
+					lineStyle: {
+						color: [[0.2, '#86b379'], [0.8, '#68a54a'], [1, '#408829']],
+						width: 8
+					}
+				},
+				axisTick: {
+					splitNumber: 10,
+					length: 12,
+					lineStyle: {
+						color: 'auto'
+					}
+				},
+				axisLabel: {
+					textStyle: {
+						color: 'auto'
+					}
+				},
+				splitLine: {
+					length: 18,
+					lineStyle: {
+						color: 'auto'
+					}
+				},
+				pointer: {
+					length: '90%',
+					color: 'auto'
+				},
+				title: {
+					textStyle: {
+						color: '#333'
+					}
+				},
+				detail: {
+					textStyle: {
+						color: 'auto'
+					}
+				}
+			},
+			textStyle: {
+				fontFamily: 'Arial, Verdana, sans-serif'
+			}
+		};
+
+		echartBar = echarts.init(document.getElementById('div_chart'), theme);
+
+		echartBar.setOption({
+			title: {
+				text: '数据统计表',
+				subtext: '到截止日期累计数据统计表'
+			},
+			tooltip: {
+				trigger: 'axis'
+			},
+			legend: {
+				data: ['sales', 'purchases']
+				//data: data.legend.data
+			},
+			toolbox: {
+				show: false
+			},
+			calculable: false,
+			xAxis: [{
+				type: 'category',
+				data: ['1?', '2?', '3?', '4?', '5?', '6?', '7?', '8?', '9?', '10?', '11?', '12?']
+				//data: data.xAxis.data
+			}],
+			yAxis: [{
+				type: 'value'
+			}],
+			//series: data.series
+			series: [{
+				name: 'sales',
+				type: 'bar',
+				data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+				//data: data.series.series1,
+				markPoint: {
+					data: [{
+						type: 'max',
+						name: '???'
+					}, {
+						type: 'min',
+						name: '???'
+					}]
+				},
+				markLine: {
+					data: [{
+						type: 'average',
+						name: '???'
+					}]
+				}
+			}, {
+				name: 'purchases',
+				type: 'bar',
+				data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+				//data: data.series.series2,
+				markPoint: {
+					data: [{
+						type: 'max',
+						name: '???'
+					}, {
+						type: 'min',
+						name: '???'
+					}]
+				},
+				markLine: {
+					data: [{
+						type: 'average',
+						name: '???'
+					}]
+				},
+				markPoint: {
+					data: [{
+						name: 'sales',
+						value: 182.2,
+						xAxis: 7,
+						yAxis: 183,
+					}, {
+						name: 'purchases',
+						value: 2.3,
+						xAxis: 11,
+						yAxis: 3
+					}]
+				},
+				markLine: {
+					data: [{
+						type: 'average',
+						name: '???'
+					}]
+				}
+			}]
+		});
+
+		echartBar.hideLoading();
+	}
+
+	InitChart();
+
+	function RefreshRealLine() { 
+		$.ajax({
+
+			url: 'RefreshRealLine',
+
+			data: { Test1: 2, Test2: 3 },
+
+			type: "POST",
+
+			dataType: "json",
+
+			async: false,
+
+			success: function (data) {
+
+				//没有数据时提示
+				if (data.hasOwnProperty("type")) {
+
+					alert(data.message);
+					return;
+				}   
+
+				echartBar.setOption({
+					title: {
+						text: '数据统计表',
+						subtext: '到截止日期累计数据统计表'
+					},
+					tooltip: {
+						trigger: 'axis'
+					},
+					legend: {
+						//data: ['sales', 'purchases']
+						data: data.legend.data
+					},
+					toolbox: {
+						show: false
+					},
+					calculable: false,
+					xAxis: [{
+						type: 'category',
+						//data: ['1?', '2?', '3?', '4?', '5?', '6?', '7?', '8?', '9?', '10?', '11?', '12?']
+						data: data.xAxis.data
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: data.series
+					//series: [{
+					//	name: 'sales',
+					//	type: 'bar',
+					//	//data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+					//	data: data.series.series1,
+					//	markPoint: {
+					//		data: [{
+					//			type: 'max',
+					//			name: '???'
+					//		}, {
+					//			type: 'min',
+					//			name: '???'
+					//		}]
+					//	},
+					//	markLine: {
+					//		data: [{
+					//			type: 'average',
+					//			name: '???'
+					//		}]
+					//	}
+					//}, {
+					//	name: 'purchases',
+					//	type: 'bar',
+					//	//data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+					//	data: data.series.series2,
+					//	markPoint: {
+					//		data: [{
+					//			type: 'max',
+					//			name: '???'
+					//		}, {
+					//			type: 'min',
+					//			name: '???'
+					//		}]
+					//	},
+					//	markLine: {
+					//		data: [{
+					//			type: 'average',
+					//			name: '???'
+					//		}]
+					//	}
+					//	//markPoint: {
+					//	//	data: [{
+					//	//		name: 'sales',
+					//	//		value: 182.2,
+					//	//		xAxis: 7,
+					//	//		yAxis: 183,
+					//	//	}, {
+					//	//		name: 'purchases',
+					//	//		value: 2.3,
+					//	//		xAxis: 11,
+					//	//		yAxis: 3
+					//	//	}]
+					//	//},
+					//	//markLine: {
+					//	//	data: [{
+					//	//		type: 'average',
+					//	//		name: '???'
+					//	//	}]
+					//	//}
+					//}]
+				});
+
+				echartBar.hideLoading();
+
+				//var myChart = echarts.init(document.getElementById('main'));
+
+				//myChart.showLoading({
+
+				//	text: '疯狂计算中',
+
+				//	effect: 'whirling'
+
+				//});
+
+				//option = {
+
+				//	title: {
+
+				//		text: "Echarts在ASP.NET MVC下动态生成图表",
+
+				//		subtext: "来自5653325的的博客"
+
+				//	},
+
+				//	tooltip: {
+
+				//		trigger: 'axis'
+
+				//	},
+
+				//	legend: {
+				//		data: data.legend.data
+				//	},
+
+				//	toolbox: {
+
+				//		show: true,
+
+				//		feature: {
+
+				//			dataZoom: {
+
+				//				yAxisIndex: 'none'
+
+				//			},
+
+				//			dataView: { readOnly: false },
+
+				//			magicType: { type: ['line', 'bar'] },
+
+				//			restore: {},
+
+				//			saveAsImage: {}
+
+				//		}
+
+				//	},
+
+				//	xAxis: {
+
+				//		type: 'category',
+
+				//		boundaryGap: false,
+
+				//		data: data.xAxis.data
+
+				//	},
+
+				//	yAxis: {
+
+				//		type: 'value',
+
+				//		splitNumber: 10,
+
+				//		axisLabel: {
+
+				//			formatter: '{value} '
+
+				//		}
+
+				//	},
+
+				//	series: series
+
+				//};
+
+				////给每个值设定相同的 显示最低、最高和平均值的线条
+
+				//$(series).each(function (u) {
+
+				//	this.markPoint = {
+
+				//		data: [
+
+				//			{ type: 'max', name: '最高成绩' },
+
+				//			{ type: 'min', name: '最低成绩' }
+
+				//		]
+
+				//	};
+
+				//	this.markLine = {
+
+				//		data: [
+
+				//			{ type: 'average', name: '平均值' },
+
+				//			[{
+
+				//				symbol: 'none',
+
+				//				x: '93%',
+
+				//				yAxis: 'max'
+
+				//			}, {
+
+				//				symbol: 'circle',
+
+				//				label: {
+
+				//					normal: {
+
+				//						position: 'start',
+
+				//						formatter: '最大值'
+
+				//					}
+
+				//				},
+
+				//				type: 'max',
+
+				//				name: '最高点'
+
+				//			}]
+
+				//		]
+
+				//	};
+
+				//});
+
+				//myChart.setOption(option);
+
+				//myChart.hideLoading();
+
+			},
+
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+				//dialogMsg(errorThrown, -1);
+
+				alert("异常");
+
+			}
+
+		});
+	}
+
+	function RefreshRealLine1() {
+
+		//var thisObj = ${ obj };
+		//var userId = thsiObj.attr("userId");
+		//alert(userId);
+
+		//alert(obj);
+
+		$.ajax({
+
+			url: 'RefreshRealLine',
+
+			data: { Test1: 2, Test2: 3 },
+
+			type: "POST",
+
+			dataType: "json",
+
+			async: false,
+
+			success: function (data) {
+
+				//没有数据时提示
+				if (data.hasOwnProperty("type")) {
+
+					alert(data.message);
+					return;
+				}
+
+				console.log(data);
+
+				console.log(data.legend.data);
+
+				console.log(data.xAxis.data);
+
+				//console.log(data);
+				//console.log(data.CategoryList);
+				//console.log(data.legendList);
+				//console.log(data.seriesList);
+
+				//	注意都是小写
+				//var series = JSON.parse(data.series.series);
+
+				var theme = {
+					color: [
+						'#26B99A', '#34495E', '#BDC3C7', '#3498DB',
+						'#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+					],
+
+					title: {
+						itemGap: 8,
+						textStyle: {
+							fontWeight: 'normal',
+							color: '#408829'
+						}
+					},
+
+					dataRange: {
+						color: ['#1f610a', '#97b58d']
+					},
+
+					toolbox: {
+						color: ['#408829', '#408829', '#408829', '#408829']
+					},
+
+					tooltip: {
+						backgroundColor: 'rgba(0,0,0,0.5)',
+						axisPointer: {
+							type: 'line',
+							lineStyle: {
+								color: '#408829',
+								type: 'dashed'
+							},
+							crossStyle: {
+								color: '#408829'
+							},
+							shadowStyle: {
+								color: 'rgba(200,200,200,0.3)'
+							}
+						}
+					},
+
+					dataZoom: {
+						dataBackgroundColor: '#eee',
+						fillerColor: 'rgba(64,136,41,0.2)',
+						handleColor: '#408829'
+					},
+					grid: {
+						borderWidth: 0
+					},
+
+					categoryAxis: {
+						axisLine: {
+							lineStyle: {
+								color: '#408829'
+							}
+						},
+						splitLine: {
+							lineStyle: {
+								color: ['#eee']
+							}
+						}
+					},
+
+					valueAxis: {
+						axisLine: {
+							lineStyle: {
+								color: '#408829'
+							}
+						},
+						splitArea: {
+							show: true,
+							areaStyle: {
+								color: ['rgba(250,250,250,0.1)', 'rgba(200,200,200,0.1)']
+							}
+						},
+						splitLine: {
+							lineStyle: {
+								color: ['#eee']
+							}
+						}
+					},
+					timeline: {
+						lineStyle: {
+							color: '#408829'
+						},
+						controlStyle: {
+							normal: { color: '#408829' },
+							emphasis: { color: '#408829' }
+						}
+					},
+
+					k: {
+						itemStyle: {
+							normal: {
+								color: '#68a54a',
+								color0: '#a9cba2',
+								lineStyle: {
+									width: 1,
+									color: '#408829',
+									color0: '#86b379'
+								}
+							}
+						}
+					},
+					map: {
+						itemStyle: {
+							normal: {
+								areaStyle: {
+									color: '#ddd'
+								},
+								label: {
+									textStyle: {
+										color: '#c12e34'
+									}
+								}
+							},
+							emphasis: {
+								areaStyle: {
+									color: '#99d2dd'
+								},
+								label: {
+									textStyle: {
+										color: '#c12e34'
+									}
+								}
+							}
+						}
+					},
+					force: {
+						itemStyle: {
+							normal: {
+								linkStyle: {
+									strokeColor: '#408829'
+								}
+							}
+						}
+					},
+					chord: {
+						padding: 4,
+						itemStyle: {
+							normal: {
+								lineStyle: {
+									width: 1,
+									color: 'rgba(128, 128, 128, 0.5)'
+								},
+								chordStyle: {
+									lineStyle: {
+										width: 1,
+										color: 'rgba(128, 128, 128, 0.5)'
+									}
+								}
+							},
+							emphasis: {
+								lineStyle: {
+									width: 1,
+									color: 'rgba(128, 128, 128, 0.5)'
+								},
+								chordStyle: {
+									lineStyle: {
+										width: 1,
+										color: 'rgba(128, 128, 128, 0.5)'
+									}
+								}
+							}
+						}
+					},
+					gauge: {
+						startAngle: 225,
+						endAngle: -45,
+						axisLine: {
+							show: true,
+							lineStyle: {
+								color: [[0.2, '#86b379'], [0.8, '#68a54a'], [1, '#408829']],
+								width: 8
+							}
+						},
+						axisTick: {
+							splitNumber: 10,
+							length: 12,
+							lineStyle: {
+								color: 'auto'
+							}
+						},
+						axisLabel: {
+							textStyle: {
+								color: 'auto'
+							}
+						},
+						splitLine: {
+							length: 18,
+							lineStyle: {
+								color: 'auto'
+							}
+						},
+						pointer: {
+							length: '90%',
+							color: 'auto'
+						},
+						title: {
+							textStyle: {
+								color: '#333'
+							}
+						},
+						detail: {
+							textStyle: {
+								color: 'auto'
+							}
+						}
+					},
+					textStyle: {
+						fontFamily: 'Arial, Verdana, sans-serif'
+					}
+				};
+
+				var echartBar = echarts.init(document.getElementById('div_chart'), theme);
+
+				echartBar.setOption({
+					title: {
+						text: '数据统计表',
+						subtext: '到截止日期累计数据统计表'
+					},
+					tooltip: {
+						trigger: 'axis'
+					},
+					legend: {
+						//data: ['sales', 'purchases']
+						data: data.legend.data
+					},
+					toolbox: {
+						show: false
+					},
+					calculable: false,
+					xAxis: [{
+						type: 'category',
+						//data: ['1?', '2?', '3?', '4?', '5?', '6?', '7?', '8?', '9?', '10?', '11?', '12?']
+						data: data.xAxis.data
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: data.series
+					//series: [{
+					//	name: 'sales',
+					//	type: 'bar',
+					//	//data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+					//	data: data.series.series1,
+					//	markPoint: {
+					//		data: [{
+					//			type: 'max',
+					//			name: '???'
+					//		}, {
+					//			type: 'min',
+					//			name: '???'
+					//		}]
+					//	},
+					//	markLine: {
+					//		data: [{
+					//			type: 'average',
+					//			name: '???'
+					//		}]
+					//	}
+					//}, {
+					//	name: 'purchases',
+					//	type: 'bar',
+					//	//data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+					//	data: data.series.series2,
+					//	markPoint: {
+					//		data: [{
+					//			type: 'max',
+					//			name: '???'
+					//		}, {
+					//			type: 'min',
+					//			name: '???'
+					//		}]
+					//	},
+					//	markLine: {
+					//		data: [{
+					//			type: 'average',
+					//			name: '???'
+					//		}]
+					//	}
+					//	//markPoint: {
+					//	//	data: [{
+					//	//		name: 'sales',
+					//	//		value: 182.2,
+					//	//		xAxis: 7,
+					//	//		yAxis: 183,
+					//	//	}, {
+					//	//		name: 'purchases',
+					//	//		value: 2.3,
+					//	//		xAxis: 11,
+					//	//		yAxis: 3
+					//	//	}]
+					//	//},
+					//	//markLine: {
+					//	//	data: [{
+					//	//		type: 'average',
+					//	//		name: '???'
+					//	//	}]
+					//	//}
+					//}]
+				});
+
+				echartBar.hideLoading();
+
+				//var myChart = echarts.init(document.getElementById('main'));
+
+				//myChart.showLoading({
+
+				//	text: '疯狂计算中',
+
+				//	effect: 'whirling'
+
+				//});
+
+				//option = {
+
+				//	title: {
+
+				//		text: "Echarts在ASP.NET MVC下动态生成图表",
+
+				//		subtext: "来自5653325的的博客"
+
+				//	},
+
+				//	tooltip: {
+
+				//		trigger: 'axis'
+
+				//	},
+
+				//	legend: {
+				//		data: data.legend.data
+				//	},
+
+				//	toolbox: {
+
+				//		show: true,
+
+				//		feature: {
+
+				//			dataZoom: {
+
+				//				yAxisIndex: 'none'
+
+				//			},
+
+				//			dataView: { readOnly: false },
+
+				//			magicType: { type: ['line', 'bar'] },
+
+				//			restore: {},
+
+				//			saveAsImage: {}
+
+				//		}
+
+				//	},
+
+				//	xAxis: {
+
+				//		type: 'category',
+
+				//		boundaryGap: false,
+
+				//		data: data.xAxis.data
+
+				//	},
+
+				//	yAxis: {
+
+				//		type: 'value',
+
+				//		splitNumber: 10,
+
+				//		axisLabel: {
+
+				//			formatter: '{value} '
+
+				//		}
+
+				//	},
+
+				//	series: series
+
+				//};
+
+				////给每个值设定相同的 显示最低、最高和平均值的线条
+
+				//$(series).each(function (u) {
+
+				//	this.markPoint = {
+
+				//		data: [
+
+				//			{ type: 'max', name: '最高成绩' },
+
+				//			{ type: 'min', name: '最低成绩' }
+
+				//		]
+
+				//	};
+
+				//	this.markLine = {
+
+				//		data: [
+
+				//			{ type: 'average', name: '平均值' },
+
+				//			[{
+
+				//				symbol: 'none',
+
+				//				x: '93%',
+
+				//				yAxis: 'max'
+
+				//			}, {
+
+				//				symbol: 'circle',
+
+				//				label: {
+
+				//					normal: {
+
+				//						position: 'start',
+
+				//						formatter: '最大值'
+
+				//					}
+
+				//				},
+
+				//				type: 'max',
+
+				//				name: '最高点'
+
+				//			}]
+
+				//		]
+
+				//	};
+
+				//});
+
+				//myChart.setOption(option);
+
+				//myChart.hideLoading();
+
+			},
+
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+				//dialogMsg(errorThrown, -1);
+
+				alert("异常");
+
+			}
+
+		});
+	}
+
+	//setInterval(RefreshRealLine, 2000);
+
+</script>
+

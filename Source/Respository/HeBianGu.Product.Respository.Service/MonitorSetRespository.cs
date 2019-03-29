@@ -73,6 +73,13 @@ namespace HeBianGu.Product.Respository.Service
             return result;
         }
 
+        public async Task<IQueryable<jw_add_data>> GetRealLineTest()
+        {
+            var result = _dbContext.Datas.FromSql("select * from jw_add_data where REGIONCODE='510703101'");
+
+            return result;
+        }
+
         public async Task<List<MonitorViewModel>> GetMonitorList()
         {
 
@@ -276,6 +283,14 @@ namespace HeBianGu.Product.Respository.Service
             return _dbContext.Beds;
         }
 
+        public async Task<MonitorViewModel> GetMonitorByID(string id)
+        {
+            var model = await this.GetByIDAsync(id);
+
+            MonitorViewModel result = this.GetModel(model);
+
+            return result;
+        }
 
     }
 }

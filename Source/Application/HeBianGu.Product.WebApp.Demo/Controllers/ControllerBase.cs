@@ -15,17 +15,33 @@ namespace HeBianGu.Product.WebApp.Demo
         {
             Debug.WriteLine("OnActionExecuting");
 
-            byte[] result;
+            //byte[] result;
 
-            filterContext.HttpContext.Session.TryGetValue("CurrentUser", out result);
+            //filterContext.HttpContext.Session.TryGetValue("CurrentUser", out result);
 
-            if (result == null)
+            //if (result == null)
+            //{
+            //    filterContext.Result = new RedirectResult("/Home/Login");
+            //    return;
+            //}
+
+            if(!this.CHeckSession())
             {
                 filterContext.Result = new RedirectResult("/Home/Login");
                 return;
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        public bool CHeckSession()
+        {
+            byte[] result;
+
+            HttpContext.Session.TryGetValue("CurrentUser", out result);
+
+            return result != null;
+
         }
 
         //  Message：每个控制器的基类Controler 都包含两个过滤器，这个在过滤器之后调用，下面在过滤器之前调用

@@ -4,12 +4,12 @@
 	<div d="main" class="row">
 		@foreach (var item in Model)
 		{
-			<div class="col-md-55">
+			<div class="col-md-55"  onclick='getRealLine("@item.ID")'  data-toggle="modal" data-target=".bs-example-modal-lg">
 				@*col-md-3 col-xs-7*@
 				<div class="thumbnail" style="background:@Html.DisplayFor(modelItem => item.BackColor);height:210px">
 					<h4 class="brief"><i  style="color:@Html.DisplayFor(modelItem => item.ForeColor)">@Html.DisplayFor(modelItem => item.Bed.NAME) <small>- @Html.DisplayFor(modelItem => item.Mat.CODE)</small> </i></h4>
 					
-					<div class="right col-xs-7">
+					<div class="right col-xs-7"  >
 						<h5  style="color:@Html.DisplayFor(modelItem => item.ForeColor)"> @Html.DisplayFor(modelItem => item.Bed.CODE) @Html.DisplayFor(modelItem => item.Customer.NAME)      @Html.DisplayFor(modelItem => item.Customer.SEX)      @Html.DisplayFor(modelItem => item.Customer.AGE)岁</h5>
 						<ul class="list-unstyled">
 							<li style="color:@Html.DisplayFor(modelItem => item.ForeColor)"><i class="fa fa-heart"></i> <small>@Html.DisplayFor(modelItem => item.Heart)</small></li>

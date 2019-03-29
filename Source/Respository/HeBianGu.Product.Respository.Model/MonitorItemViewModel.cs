@@ -10,7 +10,7 @@ namespace HeBianGu.Product.Respository.Model
 {
     public class MonitorItemViewModel
     {
-        public ehc_dv_monitor Monitor { get; set; }
+        public ehc_dv_monitor Monitor { get; set; } 
 
         [Display(Name = "心率监测区间")]
         [Description("5d107bfa-3784-4e7c-8d40-5c9a38309cd6")]
