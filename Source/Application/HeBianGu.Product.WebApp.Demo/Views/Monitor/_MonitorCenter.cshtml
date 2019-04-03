@@ -4,50 +4,54 @@
 	<div d="main" class="row">
 		@foreach (var item in Model)
 		{
-			<div class="col-md-55"  onclick='getRealLine("@item.ID")'  data-toggle="modal" data-target=".bs-example-modal-lg">
-				@*col-md-3 col-xs-7*@
-				<div class="thumbnail" style="background:@Html.DisplayFor(modelItem => item.BackColor);height:210px">
-					<h4 class="brief"><i  style="color:@Html.DisplayFor(modelItem => item.ForeColor)">@Html.DisplayFor(modelItem => item.Bed.NAME) <small>- @Html.DisplayFor(modelItem => item.Mat.CODE)</small> </i></h4>
-					
-					<div class="right col-xs-7"  >
-						<h5  style="color:@Html.DisplayFor(modelItem => item.ForeColor)"> @Html.DisplayFor(modelItem => item.Bed.CODE) @Html.DisplayFor(modelItem => item.Customer.NAME)      @Html.DisplayFor(modelItem => item.Customer.SEX)      @Html.DisplayFor(modelItem => item.Customer.AGE)岁</h5>
-						<ul class="list-unstyled">
-							<li style="color:@Html.DisplayFor(modelItem => item.ForeColor)"><i class="fa fa-heart"></i> <small>@Html.DisplayFor(modelItem => item.Heart)</small></li>
-							<li><i class="fa fa-comment"></i> <small>@Html.DisplayFor(modelItem => item.Breath)</small></li>
-							<li><i class="fa fa-heart"></i><small> @Html.DisplayFor(modelItem => item.FanShen)</small></li>
-							<li><i class="fa fa-heart"></i> <small>@Html.DisplayFor(modelItem => item.Shuimian)</small></li>
-							<li><i class="fa fa-clock-o"></i><small> @Html.DisplayFor(modelItem => item.ZaiChuang)</small></li>
-							<li><i class="fa fa-heart"></i><small> @Html.DisplayFor(modelItem => item.Huli)</small></li>
-						</ul>
-					</div>
+			<a asp-action="Details" asp-route-id="@item.ID">
+				<div class="col-md-55">
+					@*<div class="col-md-55" onclick='getRealLine("@item.ID")' data-toggle="modal" data-target=".bs-example-modal-lg">*@
+					@*col-md-3 col-xs-7*@
+					<div class="thumbnail" style="background:@Html.DisplayFor(modelItem => item.BackColor);height:210px">
+						<h4 class="brief"><i style="color:@Html.DisplayFor(modelItem => item.ForeColor)">@Html.DisplayFor(modelItem => item.Bed.NAME) <small>- @Html.DisplayFor(modelItem => item.Mat.CODE)</small> </i></h4>
 
-					<div class="left col-xs-5 text-center">
-						<img class="img-circle img-responsive" alt="" src="~/images/oldman.jpg">
-					</div>
+						<div class="right col-xs-7">
+							<h5 style="color:@Html.DisplayFor(modelItem => item.ForeColor)"> @Html.DisplayFor(modelItem => item.Bed.CODE) @Html.DisplayFor(modelItem => item.Customer.NAME)      @Html.DisplayFor(modelItem => item.Customer.SEX)      @Html.DisplayFor(modelItem => item.Customer.AGE)岁</h5>
+							<ul class="list-unstyled">
+								<li style="color:@Html.DisplayFor(modelItem => item.ForeColor)"><i class="fa fa-heart"></i> <small>@Html.DisplayFor(modelItem => item.Heart)</small></li>
+								<li><i class="fa fa-comment"></i> <small>@Html.DisplayFor(modelItem => item.Breath)</small></li>
+								<li><i class="fa fa-heart"></i><small> @Html.DisplayFor(modelItem => item.FanShen)</small></li>
+								<li><i class="fa fa-heart"></i> <small>@Html.DisplayFor(modelItem => item.Shuimian)</small></li>
+								<li><i class="fa fa-clock-o"></i><small> @Html.DisplayFor(modelItem => item.ZaiChuang)</small></li>
+								<li><i class="fa fa-heart"></i><small> @Html.DisplayFor(modelItem => item.Huli)</small></li>
+							</ul>
+						</div>
 
-					@*<div class="col-xs-12 bottom text-center">
-						<div class="col-xs-12 col-sm-6 emphasis">
-							<p class="ratings">
-								<a>4.0</a>
-								<a href="#"><span class="fa fa-star"></span></a>
-								<a href="#"><span class="fa fa-star"></span></a>
-								<a href="#"><span class="fa fa-star"></span></a>
-								<a href="#"><span class="fa fa-star"></span></a>
-								<a href="#"><span class="fa fa-star-o"></span></a>
-							</p>
+						<div class="left col-xs-5 text-center">
+							<img class="img-circle img-responsive" alt="" src="~/images/oldman.jpg">
 						</div>
-						<div class="col-xs-12 col-sm-6 emphasis">
-							<button class="btn btn-success btn-xs" type="button">
-								<i class="fa fa-user">
-								</i> <i class="fa fa-comments-o"></i>
-							</button>
-							<button class="btn btn-primary btn-xs" type="button">
-								<i class="fa fa-user"> </i> View Profile
-							</button>
-						</div>
-					</div>*@
+
+						@*<div class="col-xs-12 bottom text-center">
+								<div class="col-xs-12 col-sm-6 emphasis">
+									<p class="ratings">
+										<a>4.0</a>
+										<a href="#"><span class="fa fa-star"></span></a>
+										<a href="#"><span class="fa fa-star"></span></a>
+										<a href="#"><span class="fa fa-star"></span></a>
+										<a href="#"><span class="fa fa-star"></span></a>
+										<a href="#"><span class="fa fa-star-o"></span></a>
+									</p>
+								</div>
+								<div class="col-xs-12 col-sm-6 emphasis">
+									<button class="btn btn-success btn-xs" type="button">
+										<i class="fa fa-user">
+										</i> <i class="fa fa-comments-o"></i>
+									</button>
+									<button class="btn btn-primary btn-xs" type="button">
+										<i class="fa fa-user"> </i> View Profile
+									</button>
+								</div>
+							</div>*@
+					</div>
 				</div>
-			</div>
+
+			</a>
 		}
 	</div>
 </div>

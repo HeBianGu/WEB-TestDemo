@@ -73,11 +73,23 @@ namespace HeBianGu.Product.Respository.Service
             return result;
         }
 
+
+        static int start = 5;
         public async Task<IQueryable<jw_add_data>> GetRealLineTest()
         {
-            var result = _dbContext.Datas.FromSql("select * from jw_add_data where REGIONCODE='510703101'");
+            var result = _dbContext.Datas.FromSql("select *  from jw_add_data where REGIONCODE='510703101'");
 
-            return result;
+            //var result = _dbContext.Datas.FromSql("select * from jw_add_data where REGIONCODE='510703101'");
+
+            //var find = result.Skip(r.Next(result.Count())).Take(10000);
+
+            if (start > result.Count()) start = 5;
+
+            var find = result.Take(start+=1);
+
+
+
+            return find;
         }
 
         public async Task<List<MonitorViewModel>> GetMonitorList()

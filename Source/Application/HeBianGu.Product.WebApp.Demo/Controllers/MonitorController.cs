@@ -109,13 +109,26 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
         }
 
         [HttpPost]
+        [Route("Monitor/Details/RefreshRealLine")]
         public JsonResult RefreshRealLine(string Test1, string Test2)
         {
+            //var result = _respository.GetRealLineTest().Result; ;
+
+            //var json = ToolService.Instance.GroupByExpression(result,
+            //    l => l.ORGNAME,
+            //    l => l.Max(k => k.CDTOTAL),
+            //    l => l.Min(k => k.CDTOTAL),
+            //    l => l.Average(k => k.CDTOTAL),
+            //    l => l.Count());
+
+            ////var json = DataService.Instance.GroupByExpression(result,
+            ////   l => l.ORGNAME,
+            ////   l => l.Max(k => k.CDTOTAL),
+            ////   l => l.Min(k => k.CDTOTAL),
+            ////   l => l.Average(k => k.CDTOTAL),
+            ////   l => l.Min(k => k.OLDTOTAL), l => l.Count());
 
             var result = _respository.GetRealLineTest().Result;
-            //_context.Datas.FromSql("select * from jw_add_data where REGIONCODE='510703101'");
-
-            //limit 50,300
 
             Func<jw_add_data, string> convertxAxis = l =>
             {
@@ -129,18 +142,20 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
                 || l.Name.ToUpper() == "PERFECTTOTLE"
                 || l.Name.ToUpper() == "COUNT"
                 || l.Name.ToUpper() == "WOMANRATE"
+                || l.Name.ToUpper() == "CDTOTAL"
+                || l.Name.ToUpper() == "CHILDRATE"
+                || l.Name.ToUpper() == "COUNT"
                 || l.Name.ToUpper() == "YEAR"
                 || l.Name.ToUpper() == "TYPE";
             };
 
-
             List<ReportConvertEngine<jw_add_data, int?>> matchs = new List<ReportConvertEngine<jw_add_data, int?>>();
 
-            var vaildIntCollection = typeof(jw_add_data).GetProperties().ToList().FindAll(l => l.PropertyType == typeof(int?));
+            var vaildIntCollection = typeof(jw_add_data).GetProperties().ToList().FindAll(l => l.PropertyType == typeof(int?)&&(l.Name== "PERFECTTOTLE" || l.Name == "OLDTOTAL"));
 
             foreach (var item in vaildIntCollection)
             {
-                if (except(item)) continue;
+                //if (except(item)) continue;
 
                 ReportConvertEngine<jw_add_data, int?> engine = new ReportConvertEngine<jw_add_data, int?>();
 
@@ -166,7 +181,9 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             //convertToValueList.Add(l => l.CYTOTAL);
             //convertToValueList.Add(l => l.DBTOTAL);
 
-            var series = ToolService.Instance.Create(result.ToList(), convertxAxis, matchs.Take(8).ToList());
+            System.Diagnostics.Debug.WriteLine(result.Count());
+
+            var series = ToolService.Instance.Create(result.ToList(), convertxAxis, matchs.Take(2).ToList());
 
             return Json(series);
         }
@@ -178,13 +195,15 @@ namespace HeBianGu.Product.WebApp.Demo.Controllers
             //    return NotFound();
             //}
 
-            //var jCSJ_MONITOR = await _context.Moniters .FirstOrDefaultAsync(m => m.ID == id);
+            //var jCSJ_MONITOR = await _context.Moniters.FirstOrDefaultAsync(m => m.ID == id);
             //if (jCSJ_MONITOR == null)
             //{
             //    return NotFound();
             //}
 
-            return View(null);
+            var reult = await this._respository.GetMonitorByID(id);
+
+            return View(reult);
         }
 
         /// <summary>
