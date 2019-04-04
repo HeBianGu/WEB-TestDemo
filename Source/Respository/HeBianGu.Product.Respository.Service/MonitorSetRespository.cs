@@ -39,8 +39,8 @@ namespace HeBianGu.Product.Respository.Service
 
                 MonitorViewModel model = item;
 
-                model.Heart = "心率：" + v.ToString() + "次/分";
-                model.Breath = "呼吸：" + r.Next(80, 200).ToString() + "次/分";
+                model.Heart = "心率：" + v.ToString() + "次/分 历史:135/37";
+                model.Breath = "呼吸：" + r.Next(80, 200).ToString() + "次/分 历史:135/37";
                 model.FanShen = "体动：" + r.Next(6).ToString() + "分 累计：" + r.Next(12).ToString() + "时/天";
                 model.Shuimian = r.Next(3) == 1 ? "睡眠中/睡眠：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分" : "未睡眠";
                 model.ZaiChuang = r.Next(3) == 1 ? "离床：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分" : "在床：" + r.Next(8).ToString() + "时" + r.Next(60).ToString() + "分";
@@ -85,7 +85,7 @@ namespace HeBianGu.Product.Respository.Service
 
             if (start > result.Count()) start = 5;
 
-            var find = result.Take(start+=1);
+            var find = result.Take(start += 1).Skip(start - 20>0? start - 20:0).Take(10000);
 
 
 

@@ -6,7 +6,7 @@ using System.Text;
 namespace HeBianGu.Product.General.Tool
 {
 
-   public class ReportConvertEngine<TModel,RType>
+    public class ReportConvertEngine<TModel, RType>
     {
         public Func<TModel, RType> Convert { get; set; }
 
@@ -27,6 +27,34 @@ namespace HeBianGu.Product.General.Tool
             dynamic.type = this.Type;
 
             dynamic.data = this.Datas.ToArray();
+
+            //dynamic.markPoint=
+
+            //dynamic dynamic1 = new ExpandoObject();
+
+            //dynamic1.data = new ExpandoObject();
+
+            //dynamic1.data.xAxis = 19;
+
+            //dynamic1.data.yAxis = 40;
+
+            //dynamic1.data.name = "测试";
+
+            //dynamic.markPoint =  dynamic1;
+
+            //           @"data: [{
+
+            //                   name: '呼吸',
+            //	value: 112.2,
+            //	xAxis: 19,
+            //	yAxis: 110,
+            //}, {
+            //	type: 'max',
+            //	name: '最大值'
+            //}, {
+            //	type: 'min',
+            //	name: '最小值'
+            //}]";
 
             return dynamic;
         }
